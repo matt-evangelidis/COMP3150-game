@@ -313,6 +313,8 @@ public class Player : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
 	
+	// Note: there's a bug where damage zones get stuck if you spam too quickly
+	// I'll slow the attacks down later. I don't want the player to be able to attack as quickly as they can currently anyway.
 	void Attack(GameObject damageZone) {
 		comboTimer -= Time.deltaTime;
 		
@@ -330,6 +332,7 @@ public class Player : MonoBehaviour
 		if(comboTimer < 0)
 		{
 			state = State.Default;
+			disableDamageZones();
 		}
 	}
 	

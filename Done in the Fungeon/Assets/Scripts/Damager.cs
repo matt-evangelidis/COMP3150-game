@@ -20,6 +20,6 @@ public class Damager : MonoBehaviour
 		if(c.gameObject.GetComponent<Damageable>() != null) {
 			Debug.Log(c.gameObject.name);
 		}
-		Debug.Log("Anus");
+		Debug.Log("Collision");
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,18 @@ public class Player : MonoBehaviour
     public float moveSpeed = 1f;
 	public float attackDuration;
 	public float comboTime;
+
+	private float rotation;
 	
 	private float attackDurationTimer;
 	private float comboTimer;
+
+	private SpriteRenderer sprite;
+
+	public string left = "a";
+	public string right = "d";
+	public string up = "w";
+	public string down = "s";
 	
 	public GameObject damageZone1;
 	public GameObject damageZone2;
@@ -34,7 +44,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+		sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -183,8 +193,27 @@ public class Player : MonoBehaviour
         float verticalMove = Input.GetAxis("Vertical") * velocity;
         float horizontalMove = Input.GetAxis("Horizontal") * velocity;
 
-        transform.Translate(horizontalMove, verticalMove, 0);
+		if (Input.GetKey(left))
+		{
+			rotation = 90f;
+		}
+		else if (Input.GetKey(right))
+		{
+			rotation = -90f;
+		}
+		else if (Input.GetKey(up))
+		{
+			rotation = 0f;
+		}
+		else if (Input.GetKey(down))
+		{
+			rotation = 180f;
+		}
+
+		transform.localRotation = Quaternion.Euler(0, 0, rotation);
+        transform.Translate(horizontalMove, verticalMove, 0, Space.World);
 		
+
 		/*
 		if(Input.GetButtonDown("Attack"))
 		{
@@ -199,24 +228,24 @@ public class Player : MonoBehaviour
 		}
 		*/
 
-/*        if (Input.GetButton("up"))
-        {
-            transform.Translate(Vector3.up * verticalMove);
-        }
+		/*        if (Input.GetButton("up"))
+				{
+					transform.Translate(Vector3.up * verticalMove);
+				}
 
-        else if (Input.GetButton("down"))
-        {
-            transform.Translate(Vector3.down * verticalMove);
-        }
+				else if (Input.GetButton("down"))
+				{
+					transform.Translate(Vector3.down * verticalMove);
+				}
 
-        if (Input.GetButton("left"))
-        {
-            transform.Translate(Vector3.left * horizontalMove);
-        }
+				if (Input.GetButton("left"))
+				{
+					transform.Translate(Vector3.left * horizontalMove);
+				}
 
-        else if (Input.GetButton("right"))
-        {
-            transform.Translate(Vector3.right * horizontalMove);
-        }*/
-    }
+				else if (Input.GetButton("right"))
+				{
+					transform.Translate(Vector3.right * horizontalMove);
+				}*/
+	}
 }

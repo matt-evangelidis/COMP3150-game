@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
 	public float chargeTime;
 	public float chargedDashTime;
 	public float chargedAttackTime;
+	
+	public Animator animator;
+	private int comboCount;
 
 	private float rotation;
 	
@@ -71,6 +74,7 @@ public class Player : MonoBehaviour
     {
 		sprite = gameObject.GetComponent<SpriteRenderer>();
 		chargeTimer = chargeTime;
+		comboCount = 0;
     }
 
     // Update is called once per frame
@@ -87,6 +91,8 @@ public class Player : MonoBehaviour
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
 					state = State.Combo1;
+					comboCount = 1;
+					animator.SetInteger("Attack", comboCount);
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -107,6 +113,8 @@ public class Player : MonoBehaviour
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
 					state = State.Combo2;
+					comboCount = 2;
+					animator.SetInteger("Attack", comboCount);
 				}
 				
 				break;
@@ -121,6 +129,8 @@ public class Player : MonoBehaviour
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
 					state = State.Combo3;
+					comboCount = 3;
+					animator.SetInteger("Attack", comboCount);
 				}
 				break;
 				
@@ -134,6 +144,8 @@ public class Player : MonoBehaviour
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
 					state = State.Combo4;
+					comboCount = 4;
+					animator.SetInteger("Attack", comboCount);
 				}
 				
 				break;
@@ -149,6 +161,8 @@ public class Player : MonoBehaviour
 					// because the combo window is too long to work as end lag.
 					attackDurationTimer = attackDuration;
 					state = State.Combo5;
+					comboCount = 5;
+					animator.SetInteger("Attack", comboCount);
 				}
 				break;
 				
@@ -170,6 +184,8 @@ public class Player : MonoBehaviour
 				if(comboEndLagTimer < 0)
 				{
 					state = State.Default;
+					comboCount = 0;
+					animator.SetInteger("Attack", comboCount);
 				}
 				
 				Turning();
@@ -332,6 +348,8 @@ public class Player : MonoBehaviour
 		if(comboTimer < 0)
 		{
 			state = State.Default;
+			comboCount = 0;
+			animator.SetInteger("Attack", comboCount);
 			disableDamageZones();
 		}
 	}

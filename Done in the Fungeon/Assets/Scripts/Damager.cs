@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Damager : MonoBehaviour
 {
+	public Transform source; // the point where the damager's knockback will originate from
+	
     // Start is called before the first frame update
     void Start()
     {

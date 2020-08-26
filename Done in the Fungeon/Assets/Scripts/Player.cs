@@ -50,6 +50,11 @@ public class Player : MonoBehaviour
 	public Color chargedColour;
 	public Color defaultColour;
 	
+	/*
+	Notes:
+	- The charge time should be approximately as long as a combo
+	*/
+	
 	//States
 	enum State
 	{
@@ -113,17 +118,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo1:
 				Attack(damageZone1);
-				Turning();
 				Charge();
-				
-				if(attackEndLagTimer > 0) {
-					attackEndLagTimer -= Time.deltaTime;
-				}
-				
-				if(Input.GetButtonDown("Attack"))
-				{
-					attackPressed = true;
-				}
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -140,17 +135,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo2:
 				Attack(damageZone2);
-				Turning();
 				Charge();
-				
-				if(attackEndLagTimer > 0) {
-					attackEndLagTimer -= Time.deltaTime;
-				}
-				
-				if(Input.GetButtonDown("Attack"))
-				{
-					attackPressed = true;
-				}
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -166,17 +151,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo3:
 				Attack(damageZone3);
-				Turning();
 				Charge();
-				
-				if(attackEndLagTimer > 0) {
-					attackEndLagTimer -= Time.deltaTime;
-				}
-				
-				if(Input.GetButtonDown("Attack"))
-				{
-					attackPressed = true;
-				}
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -193,17 +168,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo4:
 				Attack(damageZone4);
-				Turning();
 				Charge();
-				
-				if(attackEndLagTimer > 0) {
-					attackEndLagTimer -= Time.deltaTime;
-				}
-				
-				if(Input.GetButtonDown("Attack"))
-				{
-					attackPressed = true;
-				}
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -241,7 +206,6 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
-				Turning();
 				Charge();
 				
 				break;
@@ -320,26 +284,7 @@ public class Player : MonoBehaviour
 				break;
 		}
 		
-		// Janky turning using the axes. You'll need to set the attack and decay to some ludicrously high number or
-		// there'll be a giant delay in turning.
-		/*
-		if(Input.GetAxis("Horizontal") == 1)
-		{
-			rotation = -90f;
-		}
-		else if(Input.GetAxis("Horizontal") == -1)
-		{
-			rotation = 90f;
-		}
-		else if(Input.GetAxis("Vertical") == 1)
-		{
-			rotation = 0f;
-		}
-		else if(Input.GetAxis("Vertical") == -1)
-		{
-			rotation = 180f;
-		}
-		*/
+		Aiming();
 		
 		// Global dash cooldown
 		if(dashCooldownTimer >= 0)
@@ -358,34 +303,60 @@ public class Player : MonoBehaviour
 	
 	// Add this to any state where you can turn
 	void Turning() {
-		if (Input.GetButton("Left"))
+		if (direction == Direction.Left)
 		{
 			rotation = 90f;
+		}
+		else if (direction == Direction.Right)
+		{
+			rotation = -90f;
+		}
+		else if (direction == Direction.Up)
+		{
+			rotation = 0f;
+		}
+		else if (direction == Direction.Down)
+		{
+			rotation = 180f;
+		}
+		
+		transform.localRotation = Quaternion.Euler(0, 0, rotation);
+	}
+	
+	// You can always aim in different directions, even if the character doesn't actually turn
+	void Aiming() {
+		if (Input.GetButton("Left"))
+		{
 			direction = Direction.Left;
 		}
 		else if (Input.GetButton("Right"))
 		{
-			rotation = -90f;
 			direction = Direction.Right;
 		}
 		else if (Input.GetButton("Up"))
 		{
-			rotation = 0f;
 			direction = Direction.Up;
 		}
 		else if (Input.GetButton("Down"))
 		{
-			rotation = 180f;
 			direction = Direction.Down;
 		}
 		
 		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
 	
-	// Note: there's a bug where damage zones get stuck if you spam too quickly
-	// I'll slow the attacks down later. I don't want the player to be able to attack as quickly as they can currently anyway.
 	void Attack(GameObject damageZone) {
 		comboTimer -= Time.deltaTime;
+		
+		if(attackEndLagTimer > 0)
+		{
+			attackEndLagTimer -= Time.deltaTime;
+		}
+		
+		if(Input.GetButtonDown("Attack"))
+		{
+			attackPressed = true;
+		}
 		
 		// Attack Duration
 		if(attackDurationTimer >= 0)
@@ -426,12 +397,13 @@ public class Player : MonoBehaviour
 		}
 		else if(Input.GetButtonUp("Charge") && chargeTimer <= 0)
 		{
-			attackPressed = false;
+			Turning(); // Need to set the rotation angle whenever the dash goes off
+			attackPressed = false; // So the input buffer doesn't carry into the next combo
 			chargeTimer = chargeTime;
 			chargedDashTimer = chargedDashTime;
 			state = State.ChargedDash;
 			sprite.color = defaultColour;
-			comboCount = 0;
+			comboCount = 0; // Reset the combo counter for the animator
 			animator.SetInteger("Attack", comboCount);
 			disableDamageZones();
 		}

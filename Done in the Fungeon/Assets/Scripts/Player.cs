@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 1f;
 	public float attackDuration;
+	public float attack5Duration;
 	public float comboTime;
 	public float comboEndLag;
+	public float attackEndLag;
 	public float dashTime;
 	public float dashSpeed;
 	public float dashCooldown;
@@ -21,8 +23,12 @@ public class Player : MonoBehaviour
 
 	private float rotation;
 	
+	private bool attackPressed;
+	
 	private float attackDurationTimer;
+	private float attack5DurationTimer;
 	private float comboTimer;
+	private float attackEndLagTimer;
 	private float comboEndLagTimer;
 	private float dashTimer;
 	private float dashCooldownTimer;
@@ -75,6 +81,7 @@ public class Player : MonoBehaviour
 		sprite = gameObject.GetComponent<SpriteRenderer>();
 		chargeTimer = chargeTime;
 		comboCount = 0;
+		attackPressed = false;
     }
 
     // Update is called once per frame
@@ -90,6 +97,7 @@ public class Player : MonoBehaviour
 				{
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
@@ -108,10 +116,21 @@ public class Player : MonoBehaviour
 				Turning();
 				Charge();
 				
+				if(attackEndLagTimer > 0) {
+					attackEndLagTimer -= Time.deltaTime;
+				}
+				
 				if(Input.GetButtonDown("Attack"))
 				{
+					attackPressed = true;
+				}
+				
+				if(attackEndLagTimer <= 0 && attackPressed)
+				{
+					attackPressed = false;
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
 					state = State.Combo2;
 					comboCount = 2;
 					animator.SetInteger("Attack", comboCount);
@@ -124,10 +143,21 @@ public class Player : MonoBehaviour
 				Turning();
 				Charge();
 				
+				if(attackEndLagTimer > 0) {
+					attackEndLagTimer -= Time.deltaTime;
+				}
+				
 				if(Input.GetButtonDown("Attack"))
 				{
+					attackPressed = true;
+				}
+				
+				if(attackEndLagTimer <= 0 && attackPressed)
+				{
+					attackPressed = false;
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
 					state = State.Combo3;
 					comboCount = 3;
 					animator.SetInteger("Attack", comboCount);
@@ -139,10 +169,21 @@ public class Player : MonoBehaviour
 				Turning();
 				Charge();
 				
+				if(attackEndLagTimer > 0) {
+					attackEndLagTimer -= Time.deltaTime;
+				}
+				
 				if(Input.GetButtonDown("Attack"))
 				{
+					attackPressed = true;
+				}
+				
+				if(attackEndLagTimer <= 0 && attackPressed)
+				{
+					attackPressed = false;
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
 					state = State.Combo4;
 					comboCount = 4;
 					animator.SetInteger("Attack", comboCount);
@@ -155,15 +196,27 @@ public class Player : MonoBehaviour
 				Turning();
 				Charge();
 				
+				if(attackEndLagTimer > 0) {
+					attackEndLagTimer -= Time.deltaTime;
+				}
+				
 				if(Input.GetButtonDown("Attack"))
 				{
+					attackPressed = true;
+				}
+				
+				if(attackEndLagTimer <= 0 && attackPressed)
+				{
+					attackPressed = false;
 					comboEndLagTimer = comboEndLag; // NOTE: This line is different. End lag needs to differ from combo time.
 					// because the combo window is too long to work as end lag.
 					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
 					state = State.Combo5;
 					comboCount = 5;
 					animator.SetInteger("Attack", comboCount);
 				}
+				
 				break;
 				
 			case State.Combo5:
@@ -373,10 +426,13 @@ public class Player : MonoBehaviour
 		}
 		else if(Input.GetButtonUp("Charge") && chargeTimer <= 0)
 		{
+			attackPressed = false;
 			chargeTimer = chargeTime;
 			chargedDashTimer = chargedDashTime;
 			state = State.ChargedDash;
 			sprite.color = defaultColour;
+			comboCount = 0;
+			animator.SetInteger("Attack", comboCount);
 			disableDamageZones();
 		}
 	}

@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 	Notes:
 	- The charge time should be approximately as long as a combo
 	- There is less end lag on your attacks if you finish your combo
+	- The player cannot turn while attacking because they can just spin
 	*/
 	
 	//States

@@ -5,17 +5,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	[Tooltip("")]
     public float moveSpeed = 1f;
+	[Tooltip("The time the damage zones of your first 4 basic attacks last.")]
 	public float attackDuration;
+	[Tooltip("The time the damage zone of attack 5 lasts.")]
 	public float attack5Duration;
+	[Tooltip("The time you need to idle before your combo resets.")]
 	public float comboTime;
+	[Tooltip("The time before you can move again after attack 5.")]
 	public float comboEndLag;
+	[Tooltip("The delay between attacks.")]
 	public float attackEndLag;
+	[Tooltip("The amount of time you dash for. You cannot move or during during this time.")]
 	public float dashTime;
+	[Tooltip("The speed you move during your dash.")]
 	public float dashSpeed;
+	[Tooltip("The time before you can next dash after a dash.")]
 	public float dashCooldown;
+	[Tooltip("The amount of time a charged attack takes to charge.")]
 	public float chargeTime;
+	[Tooltip("The amount of time the charged dash attack damage zone lasts for and how long the dash lasts.")]
 	public float chargedDashTime;
+	[Tooltip("The amount of time the damage zone of the dash attack lasts for.")]
 	public float chargedAttackTime;
 	
 	public Animator animator;

@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
 	/*
 	Notes:
 	- The charge time should be approximately as long as a combo
+	- There is less end lag on your attacks if you finish your combo
 	*/
 	
 	//States
@@ -264,6 +265,8 @@ public class Player : MonoBehaviour
 				if(chargedDashTimer < 0)
 				{
 					chargedDashDamageZone.gameObject.SetActive(false);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", true);
 					state = State.ChargedAttack;
 					chargedAttackTimer = chargedAttackTime;
 				}
@@ -278,6 +281,7 @@ public class Player : MonoBehaviour
 				if(chargedAttackTimer < 0)
 				{
 					chargedAttackDamageZone.gameObject.SetActive(false);
+					animator.SetBool("Charged Attacking", false);
 					state = State.Default;
 				}
 				
@@ -401,6 +405,7 @@ public class Player : MonoBehaviour
 			attackPressed = false; // So the input buffer doesn't carry into the next combo
 			chargeTimer = chargeTime;
 			chargedDashTimer = chargedDashTime;
+			animator.SetBool("Charged", true);
 			state = State.ChargedDash;
 			sprite.color = defaultColour;
 			comboCount = 0; // Reset the combo counter for the animator

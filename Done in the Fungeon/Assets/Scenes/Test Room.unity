@@ -1045,6 +1045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  attackingMoveSpeed: 0.1
   attackDuration: 0.1
   attack5Duration: 0.2
   comboTime: 0.75

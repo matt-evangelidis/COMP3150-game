@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
 	[Tooltip("")]
     public float moveSpeed = 1f;
+	[Tooltip("")]
+    public float attackingMoveSpeed = 0.2f;
 	[Tooltip("The time the damage zones of your first 4 basic attacks last.")]
 	public float attackDuration;
 	[Tooltip("The time the damage zone of attack 5 lasts.")]
@@ -67,6 +69,10 @@ public class Player : MonoBehaviour
 	- The charge time should be approximately as long as a combo
 	- There is less end lag on your attacks if you finish your combo
 	- The player cannot turn while attacking because they can just spin
+	- There is a weird bug where you can change the direction of the movement of your charged attack without changing the
+	direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
+	attack adds a little more depth to the mechanics.
+	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
 	*/
 	
 	//States
@@ -108,7 +114,7 @@ public class Player : MonoBehaviour
     {
 		switch(state) {
 			case State.Default:
-				Move();
+				Move(1);
 				Turning();
 				Charge();
 				
@@ -132,6 +138,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo1:
 				Attack(damageZone1);
+				Move(attackingMoveSpeed);
 				Charge();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
@@ -149,6 +156,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo2:
 				Attack(damageZone2);
+				Move(attackingMoveSpeed);
 				Charge();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
@@ -165,6 +173,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo3:
 				Attack(damageZone3);
+				Move(attackingMoveSpeed);
 				Charge();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
@@ -182,6 +191,7 @@ public class Player : MonoBehaviour
 				
 			case State.Combo4:
 				Attack(damageZone4);
+				Move(attackingMoveSpeed);
 				Charge();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
@@ -220,6 +230,7 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
+				Move(attackingMoveSpeed);
 				Charge();
 				
 				break;
@@ -247,6 +258,7 @@ public class Player : MonoBehaviour
 				}
 				
 				if(dashTimer < 0) {
+					Turning();
 					state = State.Default;
 					dashCooldownTimer = dashCooldown;
 				}
@@ -298,6 +310,18 @@ public class Player : MonoBehaviour
 					state = State.Default;
 				}
 				
+				// You can interrupt your charged attack your basic attack string if you wish to start straight away
+				if(Input.GetButtonDown("Attack"))
+				{
+					disableDamageZones();
+					comboTimer = comboTime;
+					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
+					state = State.Combo1;
+					comboCount = 1;
+					animator.SetInteger("Attack", comboCount);
+				}
+				
 				break;
 		}
 		
@@ -311,8 +335,8 @@ public class Player : MonoBehaviour
 	}
 	
 	// Add this to any state where you can move
-	void Move() {
-		float velocity = moveSpeed * Time.deltaTime;
+	void Move(float moveModifier) {
+		float velocity = moveSpeed * moveModifier * Time.deltaTime;
 		float verticalMove = Input.GetAxis("Vertical") * velocity;
 		float horizontalMove = Input.GetAxis("Horizontal") * velocity;
 		transform.Translate(horizontalMove, verticalMove, 0, Space.World);

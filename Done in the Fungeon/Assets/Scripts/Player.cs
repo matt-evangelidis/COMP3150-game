@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
 	direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
 	attack adds a little more depth to the mechanics.
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
+	
+	- Possible thing where you can reset your combo by turning. Adds a skill element where you need to time your charge cancels right.
 	*/
 	
 	//States

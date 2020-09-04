@@ -76,8 +76,8 @@ public class Player : MonoBehaviour
 	- The charge time should be approximately as long as a combo
 	- There is less end lag on your attacks if you finish your combo
 	- The player cannot turn while attacking because they can just spin
-	- There is a weird bug where you can change the direction of the movement of your charged attack without changing the
-	direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
+	- The bug below has been fixed. I had to do it in a really janky way, though. Your dashes move you in the direction your character is actually facing, rather than the direction you are aiming.
+		- There is a weird bug where you can change the direction of the movement of your charged attack without changing the direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
 	attack adds a little more depth to the mechanics.
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
 	
@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
 		switch(state) {
 			case State.Default:
 				Move(1);
+				Aiming();
 				Turning();
 				Charge();
 				
@@ -156,6 +157,7 @@ public class Player : MonoBehaviour
 				Attack(damageZone1);
 				Move(attackingMoveSpeed);
 				Charge();
+				Aiming();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -174,6 +176,7 @@ public class Player : MonoBehaviour
 				Attack(damageZone2);
 				Move(attackingMoveSpeed);
 				Charge();
+				Aiming();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -191,6 +194,7 @@ public class Player : MonoBehaviour
 				Attack(damageZone3);
 				Move(attackingMoveSpeed);
 				Charge();
+				Aiming();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -209,6 +213,7 @@ public class Player : MonoBehaviour
 				Attack(damageZone4);
 				Move(attackingMoveSpeed);
 				Charge();
+				Aiming();
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
@@ -248,6 +253,7 @@ public class Player : MonoBehaviour
 				
 				Move(attackingMoveSpeed);
 				Charge();
+				Aiming();
 				
 				break;
 				
@@ -349,8 +355,6 @@ public class Player : MonoBehaviour
 				break;
 		}
 		
-		Aiming();
-		
 		// Global dash cooldown
 		if(dashCooldownTimer >= 0)
 		{
@@ -395,7 +399,7 @@ public class Player : MonoBehaviour
 		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
 	
-	// You can always aim in different directions, even if the character doesn't actually turn
+	// The reason this is separate from turning is that you can still aim without actually turning your character in some states
 	void Aiming() {
 		if (Input.GetButton("Left"))
 		{

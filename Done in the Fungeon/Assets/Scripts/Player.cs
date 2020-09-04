@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 	[Tooltip("The amount of time you dash for. You cannot move or during during this time.")]
 	public float dashTime;
 	[Tooltip("The speed you move during your dash.")]
-	public float dashSpeed;
+	public float dashSpeed; // dash speed for translate movement was good at 50
 	[Tooltip("The time before you can next dash after a dash.")]
 	public float dashCooldown;
 	[Tooltip("The amount of time a charged attack takes to charge.")]
@@ -51,6 +51,13 @@ public class Player : MonoBehaviour
 	private float chargedAttackTimer;
 
 	private SpriteRenderer sprite;
+	private Rigidbody2D rb2d;
+	private Vector2 position;
+	
+	private Vector2 upDash;
+	private Vector2 downDash;
+	private Vector2 leftDash;
+	private Vector2 rightDash;
 	
 	public GameObject damageZone1;
 	public GameObject damageZone2;
@@ -99,16 +106,23 @@ public class Player : MonoBehaviour
 		Down,
 		Left,
 		Right
-	}
+	};
 	private Direction direction;
 	
     // Start is called before the first frame update
     void Start()
     {
 		sprite = gameObject.GetComponent<SpriteRenderer>();
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
+		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
 		comboCount = 0;
 		attackPressed = false;
+		
+		upDash = new Vector2(0, dashSpeed);
+		downDash = new Vector2(0, -dashSpeed);
+		rightDash = new Vector2(dashSpeed, 0);
+		leftDash = new Vector2(-dashSpeed, 0);
     }
 
     // Update is called once per frame
@@ -244,19 +258,23 @@ public class Player : MonoBehaviour
 				
 				if(direction == Direction.Up)
 				{
-					transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
+					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
+					rb2d.AddForce(upDash);
 				}
 				else if(direction == Direction.Down)
 				{
-					transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
+					//transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
+					rb2d.AddForce(downDash);
 				}
 				else if(direction == Direction.Left)
 				{
-					transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					//transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					rb2d.AddForce(leftDash);
 				}
 				else if(direction == Direction.Right)
 				{
-					transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					rb2d.AddForce(rightDash);
 				}
 				
 				if(dashTimer < 0) {
@@ -274,19 +292,23 @@ public class Player : MonoBehaviour
 				
 				if(direction == Direction.Up)
 				{
-					transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
+					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
+					rb2d.AddForce(upDash);
 				}
 				else if(direction == Direction.Down)
 				{
-					transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
+					//transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
+					rb2d.AddForce(downDash);
 				}
 				else if(direction == Direction.Left)
 				{
-					transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					//transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					rb2d.AddForce(leftDash);
 				}
 				else if(direction == Direction.Right)
 				{
-					transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
+					rb2d.AddForce(rightDash);
 				}
 				
 				if(chargedDashTimer < 0)
@@ -341,7 +363,14 @@ public class Player : MonoBehaviour
 		float velocity = moveSpeed * moveModifier * Time.deltaTime;
 		float verticalMove = Input.GetAxis("Vertical") * velocity;
 		float horizontalMove = Input.GetAxis("Horizontal") * velocity;
-		transform.Translate(horizontalMove, verticalMove, 0, Space.World);
+		//transform.Translate(horizontalMove, verticalMove, 0, Space.World);
+		//position.x += horizontalMove;
+		//position.y += verticalMove;
+		//rb2d.MovePosition(position);
+		
+		position.x = horizontalMove;
+		position.y = verticalMove;
+		rb2d.AddForce(position);
 	}
 	
 	// Add this to any state where you can turn

@@ -34,7 +34,7 @@ public class Damageable : MonoBehaviour
 		
     }
 	
-	void OnCollisionEnter2D(Collision2D c)
+	void OnTriggerEnter2D(Collider2D c)
 	{
 		damager = c.gameObject.GetComponent<Damager>();
 		if(damager != null)

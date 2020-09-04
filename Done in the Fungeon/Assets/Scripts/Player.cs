@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 	- The charge time should be approximately as long as a combo
 	- There is less end lag on your attacks if you finish your combo
 	- The player cannot turn while attacking because they can just spin
-	- The bug below has been fixed. I had to do it in a really janky way, though. Your dashes move you in the direction your character is actually facing, rather than the direction you are aiming.
+	- The bug below has been fixed. I just had to not let players aim during dashes because the direction of your dash is determined by your aiming direction, not the direction you are actually facing. It actually feels a bit better because you can continue attacking in the direction you dashed in.
 		- There is a weird bug where you can change the direction of the movement of your charged attack without changing the direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
 	attack adds a little more depth to the mechanics.
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks

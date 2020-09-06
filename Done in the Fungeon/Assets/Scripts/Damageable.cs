@@ -9,15 +9,17 @@ public class Damageable : MonoBehaviour
 	public Color defaultColour;
 	public float damageTime;
 	private float damageTimer;
+	private Rigidbody2D rb2d;
 	
 	private Vector3 knockbackVector;
 	public float knockbackSpeed;
-	public Damager damager;
+	private Damager damager;
 	
     // Start is called before the first frame update
     void Start()
     {
         sprite = gameObject.GetComponent<SpriteRenderer>();
+		rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,9 @@ public class Damageable : MonoBehaviour
 		{
 			sprite.color = damageColour;
 			damageTimer -= Time.deltaTime;
-			transform.Translate(knockbackVector * knockbackSpeed * Time.deltaTime);
+			//transform.Translate(knockbackVector * knockbackSpeed * Time.deltaTime);
+			rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed);
+			//Debug.DrawLine(transform.position, damager.source.position, Color.white, 10.0f, false);
 		} else {
 			sprite.color = defaultColour;
 		}

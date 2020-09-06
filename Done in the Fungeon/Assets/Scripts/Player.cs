@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
 		- There is a weird bug where you can change the direction of the movement of your charged attack without changing the direction of the charge itself. It's a bug, but I kind of like it because it gives you more options with your charged
 	attack adds a little more depth to the mechanics.
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
+	- I'm going to allow the player to strafe while holding the attack button. This allows for better control and was actually inspired by rune factory and other farming games.
 	
 	- Possible thing where you can reset your combo by turning. Adds a skill element where you need to time your charge cancels right.
 	*/
@@ -401,24 +402,27 @@ public class Player : MonoBehaviour
 	
 	// The reason this is separate from turning is that you can still aim without actually turning your character in some states
 	void Aiming() {
-		if (Input.GetButton("Left"))
+		if(!Input.GetButton("Attack"))
 		{
-			direction = Direction.Left;
+			if (Input.GetButton("Left"))
+			{
+				direction = Direction.Left;
+			}
+			else if (Input.GetButton("Right"))
+			{
+				direction = Direction.Right;
+			}
+			else if (Input.GetButton("Up"))
+			{
+				direction = Direction.Up;
+			}
+			else if (Input.GetButton("Down"))
+			{
+				direction = Direction.Down;
+			}
+			
+			transform.localRotation = Quaternion.Euler(0, 0, rotation);
 		}
-		else if (Input.GetButton("Right"))
-		{
-			direction = Direction.Right;
-		}
-		else if (Input.GetButton("Up"))
-		{
-			direction = Direction.Up;
-		}
-		else if (Input.GetButton("Down"))
-		{
-			direction = Direction.Down;
-		}
-		
-		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
 	
 	void Attack(GameObject damageZone) {

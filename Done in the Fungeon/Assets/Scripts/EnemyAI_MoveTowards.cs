@@ -7,9 +7,9 @@ using System.Linq;
 public class EnemyAI_MoveTowards : MonoBehaviour
 {
 	public GenerateNav nav;
-	public Node target;
-	private List<List<Node>> grid;
-	public Node startNode;
+	public Transform target;
+	private List<List<Transform>> grid;
+	public Transform startNode;
 	public Transform dot;
 	private Transform nodeTarget;
 	private Transform currentlyOn;
@@ -27,19 +27,31 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		
 		grid = nav.getGrid();
-		startNode = grid[0][0];
 		//startNode = findNode(currentlyOn); // the issue here is that this runs before it even knows where it is
-		target = grid[13][13];
+		
+		/*for(int i = 0;i<grid.Count;i++)
+		{
+			for(int j = 0;j<grid[i].Count;j++)
+			{
+				for(int k = 0;k<grid[i][j].gameObject.GetComponent<NodeMonobehaviour>().node.neighbours.Count;k++)
+				{
+					Debug.Log("(" + i + ", " + j + ") " + grid[i][j].gameObject.GetComponent<NodeMonobehaviour>().node.neighbours[k].name);
+				}
+			}
+		}*/
 		
 		path = generatePath(startNode, target);
 		nodeTarget = path.Dequeue();
 		
+		Queue<Transform> testList = new Queue<Transform>(path);
+		
 		// for debugging
-		/*for(int i = 0;i<path.Count;i++)
+		for(int i = 0;i<path.Count;i++)
 		{
+			//Debug.Log(testList.Dequeue());
 			Transform d = Instantiate(dot);
-			d.position = path[i].position;
-		}*/
+			d.position = testList.Dequeue().position;
+		}
 		
 		newPathTimer = newPathTime;
     }
@@ -55,12 +67,16 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		}
 		else
 		{
-			if(!currentlyOn.Equals(target.position)) {
-				if(currentlyOn.Equals(nodeTarget))
+			//if(!currentlyOn.Equals(target.position))
+			if(transform.position != target.position)
+			{
+				if(currentlyOn.position == nodeTarget.position)
+				//if(transform.position == nodeTarget.position)
 				{
 					nodeTarget = path.Dequeue();
 				}
 				
+				//movementVector = nodeTarget.position - transform.position;
 				movementVector = nodeTarget.position - currentlyOn.position;
 				movementVector = movementVector.normalized;
 				rb2d.AddForce(movementVector * Time.deltaTime * movementSpeed);
@@ -72,10 +88,10 @@ public class EnemyAI_MoveTowards : MonoBehaviour
     }
 	
 	// Code logic from https://www.peachpit.com/articles/article.aspx?p=101142
-	private Queue<Transform> generatePath(Node sta, Node tar)
+	private Queue<Transform> generatePath(Transform sta, Transform tar)
 	{
-		Queue<Node> toVisit = new Queue<Node>();
-		List<Node> visited = new List<Node>();
+		Queue<Transform> toVisit = new Queue<Transform>();
+		List<Transform> visited = new List<Transform>();
 		
 		if(sta.Equals(tar))
 		{
@@ -83,18 +99,20 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		}
 		else
 		{
-			sta.parent = null;
+			Node staNode = sta.gameObject.GetComponent<NodeMonobehaviour>().node;
+			staNode.bfsParent = null;
 			visited.Add(sta);
-			for(int i = 0;i<sta.neighbours.Count;i++)
+			for(int i = 0;i<staNode.neighbours.Count;i++)
 			{
-				sta.neighbours[i].parent = sta;
-				toVisit.Enqueue(sta.neighbours[i]);
+				staNode.neighbours[i].gameObject.GetComponent<NodeMonobehaviour>().node.bfsParent = sta;
+				toVisit.Enqueue(staNode.neighbours[i]);
 			}
 		}
 		
 		while(toVisit.Count > 0) // I should be using .Any here, but it doesn't work for some reason
 		{
-			Node currentNode = toVisit.Dequeue();
+			Transform currentNode = toVisit.Dequeue();
+			Node currNode = currentNode.gameObject.GetComponent<NodeMonobehaviour>().node;
 			
 			if(currentNode.Equals(tar))
 			{
@@ -104,12 +122,12 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 			{
 				visited.Add(currentNode);
 				
-				for(int i = 0;i<currentNode.neighbours.Count;i++)
+				for(int i = 0;i<currNode.neighbours.Count;i++)
 				{
-					if(!visited.Contains(currentNode.neighbours[i]) && !toVisit.Contains(currentNode.neighbours[i]))
+					if(!visited.Contains(currNode.neighbours[i]) && !toVisit.Contains(currNode.neighbours[i]))
 					{
-						currentNode.neighbours[i].parent = currentNode;
-						toVisit.Enqueue(currentNode.neighbours[i]);
+						currNode.neighbours[i].gameObject.GetComponent<NodeMonobehaviour>().node.bfsParent = currentNode;
+						toVisit.Enqueue(currNode.neighbours[i]);
 					}
 				}
 			}
@@ -118,13 +136,21 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		return null;
 	}
 	
-	private Queue<Transform> buildPath(Node n)
+	private Queue<Transform> buildPath(Transform n)
 	{
 		Queue<Transform> path = new Queue<Transform>();
-		while(n.parent != null)
+		//Node n = node.gameObject.GetComponent<NodeMonobehaviour>().node;
+		/*for(int i = 0;i<grid.Count;i++)
 		{
-			path.Enqueue(n.position); // maybe make it game objects instead of transforms, we'll see
-			n = n.parent;
+			for(int j = 0;j<grid[i].Count;j++)
+			{
+				Debug.Log(grid[i][j].name + ", " + grid[i][j].gameObject.GetComponent<NodeMonobehaviour>().node.bfsParent.name);
+			}
+		}*/
+		while(n.gameObject.GetComponent<NodeMonobehaviour>().node.bfsParent != null)
+		{
+			path.Enqueue(n);
+			n = n.gameObject.GetComponent<NodeMonobehaviour>().node.bfsParent;
 		}
 		path = new Queue<Transform>(path.Reverse());
 		return path;

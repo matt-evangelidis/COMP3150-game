@@ -500,4 +500,16 @@ public class Player : MonoBehaviour
 		chargedAttackDamageZone.gameObject.SetActive(false);
 		chargedDashDamageZone.gameObject.SetActive(false);
 	}
+	
+	/*void OnTriggerEnter2D(Collider2D c)
+	{
+		if(c.gameObject.tag == "nav_enable")
+		{
+			Debug.Log("At" + c.gameObject.GetComponent<NodeMonobehaviour>().node.name);
+			for(int i = 0;i<c.gameObject.GetComponent<NodeMonobehaviour>().node.neighbours.Count;i++)
+			{
+				Debug.Log(c.gameObject.GetComponent<NodeMonobehaviour>().node.neighbours[i].gameObject.GetComponent<NodeMonobehaviour>().node.name);
+			}
+		}
+	}*/
 }

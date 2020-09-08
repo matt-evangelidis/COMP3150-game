@@ -6,9 +6,9 @@ namespace node
 {
 	public class Node
 	{
-		public Node parent;
-		public Vector2 name;
+		public Transform bfsParent; // for searching
+		public Vector2Int name;
 		public Transform position;
-		public List<Node> neighbours;
+		public List<Transform> neighbours;
 	}
 }

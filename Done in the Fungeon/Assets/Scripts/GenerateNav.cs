@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using node;
 
 public class GenerateNav : MonoBehaviour
 {
-	public struct Node
-	{
-		public Transform position;
-		public List<Node> neighbours;
-	}
 	private List<List<Node>> grid;
 	private const int gridSize = 13;
 	
@@ -22,6 +18,7 @@ public class GenerateNav : MonoBehaviour
 			for(int j = 0;j<transform.GetChild(i).transform.childCount;j++)
 			{
 				Node n = new Node();
+				n.name = new Vector2(i, j);
 				n.position = transform.GetChild(i).GetChild(j);
 				n.neighbours = new List<Node>();
 				tempList.Add(n);

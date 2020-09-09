@@ -31,7 +31,7 @@ public class Damageable : MonoBehaviour
 			damageTimer -= Time.deltaTime;
 			//transform.Translate(knockbackVector * knockbackSpeed * Time.deltaTime);
 			rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed);
-			//Debug.DrawLine(transform.position, damager.source.position, Color.white, 10.0f, false);
+			//Debug.DrawLine(transform.position, damager.source, Color.white, 10.0f, false);
 		} else {
 			sprite.color = defaultColour;
 		}
@@ -45,7 +45,7 @@ public class Damageable : MonoBehaviour
 		{
 			damageTimer = damageTime;
 			
-			knockbackVector = transform.position - damager.source.position;
+			knockbackVector = transform.position - damager.source;
 			knockbackVector = knockbackVector.normalized;
 		}
 	}

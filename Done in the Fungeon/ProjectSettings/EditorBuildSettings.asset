@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test Room.unity
-    guid: a0fc19b0aa5afaf4fba9089c985e6097
+    path: Assets/Scenes/Laser Room.unity
+    guid: 34d54892cbaa8b4499fbdfa1e1b8b401
   m_configObjects: {}

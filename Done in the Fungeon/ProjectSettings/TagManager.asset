@@ -6,6 +6,7 @@ TagManager:
   tags:
   - nav_enable
   - nav_disable
+  - damager
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - EnemyHitbox
   - Pathfinding
-  - 
+  - Interactible
   - 
   - 
   - 

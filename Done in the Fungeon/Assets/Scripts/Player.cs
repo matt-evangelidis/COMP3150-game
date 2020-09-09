@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public int maxHP;
 	[Tooltip("")]
     public float moveSpeed = 1f;
 	[Tooltip("")]
@@ -31,13 +32,24 @@ public class Player : MonoBehaviour
 	public float chargedDashTime;
 	[Tooltip("The amount of time the damage zone of the dash attack lasts for.")]
 	public float chargedAttackTime;
+	public float hurtTime;
+	[Tooltip("How often the player will be damaged if they stand inside a damager")]
+	public float damageDelay;
 	
 	public Animator animator;
 	private int comboCount;
+	
+	private int currentHP;
 
 	private float rotation;
 	
 	private bool attackPressed;
+	
+	private bool immune;
+	private bool invulnerable;
+	private bool hurt;
+	private Vector3 knockbackVector;
+	private float knockbackSpeed;
 	
 	private float attackDurationTimer;
 	private float attack5DurationTimer;
@@ -49,15 +61,12 @@ public class Player : MonoBehaviour
 	private float chargeTimer;
 	private float chargedDashTimer;
 	private float chargedAttackTimer;
+	private float hurtTimer;
+	private float damageDelayTimer;
 
 	private SpriteRenderer sprite;
 	private Rigidbody2D rb2d;
 	private Vector2 position;
-	
-	private Vector2 upDash;
-	private Vector2 downDash;
-	private Vector2 leftDash;
-	private Vector2 rightDash;
 	
 	public GameObject damageZone1;
 	public GameObject damageZone2;
@@ -70,6 +79,7 @@ public class Player : MonoBehaviour
 	public Color chargingColour;
 	public Color chargedColour;
 	public Color defaultColour;
+	public Color damageColour;
 	
 	/*
 	Notes:
@@ -81,6 +91,7 @@ public class Player : MonoBehaviour
 	attack adds a little more depth to the mechanics.
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
 	- I'm going to allow the player to strafe while holding the attack button. This allows for better control and was actually inspired by rune factory and other farming games.
+	- The player can only ever take 1 damage at a time. Ease of programming and a design consideration.
 	
 	- Possible thing where you can reset your combo by turning. Adds a skill element where you need to time your charge cancels right.
 	*/
@@ -96,7 +107,8 @@ public class Player : MonoBehaviour
 		Combo5,
 		Dash,
 		ChargedDash,
-		ChargedAttack
+		ChargedAttack,
+		Hurt
 	};
 	private State state;
 	
@@ -113,17 +125,17 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		currentHP = maxHP;
 		sprite = gameObject.GetComponent<SpriteRenderer>();
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
 		comboCount = 0;
 		attackPressed = false;
+		damageDelayTimer = damageDelay;
 		
-		upDash = new Vector2(0, dashSpeed);
-		downDash = new Vector2(0, -dashSpeed);
-		rightDash = new Vector2(dashSpeed, 0);
-		leftDash = new Vector2(-dashSpeed, 0);
+		invulnerable = false;
+		immune = false;
     }
 
     // Update is called once per frame
@@ -152,6 +164,17 @@ public class Player : MonoBehaviour
 					state = State.Dash;
 				}
 				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
+				}
+				
 				break;
 				
 			case State.Combo1:
@@ -169,6 +192,17 @@ public class Player : MonoBehaviour
 					state = State.Combo2;
 					comboCount = 2;
 					animator.SetInteger("Attack", comboCount);
+				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
 				}
 				
 				break;
@@ -189,6 +223,18 @@ public class Player : MonoBehaviour
 					comboCount = 3;
 					animator.SetInteger("Attack", comboCount);
 				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
+				}
+				
 				break;
 				
 			case State.Combo3:
@@ -206,6 +252,17 @@ public class Player : MonoBehaviour
 					state = State.Combo4;
 					comboCount = 4;
 					animator.SetInteger("Attack", comboCount);
+				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
 				}
 				
 				break;
@@ -226,6 +283,17 @@ public class Player : MonoBehaviour
 					state = State.Combo5;
 					comboCount = 5;
 					animator.SetInteger("Attack", comboCount);
+				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
 				}
 				
 				break;
@@ -252,6 +320,17 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
+				}
+				
 				Move(attackingMoveSpeed);
 				Charge();
 				Aiming();
@@ -260,39 +339,42 @@ public class Player : MonoBehaviour
 				
 			case State.Dash:
 				dashTimer -= Time.deltaTime;
+				invulnerable = true;
 				
 				Charge();
 				
 				if(direction == Direction.Up)
 				{
 					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
-					rb2d.AddForce(upDash);
+					rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Down)
 				{
 					//transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
-					rb2d.AddForce(downDash);
+					rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Left)
 				{
 					//transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
-					rb2d.AddForce(leftDash);
+					rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Right)
 				{
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
-					rb2d.AddForce(rightDash);
+					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
 				}
 				
 				if(dashTimer < 0) {
 					Turning();
 					state = State.Default;
 					dashCooldownTimer = dashCooldown;
+					invulnerable = false;
 				}
 				
 				break;
 				
 			case State.ChargedDash:
+				immune = true;
 				chargedDashTimer -= Time.deltaTime;
 				
 				chargedDashDamageZone.gameObject.SetActive(true);
@@ -300,22 +382,22 @@ public class Player : MonoBehaviour
 				if(direction == Direction.Up)
 				{
 					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
-					rb2d.AddForce(upDash);
+					rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Down)
 				{
 					//transform.Translate(0, -dashSpeed * Time.deltaTime, 0, Space.World);
-					rb2d.AddForce(downDash);
+					rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Left)
 				{
 					//transform.Translate(-dashSpeed * Time.deltaTime, 0, 0, Space.World);
-					rb2d.AddForce(leftDash);
+					rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
 				}
 				else if(direction == Direction.Right)
 				{
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
-					rb2d.AddForce(rightDash);
+					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
 				}
 				
 				if(chargedDashTimer < 0)
@@ -327,9 +409,22 @@ public class Player : MonoBehaviour
 					chargedAttackTimer = chargedAttackTime;
 				}
 				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
+					immune = false;
+				}
+				
 				break;
 				
 			case State.ChargedAttack:
+				immune = true;
 				chargedAttackTimer -= Time.deltaTime;
 				
 				chargedAttackDamageZone.gameObject.SetActive(true);
@@ -351,6 +446,37 @@ public class Player : MonoBehaviour
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
+					immune = false;
+				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
+					immune = false;
+				}
+				
+				break;
+			case State.Hurt:
+				invulnerable = true;
+				if(hurtTimer > 0)
+				{
+					hurtTimer -= Time.deltaTime;
+					sprite.color = damageColour;
+					rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed);
+				}
+				else
+				{
+					animator.SetBool("Hurt", false);
+					state = State.Default;
+					sprite.color = defaultColour;
+					hurt = false;
+					invulnerable = false;
 				}
 				
 				break;
@@ -499,6 +625,57 @@ public class Player : MonoBehaviour
 		damageZone5.gameObject.SetActive(false);
 		chargedAttackDamageZone.gameObject.SetActive(false);
 		chargedDashDamageZone.gameObject.SetActive(false);
+		
+		immune = false;
+		invulnerable = false;
+	}
+	
+	void OnTriggerStay2D(Collider2D c)
+	{
+		// if you stay in the damage zone for longer than the hurt time, you get damaged again
+		if(c.gameObject.tag == "damager" && !invulnerable)
+			if(damageDelayTimer > 0)
+			{
+				damageDelayTimer -= Time.deltaTime;
+			}
+			else
+			{
+				takeDamage(c);
+			}
+	}
+	
+	void OnTriggerEnter2D(Collider2D c)
+	{
+		// take damage once
+		if(c.gameObject.tag == "damager")
+		{
+			if(!invulnerable)
+			{
+				if(immune && c.gameObject.GetComponent<Damager>().isProjectile)
+				{
+					takeDamage(c);
+				}
+				else if(!immune)
+				{
+					takeDamage(c);
+				}
+			}
+		}
+		
+		if(immune && c.gameObject.GetComponent<Damager>().isProjectile)
+		{
+			takeDamage(c);
+		}
+	}
+	
+	void takeDamage(Collider2D c)
+	{
+		damageDelayTimer = damageDelay;
+		hurt = true;
+		
+		knockbackVector = transform.position - c.gameObject.GetComponent<Damager>().source;
+		knockbackVector = knockbackVector.normalized;
+		knockbackSpeed = c.gameObject.GetComponent<Damager>().knockbackPower;
 	}
 	
 	/*void OnTriggerEnter2D(Collider2D c)

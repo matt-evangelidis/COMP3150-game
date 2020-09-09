@@ -21,9 +21,14 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 	private Rigidbody2D rb2d;
 	public float movementSpeed;
 	
+	public Transform otherTestNode;
+	
     // Start is called before the first frame update
     void Start()
     {
+		currentlyOn = transform;
+		nodeTarget = transform;
+		
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		
 		grid = nav.getGrid();
@@ -51,6 +56,7 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 			//Debug.Log(testList.Dequeue());
 			Transform d = Instantiate(dot);
 			d.position = testList.Dequeue().position;
+			d.Translate(0,0,-2);
 		}
 		
 		newPathTimer = newPathTime;
@@ -62,13 +68,9 @@ public class EnemyAI_MoveTowards : MonoBehaviour
         if(newPathTimer > 0)
 		{
 			newPathTimer -= Time.deltaTime;
-			//startNode = findNode(currentlyOn);
-			//path = generatePath(startNode, target);
-		}
-		else
-		{
+			
 			//if(!currentlyOn.Equals(target.position))
-			if(transform.position != target.position)
+			if(currentlyOn.position != target.position)
 			{
 				if(currentlyOn.position == nodeTarget.position)
 				//if(transform.position == nodeTarget.position)
@@ -79,11 +81,23 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 				//movementVector = nodeTarget.position - transform.position;
 				movementVector = nodeTarget.position - currentlyOn.position;
 				movementVector = movementVector.normalized;
+				
+				Debug.DrawLine(transform.position, movementVector + transform.position, Color.red);
+				
+				//transform.Translate(movementVector * Time.deltaTime * movementSpeed);
+				
 				rb2d.AddForce(movementVector * Time.deltaTime * movementSpeed);
 			}
 			
 			// move towards the next node
 			// when the node is touched, pop the first item in the queue off and make that the next target
+		}
+		else
+		{
+			newPathTimer = newPathTime;
+			startNode = currentlyOn;
+			target = otherTestNode;
+			path = generatePath(startNode, target);
 		}
     }
 	

@@ -10,23 +10,22 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject resumeButton;
     public GameObject mainMenuButton;
-    private bool paused = true;
+    private bool paused = false;
 
     // Start is called before the first frame update
     void Start()
     {
         SetPaused(paused);
+        pausePanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         // pause if the player presses escape
-        if (paused == false && Input.GetKeyDown(KeyCode.Escape))
+        if (paused == false && Input.GetButtonDown("Pause"))
         {
-            pausePanel.SetActive(true);
-            Debug.Log("Escape key pressed");
-            SetPaused(true);
+            PauseGame();
         }
     }
 
@@ -34,19 +33,25 @@ public class PauseMenu : MonoBehaviour
     {
         // make the shell panel (in)active when (un)paused
         paused = p;
-        Debug.Log("SetPaused Called");
+        pausePanel.SetActive(paused);
         Time.timeScale = paused ? 0 : 1;
     }
 
     public void OnPressedPlay()
     {
         // resume the game
-        pausePanel.SetActive(false);
+        // pausePanel.SetActive(false);
         SetPaused(false);
     }
 
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PauseGame()
+    {
+        SetPaused(true);
+        pausePanel.SetActive(true);
     }
 }

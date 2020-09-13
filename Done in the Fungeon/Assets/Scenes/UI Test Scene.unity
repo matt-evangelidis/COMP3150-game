@@ -1883,6 +1883,7 @@ GameObject:
   - component: {fileID: 656622600}
   - component: {fileID: 656622599}
   - component: {fileID: 656622598}
+  - component: {fileID: 656622601}
   m_Layer: 0
   m_Name: Pause Panel
   m_TagString: Untagged
@@ -1975,6 +1976,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656622596}
   m_CullTransparentMesh: 0
+--- !u!114 &656622601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656622596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28adc47aa7ddab14e84320d1e6540546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 656622596}
+  resumeButton: {fileID: 786011202}
+  mainMenuButton: {fileID: 670348457}
 --- !u!1 &670348457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,8 +2073,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 656622601}
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2421,8 +2437,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: StartGame
+      - m_Target: {fileID: 656622601}
+        m_MethodName: OnPressedPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

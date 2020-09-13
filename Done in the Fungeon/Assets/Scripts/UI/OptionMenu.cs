@@ -7,7 +7,6 @@ using UnityEngine.UI;
 // Code from COMP260 Week 10 prac
 public class OptionMenu : MonoBehaviour
 {
-    
     public GameObject optionsPanel;
     public Dropdown qualityDropdown;
     public Dropdown resolutionDropdown;
@@ -17,7 +16,6 @@ public class OptionMenu : MonoBehaviour
 
     AudioSource source;
 
-    private bool paused = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +25,6 @@ public class OptionMenu : MonoBehaviour
         // options panel is initially hidden
         optionsPanel.SetActive(false);
 
-        SetPaused(paused);
 
         // populate the list of video quality levels
         qualityDropdown.ClearOptions();
@@ -76,29 +73,7 @@ public class OptionMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // pause if the player presses escape
-        if (!paused && Input.GetKeyDown(KeyCode.Escape))
-        {
-            SetPaused(true);
-        }
-    }
-    private void SetPaused(bool p)
-    {
-        // make the shell panel (in)active when (un)paused
-        paused = p;
 
-        Time.timeScale = paused ? 0 : 1;
-    }
-    public void OnPressedPlay()
-    {
-        // resume the game
-        SetPaused(false);
-    }
-
-    public void OnPressedQuit()
-    {
-        // quit the game
-        Application.Quit();
     }
 
     public void OnPressedOptions()

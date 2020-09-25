@@ -13,11 +13,12 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 	public Transform dot;
 	private Transform nodeTarget;
 	private Transform currentlyOn;
-	public float newPathTime;
+	public float newPathTime; // Time between path updates
 	private float newPathTimer;
 	private Queue<Transform> path;
+	public PlayerGridPos playerPos;
 	
-	private Vector3 movementVector;
+	private Vector2 movementVector;
 	private Rigidbody2D rb2d;
 	public float movementSpeed;
 	
@@ -46,7 +47,7 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		}*/
 		
 		path = generatePath(startNode, target);
-		nodeTarget = path.Dequeue();
+		nodeTarget = startNode;
 		
 		Queue<Transform> testList = new Queue<Transform>(path);
 		
@@ -69,24 +70,21 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		{
 			newPathTimer -= Time.deltaTime;
 			
-			//if(!currentlyOn.Equals(target.position))
-			if(currentlyOn.position != target.position)
+			// these are necessary because these distance things take the z coordinate into account and there are some
+			// weird discrepencies there
+			Vector2 transform2d = transform.position;
+			Vector2 nodeTarget2d = nodeTarget.position;
+			
+			if(Vector3.Distance(transform2d, nodeTarget2d) > 0.1f)
 			{
-				if(currentlyOn.position == nodeTarget.position)
-				//if(transform.position == nodeTarget.position)
-				{
-					nodeTarget = path.Dequeue();
-				}
-				
-				//movementVector = nodeTarget.position - transform.position;
-				movementVector = nodeTarget.position - currentlyOn.position;
+				movementVector = nodeTarget2d - transform2d;
 				movementVector = movementVector.normalized;
 				
-				Debug.DrawLine(transform.position, movementVector + transform.position, Color.red);
-				
-				//transform.Translate(movementVector * Time.deltaTime * movementSpeed);
-				
 				rb2d.AddForce(movementVector * Time.deltaTime * movementSpeed);
+			}
+			else
+			{
+				nodeTarget = path.Dequeue();
 			}
 			
 			// move towards the next node
@@ -96,8 +94,10 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		{
 			newPathTimer = newPathTime;
 			startNode = currentlyOn;
-			target = otherTestNode;
+			target = playerPos.currentlyOn;
+			//nodeTarget = startNode;
 			path = generatePath(startNode, target);
+			nodeTarget = path.Dequeue();
 		}
     }
 	
@@ -177,18 +177,4 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 			currentlyOn = c.transform;
 		}
 	}
-	
-	/*private Node findNode(Transform t) {
-		for(int i = 0;i<grid.Count;i++)
-		{
-			for(int j = 0;j<grid[i].Count;j++)
-			{
-				if(t.Equals(grid[i][j].position))
-				{
-					return grid[i][j];
-				}
-			}
-		}
-		return null;
-	}*/
 }

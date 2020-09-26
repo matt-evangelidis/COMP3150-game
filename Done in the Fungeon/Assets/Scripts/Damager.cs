@@ -7,7 +7,7 @@ public class Damager : MonoBehaviour
 	public Transform sourceTransform;
 	public Vector3 source; // the point where the damager's knockback will originate from
 	public float knockbackPower;
-	public bool isProjectile;
+	public int damageType; // 0 is non projectile, 1 is projectile and 2 is unavoidable damage
 	public bool disableSource; // disable this if the damage soruce is managed elsewhere (like for lasers)
 	
     // Start is called before the first frame update

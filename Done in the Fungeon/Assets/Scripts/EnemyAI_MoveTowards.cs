@@ -10,7 +10,6 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 	public Transform target;
 	private List<List<Transform>> grid;
 	public Transform startNode;
-	public Transform dot;
 	private Transform nodeTarget;
 	private Transform currentlyOn;
 	public float newPathTime; // Time between path updates
@@ -22,13 +21,13 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 	private Rigidbody2D rb2d;
 	public float movementSpeed;
 	
-	public Transform otherTestNode;
-	
     // Start is called before the first frame update
     void Start()
     {
 		currentlyOn = transform;
 		nodeTarget = transform;
+		startNode = transform;
+		target = transform;
 		
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		
@@ -48,17 +47,6 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 		
 		path = generatePath(startNode, target);
 		nodeTarget = startNode;
-		
-		Queue<Transform> testList = new Queue<Transform>(path);
-		
-		// for debugging
-		for(int i = 0;i<path.Count;i++)
-		{
-			//Debug.Log(testList.Dequeue());
-			Transform d = Instantiate(dot);
-			d.position = testList.Dequeue().position;
-			d.Translate(0,0,-2);
-		}
 		
 		newPathTimer = newPathTime;
     }
@@ -84,7 +72,10 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 			}
 			else
 			{
-				nodeTarget = path.Dequeue();
+				if(path.Count != 0)
+				{
+					nodeTarget = path.Dequeue();
+				}
 			}
 			
 			// move towards the next node
@@ -95,9 +86,9 @@ public class EnemyAI_MoveTowards : MonoBehaviour
 			newPathTimer = newPathTime;
 			startNode = currentlyOn;
 			target = playerPos.currentlyOn;
-			//nodeTarget = startNode;
+			nodeTarget = startNode; //Enemy movement is a little janky with this, dequeuing the first thing makes enemies cut corners, but they move smoother
 			path = generatePath(startNode, target);
-			nodeTarget = path.Dequeue();
+			//nodeTarget = path.Dequeue();
 		}
     }
 	

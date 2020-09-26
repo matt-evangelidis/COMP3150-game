@@ -160,8 +160,7 @@ public class Player : MonoBehaviour
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
-					dashTimer = dashTime;
-					state = State.Dash;
+					Dash();
 				}
 				
 				if(hurt)
@@ -194,6 +193,11 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
+				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
+				{
+					Dash();
+				}
+				
 				if(hurt)
 				{
 					animator.SetBool("Hurt", true);
@@ -224,6 +228,11 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
+				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
+				{
+					Dash();
+				}
+				
 				if(hurt)
 				{
 					animator.SetBool("Hurt", true);
@@ -252,6 +261,11 @@ public class Player : MonoBehaviour
 					state = State.Combo4;
 					comboCount = 4;
 					animator.SetInteger("Attack", comboCount);
+				}
+				
+				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
+				{
+					Dash();
 				}
 				
 				if(hurt)
@@ -285,6 +299,11 @@ public class Player : MonoBehaviour
 					animator.SetInteger("Attack", comboCount);
 				}
 				
+				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
+				{
+					Dash();
+				}
+				
 				if(hurt)
 				{
 					animator.SetBool("Hurt", true);
@@ -311,6 +330,11 @@ public class Player : MonoBehaviour
 				else
 				{
 					damageZone5.gameObject.SetActive(false);
+				}
+				
+				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
+				{
+					Dash();
 				}
 				
 				if(comboEndLagTimer < 0)
@@ -368,6 +392,18 @@ public class Player : MonoBehaviour
 					Turning();
 					state = State.Default;
 					dashCooldownTimer = dashCooldown;
+					invulnerable = false;
+				}
+				
+				if(hurt)
+				{
+					animator.SetBool("Hurt", true);
+					animator.SetBool("Charged", false);
+					animator.SetBool("Charged Attacking", false);
+					currentHP -= 1;
+					hurtTimer = hurtTime;
+					state = State.Hurt;
+					disableDamageZones();
 					invulnerable = false;
 				}
 				
@@ -434,6 +470,7 @@ public class Player : MonoBehaviour
 					chargedAttackDamageZone.gameObject.SetActive(false);
 					animator.SetBool("Charged Attacking", false);
 					state = State.Default;
+					immune = false;
 				}
 				
 				// You can interrupt your charged attack your basic attack string if you wish to start straight away
@@ -616,6 +653,14 @@ public class Player : MonoBehaviour
 		}
 	}
 	
+	void Dash()
+	{
+		dashTimer = dashTime;
+		state = State.Dash;
+		comboCount = 0;
+		animator.SetInteger("Attack", comboCount);
+	}
+	
 	// This is to stop damage zones from getting stuck if you interrupt a basic attack
 	void disableDamageZones() {
 		damageZone1.gameObject.SetActive(false);
@@ -651,20 +696,24 @@ public class Player : MonoBehaviour
 		{
 			if(!invulnerable)
 			{
-				if(immune && c.gameObject.GetComponent<Damager>().isProjectile)
+				if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.
 				{
 					takeDamage(c);
 				}
-				else if(!immune)
+				else if(!immune) // not invulnerable and not immune
 				{
 					takeDamage(c);
 				}
 			}
-		}
-		
-		if(immune && c.gameObject.GetComponent<Damager>().isProjectile)
-		{
-			takeDamage(c);
+			else if(c.gameObject.GetComponent<Damager>().damageType == 2) // if the damager is unavoidable
+			{
+				takeDamage(c);
+			}
+			
+			/*if(immune && (c.gameObject.GetComponent<Damager>().isProjectile == 1))
+			{
+				takeDamage(c);
+			}*/
 		}
 	}
 	

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	public float comboEndLag;
 	[Tooltip("The delay between attacks.")]
 	public float attackEndLag;
+	[Tooltip("The window of time between attacks where you can turn")]
+	public float comboTurnWindow;
 	[Tooltip("The amount of time you dash for. You cannot move or during during this time.")]
 	public float dashTime;
 	[Tooltip("The speed you move during your dash.")]
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
 	private float attack5DurationTimer;
 	private float comboTimer;
 	private float attackEndLagTimer;
+	private float comboTurnWindowTimer;
 	private float comboEndLagTimer;
 	private float dashTimer;
 	private float dashCooldownTimer;
@@ -105,6 +108,7 @@ public class Player : MonoBehaviour
 		Combo3,
 		Combo4,
 		Combo5,
+		ComboTransition,
 		Dash,
 		ChargedDash,
 		ChargedAttack,
@@ -184,13 +188,9 @@ public class Player : MonoBehaviour
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
-					attackPressed = false;
-					comboTimer = comboTime;
-					attackDurationTimer = attackDuration;
-					attackEndLagTimer = attackEndLag;
-					state = State.Combo2;
 					comboCount = 2;
-					animator.SetInteger("Attack", comboCount);
+					comboTurnWindowTimer = comboTurnWindow;
+					state = State.ComboTransition;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -219,13 +219,9 @@ public class Player : MonoBehaviour
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
-					attackPressed = false;
-					comboTimer = comboTime;
-					attackDurationTimer = attackDuration;
-					attackEndLagTimer = attackEndLag;
-					state = State.Combo3;
 					comboCount = 3;
-					animator.SetInteger("Attack", comboCount);
+					comboTurnWindowTimer = comboTurnWindow;
+					state = State.ComboTransition;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -254,13 +250,9 @@ public class Player : MonoBehaviour
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
-					attackPressed = false;
-					comboTimer = comboTime;
-					attackDurationTimer = attackDuration;
-					attackEndLagTimer = attackEndLag;
-					state = State.Combo4;
 					comboCount = 4;
-					animator.SetInteger("Attack", comboCount);
+					comboTurnWindowTimer = comboTurnWindow;
+					state = State.ComboTransition;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -289,14 +281,11 @@ public class Player : MonoBehaviour
 				
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
-					attackPressed = false;
 					comboEndLagTimer = comboEndLag; // NOTE: This line is different. End lag needs to differ from combo time.
 					// because the combo window is too long to work as end lag.
-					attackDurationTimer = attackDuration;
-					attackEndLagTimer = attackEndLag;
-					state = State.Combo5;
+					comboTurnWindowTimer = comboTurnWindow;
 					comboCount = 5;
-					animator.SetInteger("Attack", comboCount);
+					state = State.ComboTransition;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -360,7 +349,29 @@ public class Player : MonoBehaviour
 				Aiming();
 				
 				break;
+			
+			case State.ComboTransition:
+				Move(attackingMoveSpeed);
+				Charge();
+				Aiming();
+				Turning();
 				
+				if(comboTurnWindowTimer > 0)
+				{
+					comboTurnWindowTimer -= Time.deltaTime;
+				}
+				else
+				{
+					attackPressed = false;
+					comboTimer = comboTime;
+					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
+					state = (State)comboCount;
+					animator.SetInteger("Attack", comboCount);
+				}
+				
+				break;
+			
 			case State.Dash:
 				dashTimer -= Time.deltaTime;
 				invulnerable = true;
@@ -393,6 +404,16 @@ public class Player : MonoBehaviour
 					state = State.Default;
 					dashCooldownTimer = dashCooldown;
 					invulnerable = false;
+				}
+				
+				if(Input.GetButtonDown("Attack"))
+				{
+					comboTimer = comboTime;
+					attackDurationTimer = attackDuration;
+					attackEndLagTimer = attackEndLag;
+					state = State.Combo1;
+					comboCount = 1;
+					animator.SetInteger("Attack", comboCount);
 				}
 				
 				if(hurt)

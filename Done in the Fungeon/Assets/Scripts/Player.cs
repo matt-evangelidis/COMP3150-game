@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
 	public float comboEndLag;
 	[Tooltip("The delay between attacks.")]
 	public float attackEndLag;
-	[Tooltip("The window of time between attacks where you can turn")]
-	public float comboTurnWindow;
 	[Tooltip("The amount of time you dash for. You cannot move or during during this time.")]
 	public float dashTime;
 	[Tooltip("The speed you move during your dash.")]
@@ -57,7 +55,6 @@ public class Player : MonoBehaviour
 	private float attack5DurationTimer;
 	private float comboTimer;
 	private float attackEndLagTimer;
-	private float comboTurnWindowTimer;
 	private float comboEndLagTimer;
 	private float dashTimer;
 	private float dashCooldownTimer;
@@ -189,7 +186,6 @@ public class Player : MonoBehaviour
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
 					comboCount = 2;
-					comboTurnWindowTimer = comboTurnWindow;
 					state = State.ComboTransition;
 				}
 				
@@ -220,7 +216,6 @@ public class Player : MonoBehaviour
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
 					comboCount = 3;
-					comboTurnWindowTimer = comboTurnWindow;
 					state = State.ComboTransition;
 				}
 				
@@ -251,7 +246,6 @@ public class Player : MonoBehaviour
 				if(attackEndLagTimer <= 0 && attackPressed)
 				{
 					comboCount = 4;
-					comboTurnWindowTimer = comboTurnWindow;
 					state = State.ComboTransition;
 				}
 				
@@ -283,7 +277,6 @@ public class Player : MonoBehaviour
 				{
 					comboEndLagTimer = comboEndLag; // NOTE: This line is different. End lag needs to differ from combo time.
 					// because the combo window is too long to work as end lag.
-					comboTurnWindowTimer = comboTurnWindow;
 					comboCount = 5;
 					state = State.ComboTransition;
 				}
@@ -351,24 +344,18 @@ public class Player : MonoBehaviour
 				break;
 			
 			case State.ComboTransition:
+				// No need for a timer here, there just needs to be a single frame between attacks so that your direction can update
 				Move(attackingMoveSpeed);
 				Charge();
 				Aiming();
 				Turning();
 				
-				if(comboTurnWindowTimer > 0)
-				{
-					comboTurnWindowTimer -= Time.deltaTime;
-				}
-				else
-				{
-					attackPressed = false;
-					comboTimer = comboTime;
-					attackDurationTimer = attackDuration;
-					attackEndLagTimer = attackEndLag;
-					state = (State)comboCount;
-					animator.SetInteger("Attack", comboCount);
-				}
+				attackPressed = false;
+				comboTimer = comboTime;
+				attackDurationTimer = attackDuration;
+				attackEndLagTimer = attackEndLag;
+				state = (State)comboCount;
+				animator.SetInteger("Attack", comboCount);
 				
 				break;
 			
@@ -676,6 +663,7 @@ public class Player : MonoBehaviour
 	
 	void Dash()
 	{
+		disableDamageZones();
 		dashTimer = dashTime;
 		state = State.Dash;
 		comboCount = 0;

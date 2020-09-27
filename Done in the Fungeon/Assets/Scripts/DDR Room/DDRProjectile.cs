@@ -29,12 +29,16 @@ public class DDRProjectile : MonoBehaviour
 		{
 			currentDirection = direction;
 		}
-		
-		if(c.gameObject.tag  == "Enemy")
+		else if(c.gameObject.tag  == "Interactible")
 		{
-			Debug.Log("Poop");
 			transform.position = defaultPos.position;
 			currentDirection = Vector3.zero;
+		}
+		else if(c.gameObject.tag == "Enemy")
+		{
+			transform.position = defaultPos.position;
+			currentDirection = Vector3.zero;
+			DDRArrowSpawner.ReturnToPool(c.gameObject);
 		}
 	}
 }

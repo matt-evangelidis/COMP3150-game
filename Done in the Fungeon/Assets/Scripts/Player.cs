@@ -173,6 +173,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				break;
@@ -203,6 +204,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				break;
@@ -233,6 +235,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				break;
@@ -263,6 +266,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				break;
@@ -295,6 +299,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				break;
@@ -335,6 +340,7 @@ public class Player : MonoBehaviour
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
+					attackPressed = false;
 				}
 				
 				Move(attackingMoveSpeed);
@@ -413,6 +419,7 @@ public class Player : MonoBehaviour
 					state = State.Hurt;
 					disableDamageZones();
 					invulnerable = false;
+					attackPressed = false;
 				}
 				
 				break;
@@ -463,6 +470,7 @@ public class Player : MonoBehaviour
 					state = State.Hurt;
 					disableDamageZones();
 					immune = false;
+					attackPressed = false;
 				}
 				
 				break;
@@ -504,6 +512,7 @@ public class Player : MonoBehaviour
 					state = State.Hurt;
 					disableDamageZones();
 					immune = false;
+					attackPressed = false;
 				}
 				
 				break;

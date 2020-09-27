@@ -15,7 +15,6 @@ public class LaserSpawner : MonoBehaviour
 	public Transform leftSpawnLocation;
 	public Transform rightSpawnLocation;
 	
-	private int counter;
 	private float timer;
 	
 	public struct LaserData
@@ -30,7 +29,6 @@ public class LaserSpawner : MonoBehaviour
     void Start()
     {
 		laserQueue = new Queue<LaserData>();
-		counter = 0;
 		for(int i = 0;i<times.Length;i++)
 		{
 			LaserData temp;

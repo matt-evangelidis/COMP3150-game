@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 	private float hurtTimer;
 	private float damageDelayTimer;
 
-	private SpriteRenderer sprite;
+	public SpriteRenderer sprite;
 	private Rigidbody2D rb2d;
 	private Vector2 position;
 	
@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
     void Start()
     {
 		currentHP = maxHP;
-		sprite = gameObject.GetComponent<SpriteRenderer>();
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;

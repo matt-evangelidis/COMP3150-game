@@ -29,9 +29,4 @@ public class Damager : MonoBehaviour
 			source = sourceTransform.position;
 		}
     }
-	
-	void OnTriggerEnter2D(Collider2D c)
-	{
-		
-	}
 }

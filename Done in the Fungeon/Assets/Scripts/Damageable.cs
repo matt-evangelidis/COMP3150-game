@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
+	public float health = 5;
+	public bool invincible;
+	
 	private SpriteRenderer sprite;
 	public Color damageColour;
 	public Color defaultColour;
@@ -12,8 +15,8 @@ public class Damageable : MonoBehaviour
 	private Rigidbody2D rb2d;
 	
 	private Vector3 knockbackVector;
-	public float knockbackSpeed;
-	private Damager damager;
+	private float knockbackSpeed;
+	private EnemyDamager damager;
 	
     // Start is called before the first frame update
     void Start()
@@ -29,24 +32,33 @@ public class Damageable : MonoBehaviour
 		{
 			sprite.color = damageColour;
 			damageTimer -= Time.deltaTime;
-			//transform.Translate(knockbackVector * knockbackSpeed * Time.deltaTime);
 			rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed);
-			//Debug.DrawLine(transform.position, damager.source, Color.white, 10.0f, false);
 		} else {
 			sprite.color = defaultColour;
 		}
 		
+		if(health < 0)
+		{
+			Destroy(gameObject);
+		}
     }
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		damager = c.gameObject.GetComponent<Damager>();
+		damager = c.gameObject.GetComponent<EnemyDamager>();
 		if(damager != null)
 		{
+			if(!invincible)
+			{
+				health -= damager.damage;
+			}
+			
 			damageTimer = damageTime;
 			
-			knockbackVector = transform.position - damager.source;
+			knockbackVector = transform.position - damager.source.position;
 			knockbackVector = knockbackVector.normalized;
+			
+			knockbackSpeed = damager.knockbackPower;
 		}
 	}
 }

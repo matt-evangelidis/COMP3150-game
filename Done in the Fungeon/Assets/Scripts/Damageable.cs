@@ -16,7 +16,6 @@ public class Damageable : MonoBehaviour
 	
 	private Vector3 knockbackVector;
 	private float knockbackSpeed;
-	private EnemyDamager damager;
 	
     // Start is called before the first frame update
     void Start()
@@ -28,16 +27,15 @@ public class Damageable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(damageTimer > 0)
+        if(damageTimer >= 0)
 		{
 			sprite.color = damageColour;
 			damageTimer -= Time.deltaTime;
-			rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed);
 		} else {
 			sprite.color = defaultColour;
 		}
 		
-		if(health < 0)
+		if(health <= 0)
 		{
 			Destroy(gameObject);
 		}
@@ -45,20 +43,26 @@ public class Damageable : MonoBehaviour
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		damager = c.gameObject.GetComponent<EnemyDamager>();
+		EnemyDamager damager = c.gameObject.GetComponent<EnemyDamager>();
 		if(damager != null)
 		{
 			if(!invincible)
 			{
 				health -= damager.damage;
+				Debug.Log(damager.damage);
 			}
 			
-			damageTimer = damageTime;
+			if(damageTimer < 0)
+			{
+				damageTimer = damageTime;
+				
+				knockbackVector = transform.position - damager.source.position;
+				knockbackVector = knockbackVector.normalized;
 			
-			knockbackVector = transform.position - damager.source.position;
-			knockbackVector = knockbackVector.normalized;
-			
-			knockbackSpeed = damager.knockbackPower;
+				knockbackSpeed = damager.knockbackPower;
+				
+				rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed, ForceMode2D.Impulse);
+			}
 		}
 	}
 }

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 20
+  knockbackPower: 2500
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913480934896687
 GameObject:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 20
+  knockbackPower: 3000
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913481228187702
 GameObject:
@@ -436,8 +436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 25
-  source: {fileID: 1241913481228187701}
+  knockbackPower: 5000
+  source: {fileID: 1241913481849257570}
 --- !u!1 &1241913481462019029
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 20
+  knockbackPower: 2500
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913481600238154
 GameObject:
@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 20
+  knockbackPower: 2500
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913481973801372
 GameObject:
@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 20
+  knockbackPower: 2500
   source: {fileID: 1241913480666259406}
 --- !u!1 &1241913482101770532
 GameObject:
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackPower: 25
+  knockbackPower: 5000
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913482358482719
 GameObject:

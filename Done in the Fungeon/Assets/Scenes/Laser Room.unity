@@ -151,6 +151,12 @@ Transform:
   m_Father: {fileID: 391008392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &250293739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1960883073}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &391008390
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +215,7 @@ MonoBehaviour:
   - 20
   - 15
   moveDirections: 02000000000000000300000001000000010000000200000002000000020000000200000001000000030000000300000003000000
-  playerPos: {fileID: 435758778}
+  playerPos: {fileID: 250293739}
   laserPrefab: {fileID: 5019779244982268703, guid: 579e183630be0994a9312b6c2db42361,
     type: 3}
   topSpawnLocation: {fileID: 68588743}
@@ -234,12 +240,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &435758778 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3260691537097871811, guid: 325c16ac5e774314a8a5e259eae3e96e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1960883073}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &485545773
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -92,6 +93,7 @@ public class Player : MonoBehaviour
 	- The end lag after charged attacking felt a bit clunky, so I've allowed the player to interrupt it with basic attacks
 	- I'm going to allow the player to strafe while holding the attack button. This allows for better control and was actually inspired by rune factory and other farming games.
 	- The player can only ever take 1 damage at a time. Ease of programming and a design consideration.
+	- With the way knockback works, you can't spam too quickly, so you have to time out your attacks so all of them land. You can spam, but you'll be dealing less damage.
 	
 	- Possible thing where you can reset your combo by turning. Adds a skill element where you need to time your charge cancels right.
 	*/

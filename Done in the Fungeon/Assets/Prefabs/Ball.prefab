@@ -157,6 +157,7 @@ MonoBehaviour:
   minimumDamageSpeed: 0.5
   damageModifier: 3
   topSpeed: 50
+  knockbackPower: 2500
 --- !u!1 &6520715729033207275
 GameObject:
   m_ObjectHideFlags: 0

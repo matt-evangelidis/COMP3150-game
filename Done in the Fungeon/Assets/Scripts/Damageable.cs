@@ -49,7 +49,6 @@ public class Damageable : MonoBehaviour
 			if(!invincible)
 			{
 				health -= damager.damage;
-				Debug.Log(damager.damage);
 			}
 			
 			if(damageTimer < 0)

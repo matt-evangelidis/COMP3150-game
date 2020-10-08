@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnableOnCollision : MonoBehaviour
+public class DisableOnCollision : MonoBehaviour
 {
-	public GameObject thingToActivate;
+    public GameObject thingToDeactivate;
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
 		if(c.gameObject.tag == "Player")
 		{
-			thingToActivate.SetActive(true);
+			thingToDeactivate.SetActive(false);
 		}
 	}
 }

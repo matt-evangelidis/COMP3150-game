@@ -22,6 +22,13 @@ public class DoubleRoomSpawner : MonoBehaviour
 	
 	private Color currentColour;
 	
+	public float tempDisableTime;
+	private float tempDisableTimer;
+	
+	public bool started = false;
+	
+	public GameObject exitDoor;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +40,7 @@ public class DoubleRoomSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(rounds > 0) {
+		if(rounds > 0 && started) {
 			if(timerToMatch > 0)
 			{
 				timerToMatch -= Time.deltaTime;
@@ -65,14 +72,29 @@ public class DoubleRoomSpawner : MonoBehaviour
 				timerToMatch = timeToMatch;
 				button1.transform.position = spawnSpotsTop[Random.Range(0,spawnSpotsTop.Length)].position;
 				button2.transform.position = spawnSpotsBottom[Random.Range(0,spawnSpotsBottom.Length)].position;
-				rounds -= 1; //runs multiple times when both buttons are pressed
+				tempDisableTimer = tempDisableTime;
+				rounds -= 1;
+			}
+			
+			// This is just to make sure the player can't collide with buttons multiple times consecutively
+			if(tempDisableTimer > 0)
+			{
+				tempDisableTimer -= Time.deltaTime;
+				button1.gameObject.SetActive(false);
+				button2.gameObject.SetActive(false);
+			}
+			else
+			{
+				button1.gameObject.SetActive(true);
+				button2.gameObject.SetActive(true);
 			}
 		}
-		else 
+		else if(rounds <= 0)
 		{
 			currentColour = Color.white;
 			player.gameObject.SetActive(false);
 			middleWall.SetActive(false);
+			exitDoor.SetActive(false);
 		}
     }
 }

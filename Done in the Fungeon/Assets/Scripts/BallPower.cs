@@ -9,6 +9,7 @@ public class BallPower : MonoBehaviour
 	public float minimumDamageSpeed;
 	public float damageModifier;
 	public float topSpeed;
+	public float knockbackPower;
 	
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class BallPower : MonoBehaviour
     void Update()
     {
         enemyDamager.damage = rb2d.velocity.magnitude/topSpeed * damageModifier;
+		enemyDamager.knockbackPower = rb2d.velocity.magnitude/topSpeed * knockbackPower;
 		
 		//if the ball is moving too slowly, disable its damager so enemies won't be damaged by a still ball
 		if(rb2d.velocity.magnitude < minimumDamageSpeed)

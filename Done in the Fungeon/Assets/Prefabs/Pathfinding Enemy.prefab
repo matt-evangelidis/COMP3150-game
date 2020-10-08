@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b04a24514a44b459920de9e4aa4382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 3
   invincible: 0
   damageColour: {r: 1, g: 0, b: 0, a: 1}
   defaultColour: {r: 1, g: 1, b: 1, a: 1}
@@ -251,6 +251,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourceTransform: {fileID: 8127637744024456419}
   source: {x: 0, y: 0, z: 0}
-  knockbackPower: 5
+  knockbackPower: 20000
   damageType: 0
   disableSource: 0

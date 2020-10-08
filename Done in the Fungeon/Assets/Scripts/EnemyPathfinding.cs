@@ -4,9 +4,11 @@ using UnityEngine;
 using node;
 using System.Linq;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class EnemyPathfinding : MonoBehaviour
 {
 	// basically, the only thing that changes between its subclasses is the logic of acquiring targets
+	// Pathfinding needs a rigidbody and a dynamic collider to function.
 	
 	public GenerateNav nav;
 	protected Transform target;

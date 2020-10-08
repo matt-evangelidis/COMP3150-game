@@ -29,13 +29,13 @@ public class HealthIndicator : MonoBehaviour
         {
             if (i < health)
             {
-                hearts[i].transform.GetChild(1).gameObject.SetActive(false);
-                hearts[i].transform.GetChild(2).gameObject.SetActive(false);
+                hearts[i].transform.GetChild(1).gameObject.SetActive(true);
+                hearts[i].transform.GetChild(2).gameObject.SetActive(true);
             }
             else
             {
-                hearts[i].transform.GetChild(1).gameObject.SetActive(true);
-                hearts[i].transform.GetChild(2).gameObject.SetActive(true);
+                hearts[i].transform.GetChild(1).gameObject.SetActive(false);
+                hearts[i].transform.GetChild(2).gameObject.SetActive(false);
             }
 
             if (i < numOfHearts)

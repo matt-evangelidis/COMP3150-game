@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656622601}
+      - m_Target: {fileID: 1988099419}
         m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
@@ -2257,7 +2257,6 @@ GameObject:
   - component: {fileID: 656622600}
   - component: {fileID: 656622599}
   - component: {fileID: 656622598}
-  - component: {fileID: 656622601}
   m_Layer: 0
   m_Name: Pause Panel
   m_TagString: Untagged
@@ -2350,21 +2349,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656622596}
   m_CullTransparentMesh: 0
---- !u!114 &656622601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656622596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28adc47aa7ddab14e84320d1e6540546, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausePanel: {fileID: 656622596}
-  resumeButton: {fileID: 786011202}
-  mainMenuButton: {fileID: 670348457}
 --- !u!1 &670348457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,7 +2431,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656622601}
+      - m_Target: {fileID: 1988099419}
         m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -2811,7 +2795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 656622601}
+      - m_Target: {fileID: 1988099419}
         m_MethodName: OnPressedPlay
         m_Mode: 1
         m_Arguments:
@@ -5695,6 +5679,7 @@ GameObject:
   - component: {fileID: 1988099416}
   - component: {fileID: 1988099415}
   - component: {fileID: 1988099418}
+  - component: {fileID: 1988099419}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -5812,6 +5797,22 @@ MonoBehaviour:
   fullHeart: {fileID: 21300000, guid: 5f553fe8832281e4ba3f75b421744587, type: 3}
   halfHeart: {fileID: 21300000, guid: 983b727da874b5242a22b921c47c9d60, type: 3}
   emptyHeart: {fileID: 21300000, guid: 8eaa79bb473fe084b81edcbf888f6414, type: 3}
+--- !u!114 &1988099419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988099413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28adc47aa7ddab14e84320d1e6540546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 656622596}
+  resumeButton: {fileID: 786011202}
+  mainMenuButton: {fileID: 670348457}
+  pauseButton: {fileID: 479610769}
 --- !u!1 &2044385933
 GameObject:
   m_ObjectHideFlags: 0

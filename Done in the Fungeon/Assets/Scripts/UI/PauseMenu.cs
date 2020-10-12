@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject resumeButton;
     public GameObject mainMenuButton;
+    public GameObject pauseButton;
     private bool paused = false;
 
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         // pause if the player presses escape
         if (paused == false && Input.GetButtonDown("Pause"))
         {
-            PauseGame();
+            SetPaused(true);
         }
     }
 
@@ -40,7 +41,6 @@ public class PauseMenu : MonoBehaviour
     public void OnPressedPlay()
     {
         // resume the game
-        // pausePanel.SetActive(false);
         SetPaused(false);
     }
 
@@ -52,6 +52,5 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         SetPaused(true);
-        pausePanel.SetActive(true);
     }
 }

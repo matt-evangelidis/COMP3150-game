@@ -29,8 +29,8 @@ public class HealthIndicator : MonoBehaviour
         {
             if (i < health)
             {
-                hearts[i].transform.GetChild(1).gameObject.SetActive(true);
-                hearts[i].transform.GetChild(2).gameObject.SetActive(true);
+                hearts[i].transform.GetChild(1).gameObject.SetActive(true); // heart_half
+                hearts[i].transform.GetChild(2).gameObject.SetActive(true); // heart_full
             }
             else
             {

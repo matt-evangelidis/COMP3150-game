@@ -82,6 +82,8 @@ public class Player : MonoBehaviour
 	public Color defaultColour;
 	public Color damageColour;
 	
+	private CameraShake camShake;
+	
 	/*
 	Notes:
 	- The charge time should be approximately as long as a combo
@@ -138,6 +140,8 @@ public class Player : MonoBehaviour
 		
 		invulnerable = false;
 		immune = false;
+		
+		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -713,6 +717,7 @@ public class Player : MonoBehaviour
 		// take damage once
 		if(c.gameObject.tag == "damager")
 		{
+			camShake.Shake();
 			if(!invulnerable)
 			{
 				if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.

@@ -17,11 +17,15 @@ public class Damageable : MonoBehaviour
 	private Vector3 knockbackVector;
 	private float knockbackSpeed;
 	
+	private CameraShake camShake;
+	
     // Start is called before the first frame update
     void Start()
     {
         sprite = gameObject.GetComponent<SpriteRenderer>();
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
+		
+		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -46,6 +50,7 @@ public class Damageable : MonoBehaviour
 		EnemyDamager damager = c.gameObject.GetComponent<EnemyDamager>();
 		if(damager != null)
 		{
+			camShake.Shake();
 			if(!invincible)
 			{
 				health -= damager.damage;

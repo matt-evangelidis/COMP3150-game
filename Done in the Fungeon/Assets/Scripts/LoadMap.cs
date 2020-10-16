@@ -15,6 +15,11 @@ public class LoadMap : MonoBehaviour
 	};
 	public Side side;
 	
+	void Start()
+	{
+		//SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+	}
+	
 	void OnTriggerEnter2D(Collider2D c)
 	{
 		if(c.gameObject.tag == "Player")
@@ -37,4 +42,17 @@ public class LoadMap : MonoBehaviour
 			SceneManager.LoadScene(to);
 		}
 	}
+	
+	/*private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		Debug.Log("AAAAGGGGHHHH");
+		if(scene.isLoaded)
+		{
+			Player player = FindObjectOfType<Player>();
+			if(player)
+			{
+				player.findCamera();
+			}
+		}
+	}*/
 }

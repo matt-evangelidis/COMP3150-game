@@ -123,7 +123,11 @@ public class Player : MonoBehaviour
 		Up,
 		Down,
 		Left,
-		Right
+		Right,
+		UpLeft,
+		UpRight,
+		DownLeft,
+		DownRight
 	};
 	private Direction direction;
 	
@@ -140,8 +144,6 @@ public class Player : MonoBehaviour
 		
 		invulnerable = false;
 		immune = false;
-		
-		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -565,7 +567,34 @@ public class Player : MonoBehaviour
 	
 	// Add this to any state where you can turn
 	void Turning() {
-		if (direction == Direction.Left)
+		switch(direction)
+		{
+			case Direction.Left:
+				rotation = 90f;
+				break;
+			case Direction.Right:
+				rotation = -90f;
+				break;
+			case Direction.Up:
+				rotation = 0f;
+				break;
+			case Direction.Down:
+				rotation = 180f;
+				break;
+			case Direction.UpLeft:
+				rotation = 45f;
+				break;
+			case Direction.UpRight:
+				rotation = -45f;
+				break;
+			case Direction.DownLeft:
+				rotation = 135f;
+				break;
+			case Direction.DownRight:
+				rotation = -135f;
+				break;
+		}
+		/*if (direction == Direction.Left)
 		{
 			rotation = 90f;
 		}
@@ -580,7 +609,7 @@ public class Player : MonoBehaviour
 		else if (direction == Direction.Down)
 		{
 			rotation = 180f;
-		}
+		}*/
 		
 		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
@@ -589,7 +618,23 @@ public class Player : MonoBehaviour
 	void Aiming() {
 		if(!Input.GetButton("Attack"))
 		{
-			if (Input.GetButton("Left"))
+			if(Input.GetButton("Left") && Input.GetButton("Up"))
+			{
+				direction = Direction.UpLeft;
+			}
+			else if(Input.GetButton("Left") && Input.GetButton("Down"))
+			{
+				direction = Direction.DownLeft;
+			}
+			else if(Input.GetButton("Right") && Input.GetButton("Up"))
+			{
+				direction = Direction.UpRight;
+			}
+			else if(Input.GetButton("Right") && Input.GetButton("Down"))
+			{
+				direction = Direction.DownRight;
+			}
+			else if (Input.GetButton("Left"))
 			{
 				direction = Direction.Left;
 			}
@@ -749,6 +794,11 @@ public class Player : MonoBehaviour
 		knockbackVector = transform.position - c.gameObject.GetComponent<Damager>().source;
 		knockbackVector = knockbackVector.normalized;
 		knockbackSpeed = c.gameObject.GetComponent<Damager>().knockbackPower;
+	}
+	
+	public void findCamera()
+	{
+		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
 	}
 	
 	/*void OnTriggerEnter2D(Collider2D c)

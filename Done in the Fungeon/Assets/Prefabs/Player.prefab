@@ -725,7 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   moveSpeed: 10000
-  attackingMoveSpeed: 0.1
+  attackingMoveSpeed: 0.5
   attackDuration: 0.1
   attack5Duration: 0.2
   comboTime: 0.75

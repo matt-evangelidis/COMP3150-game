@@ -378,7 +378,7 @@ public class Player : MonoBehaviour
 				
 				Charge();
 				
-				if(direction == Direction.Up)
+				/*if(direction == Direction.Up)
 				{
 					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
 					rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
@@ -397,6 +397,39 @@ public class Player : MonoBehaviour
 				{
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
 					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+				}*/
+				
+				Vector2 dashDir;
+				switch(direction)
+				{
+					case Direction.Left:
+						rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Right:
+						rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Up:
+						rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Down:
+						rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.UpLeft:
+						dashDir = new Vector2(-1,1);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.UpRight:
+						dashDir = new Vector2(1,1);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.DownLeft:
+						dashDir = new Vector2(-1,-1);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.DownRight:
+						dashDir = new Vector2(1,-1);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						break;
 				}
 				
 				if(dashTimer < 0) {
@@ -437,7 +470,7 @@ public class Player : MonoBehaviour
 				
 				chargedDashDamageZone.gameObject.SetActive(true);
 				
-				if(direction == Direction.Up)
+				/*if(direction == Direction.Up)
 				{
 					//transform.Translate(0, dashSpeed * Time.deltaTime, 0, Space.World);
 					rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
@@ -456,6 +489,39 @@ public class Player : MonoBehaviour
 				{
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
 					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+				}*/
+				
+				Vector2 chargeDir;
+				switch(direction)
+				{
+					case Direction.Left:
+						rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Right:
+						rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Up:
+						rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.Down:
+						rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.UpLeft:
+						chargeDir = new Vector2(-1,1);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.UpRight:
+						chargeDir = new Vector2(1,1);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.DownLeft:
+						chargeDir = new Vector2(-1,-1);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						break;
+					case Direction.DownRight:
+						chargeDir = new Vector2(1,-1);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						break;
 				}
 				
 				if(chargedDashTimer < 0)
@@ -649,6 +715,11 @@ public class Player : MonoBehaviour
 			else if (Input.GetButton("Down"))
 			{
 				direction = Direction.Down;
+			}
+			else
+			{
+				// make sure the player stops instantly when none of the movement keys are pressed
+				rb2d.velocity = Vector3.zero;
 			}
 			
 			transform.localRotation = Quaternion.Euler(0, 0, rotation);

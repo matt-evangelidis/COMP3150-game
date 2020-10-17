@@ -738,7 +738,7 @@ MonoBehaviour:
   chargedDashTime: 0.1
   chargedAttackTime: 0.3
   hurtTime: 0.2
-  damageDelay: 1
+  damageIFrames: 2
   animator: {fileID: 1241913482358482716}
   sprite: {fileID: 1241913482101770555}
   damageZone1: {fileID: 1241913481973801372}

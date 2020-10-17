@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
 	[Tooltip("The amount of time the damage zone of the dash attack lasts for.")]
 	public float chargedAttackTime;
 	public float hurtTime;
-	[Tooltip("How often the player will be damaged if they stand inside a damager")]
-	public float damageDelay;
+	[Tooltip("How long the player is invincible for after taking damage")]
+	public float damageIFrames;
 	
 	public Animator animator;
 	private int comboCount;
@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 	
 	private bool immune;
 	private bool invulnerable;
+	private bool invincible;
 	private bool hurt;
 	private Vector3 knockbackVector;
 	private float knockbackSpeed;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
 	private float chargedAttackTimer;
 	private float hurtTimer;
 	private float damageDelayTimer;
+	private float hurtInvincibilityTimer;
 
 	public SpriteRenderer sprite;
 	private Rigidbody2D rb2d;
@@ -140,7 +142,7 @@ public class Player : MonoBehaviour
 		chargeTimer = chargeTime;
 		comboCount = 0;
 		attackPressed = false;
-		damageDelayTimer = damageDelay;
+		damageDelayTimer = damageIFrames;
 		
 		invulnerable = false;
 		immune = false;
@@ -590,7 +592,7 @@ public class Player : MonoBehaviour
 				
 				break;
 			case State.Hurt:
-				invulnerable = true;
+				//invulnerable = true;
 				if(hurtTimer > 0)
 				{
 					hurtTimer -= Time.deltaTime;
@@ -603,7 +605,7 @@ public class Player : MonoBehaviour
 					state = State.Default;
 					sprite.color = defaultColour;
 					hurt = false;
-					invulnerable = false;
+					//invulnerable = false;
 				}
 				
 				break;
@@ -613,6 +615,25 @@ public class Player : MonoBehaviour
 		if(dashCooldownTimer >= 0)
 		{
 			dashCooldownTimer -= Time.deltaTime;
+		}
+		
+		// Invincibility frames after getting hurt
+		if(hurtInvincibilityTimer >= 0)
+		{
+			hurtInvincibilityTimer -= Time.deltaTime;
+			invincible = true;
+			if((int)(hurtInvincibilityTimer*8)%2 == 0)
+			{
+				sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+			}
+			else
+			{
+				sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
+			}
+		}
+		else
+		{
+			invincible = false;
 		}
 	}
 	
@@ -833,21 +854,24 @@ public class Player : MonoBehaviour
 		// take damage once
 		if(c.gameObject.tag == "damager")
 		{
-			camShake.Shake();
-			if(!invulnerable)
+			//camShake.Shake();
+			if(!invincible)
 			{
-				if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.
+				if(!invulnerable)
+				{
+					if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.
+					{
+						takeDamage(c);
+					}
+					else if(!immune) // not invulnerable and not immune
+					{
+						takeDamage(c);
+					}
+				}
+				else if(c.gameObject.GetComponent<Damager>().damageType == 2) // if the damager is unavoidable
 				{
 					takeDamage(c);
 				}
-				else if(!immune) // not invulnerable and not immune
-				{
-					takeDamage(c);
-				}
-			}
-			else if(c.gameObject.GetComponent<Damager>().damageType == 2) // if the damager is unavoidable
-			{
-				takeDamage(c);
 			}
 			
 			/*if(immune && (c.gameObject.GetComponent<Damager>().isProjectile == 1))
@@ -859,7 +883,8 @@ public class Player : MonoBehaviour
 	
 	void takeDamage(Collider2D c)
 	{
-		damageDelayTimer = damageDelay;
+		damageDelayTimer = damageIFrames;
+		hurtInvincibilityTimer = damageIFrames;
 		hurt = true;
 		
 		knockbackVector = transform.position - c.gameObject.GetComponent<Damager>().source;

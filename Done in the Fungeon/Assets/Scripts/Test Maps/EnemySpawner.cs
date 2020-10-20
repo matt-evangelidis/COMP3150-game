@@ -24,13 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if(Input.GetKeyDown("t"))
 		{
-			EnemyAI_MoveTowards enemy = Instantiate(enemyPrefab);
-			enemy.gameObject.transform.position = transform.position;
-			enemy.nav = nav;
-			enemy.startNode = startNode;
-			enemy.playerPos = playerPos;
-			enemy.gameObject.GetComponent<EnemyAI_TargetPlayer>().target = player.transform;
-			enemy.gameObject.GetComponent<MoveTowardsSwitching>().player = player.transform;
+			CreateEnemy();
 		}
 		
 		if(findPlayerTime < 0)
@@ -43,4 +37,15 @@ public class EnemySpawner : MonoBehaviour
 			findPlayerTime -= Time.deltaTime;
 		}
     }
+	
+	public void CreateEnemy()
+	{
+		EnemyAI_MoveTowards enemy = Instantiate(enemyPrefab);
+		enemy.gameObject.transform.position = transform.position;
+		enemy.nav = nav;
+		enemy.startNode = startNode;
+		enemy.playerPos = playerPos;
+		enemy.gameObject.GetComponent<EnemyAI_TargetPlayer>().target = player.transform;
+		enemy.gameObject.GetComponent<MoveTowardsSwitching>().player = player.transform;
+	}
 }

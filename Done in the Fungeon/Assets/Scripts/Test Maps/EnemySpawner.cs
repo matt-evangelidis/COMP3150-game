@@ -7,13 +7,16 @@ public class EnemySpawner : MonoBehaviour
 	public EnemyAI_MoveTowards enemyPrefab;
 	public GenerateNav nav;
 	public Transform startNode;
-	public PlayerGridPos playerPos;
+	private PlayerGridPos playerPos;
+	private Player player;
+	
+	public float findPlayerTime = 0.1f;
 	
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.Find("/Player");
-		playerPos = player.GetComponent<PlayerGridPos>();
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		playerPos = player.gameObject.GetComponent<PlayerGridPos>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,18 @@ public class EnemySpawner : MonoBehaviour
 			enemy.nav = nav;
 			enemy.startNode = startNode;
 			enemy.playerPos = playerPos;
+			enemy.gameObject.GetComponent<EnemyAI_TargetPlayer>().target = player.transform;
+			enemy.gameObject.GetComponent<MoveTowardsSwitching>().player = player.transform;
+		}
+		
+		if(findPlayerTime < 0)
+		{
+			playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerGridPos>();
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		}
+		else
+		{
+			findPlayerTime -= Time.deltaTime;
 		}
     }
 }

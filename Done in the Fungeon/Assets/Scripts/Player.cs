@@ -865,6 +865,7 @@ public class Player : MonoBehaviour
 		damageDelayTimer = damageIFrames;
 		hurtInvincibilityTimer = damageIFrames;
 		hurt = true;
+		comboCount = 0;
 		
 		knockbackVector = transform.position - c.gameObject.GetComponent<Damager>().source;
 		knockbackVector = knockbackVector.normalized;

@@ -1258,6 +1258,7 @@ GameObject:
   - component: {fileID: 978118640653214052}
   - component: {fileID: 978118640653214059}
   - component: {fileID: 978118640653214056}
+  - component: {fileID: -2289480887310493889}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1363,6 +1364,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 978118640653214059}
+--- !u!114 &-2289480887310493889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978118640653214055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456e841076b29ca478aa3d3fc5db310b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeSet: 0.1
+  camShake: {fileID: 978118640653214056}
 --- !u!1 &978118640658553309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,6 +3102,7 @@ MonoBehaviour:
   pausePanel: {fileID: 978118641146665967}
   resumeButton: {fileID: 978118641269925904}
   mainMenuButton: {fileID: 978118641136745436}
+  pauseButton: {fileID: 0}
 --- !u!1 &978118641155551798
 GameObject:
   m_ObjectHideFlags: 0

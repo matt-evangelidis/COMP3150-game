@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 	public Color defaultColour;
 	public Color damageColour;
 	
-	private CameraShake camShake;
+	public CameraShake camShake;
 	
 	/*
 	Notes:
@@ -681,22 +681,6 @@ public class Player : MonoBehaviour
 				rotation = -135f;
 				break;
 		}
-		/*if (direction == Direction.Left)
-		{
-			rotation = 90f;
-		}
-		else if (direction == Direction.Right)
-		{
-			rotation = -90f;
-		}
-		else if (direction == Direction.Up)
-		{
-			rotation = 0f;
-		}
-		else if (direction == Direction.Down)
-		{
-			rotation = 180f;
-		}*/
 		
 		transform.localRotation = Quaternion.Euler(0, 0, rotation);
 	}
@@ -854,7 +838,7 @@ public class Player : MonoBehaviour
 		// take damage once
 		if(c.gameObject.tag == "damager")
 		{
-			//camShake.Shake();
+			camShake.Shake();
 			if(!invincible)
 			{
 				if(!invulnerable)
@@ -873,11 +857,6 @@ public class Player : MonoBehaviour
 					takeDamage(c);
 				}
 			}
-			
-			/*if(immune && (c.gameObject.GetComponent<Damager>().isProjectile == 1))
-			{
-				takeDamage(c);
-			}*/
 		}
 	}
 	
@@ -896,16 +875,4 @@ public class Player : MonoBehaviour
 	{
 		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
 	}
-	
-	/*void OnTriggerEnter2D(Collider2D c)
-	{
-		if(c.gameObject.tag == "nav_enable")
-		{
-			Debug.Log("At" + c.gameObject.GetComponent<NodeMonobehaviour>().node.name);
-			for(int i = 0;i<c.gameObject.GetComponent<NodeMonobehaviour>().node.neighbours.Count;i++)
-			{
-				Debug.Log(c.gameObject.GetComponent<NodeMonobehaviour>().node.neighbours[i].gameObject.GetComponent<NodeMonobehaviour>().node.name);
-			}
-		}
-	}*/
 }

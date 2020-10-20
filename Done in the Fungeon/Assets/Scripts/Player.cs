@@ -137,7 +137,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
+        HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -180,6 +182,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
@@ -211,8 +214,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
 				}
@@ -242,8 +246,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
 				}
@@ -273,8 +278,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
 				}
@@ -306,8 +312,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
 				}
@@ -347,8 +354,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
 				}
@@ -458,8 +466,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					invulnerable = false;
 					attackPressed = false;
@@ -542,8 +551,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					immune = false;
 					attackPressed = false;
@@ -584,8 +594,9 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
+                    HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
-					state = State.Hurt;
+                    state = State.Hurt;
 					disableDamageZones();
 					immune = false;
 					attackPressed = false;

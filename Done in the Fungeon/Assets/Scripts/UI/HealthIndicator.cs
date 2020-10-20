@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthIndicator : MonoBehaviour
+public class HealthIndicator : Singleton<HealthIndicator>
 {
     // Ref: https://www.youtube.com/watch?v=3uyolYVsiWc
     // Get child in prefab ref: https://answers.unity.com/questions/894211/set-objects-child-to-activeinactive.html
 
-    public int health;
-    public int numOfHearts;
+    public int health; // aka. currentHP of player
+    public int numOfHearts; // aka. maxHP of player
 
     public GameObject[] hearts;
     public Sprite fullHeart;
     public Sprite halfHeart;
     public Sprite emptyHeart;
+
+    protected HealthIndicator() { }
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,11 @@ public class HealthIndicator : MonoBehaviour
             {
                 hearts[i].SetActive(false);
             }
+        }
+        if (health <= 0)
+        {
+            Debug.Log("Game Over");
+            Time.timeScale = 0f;
         }
     }
 }

@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
 	private float chargedAttackTimer;
 	private float hurtTimer;
 	private float damageDelayTimer;
+	private float damageStayTimer; // the time it takes before you can be damaged again if you stand in a damage zone
 	private float hurtInvincibilityTimer;
 
 	public SpriteRenderer sprite;
@@ -823,9 +824,9 @@ public class Player : MonoBehaviour
 	{
 		// if you stay in the damage zone for longer than the hurt time, you get damaged again
 		if(c.gameObject.tag == "damager" && !invulnerable)
-			if(damageDelayTimer > 0)
+			if(damageStayTimer > 0)
 			{
-				damageDelayTimer -= Time.deltaTime;
+				damageStayTimer -= Time.deltaTime;
 			}
 			else
 			{
@@ -834,26 +835,29 @@ public class Player : MonoBehaviour
 	}
 	
 	void OnTriggerEnter2D(Collider2D c)
-	{
+	{	
 		// take damage once
 		if(c.gameObject.tag == "damager")
 		{
-			camShake.Shake();
 			if(!invincible)
 			{
+				damageStayTimer = 0;
 				if(!invulnerable)
 				{
 					if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.
 					{
+						camShake.Shake();
 						takeDamage(c);
 					}
 					else if(!immune) // not invulnerable and not immune
 					{
+						camShake.Shake();
 						takeDamage(c);
 					}
 				}
 				else if(c.gameObject.GetComponent<Damager>().damageType == 2) // if the damager is unavoidable
 				{
+					camShake.Shake();
 					takeDamage(c);
 				}
 			}
@@ -863,6 +867,7 @@ public class Player : MonoBehaviour
 	void takeDamage(Collider2D c)
 	{
 		damageDelayTimer = damageIFrames;
+		damageStayTimer = damageIFrames;
 		hurtInvincibilityTimer = damageIFrames;
 		hurt = true;
 		comboCount = 0;

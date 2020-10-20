@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
@@ -17,19 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 6b19e8b1cbd5caa4293b392919ea515f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testmap 1.unity
     guid: 2493388966f5e9b43bef2ecd312af42e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testmap 2.unity
     guid: 4b48f2d5ad8e4da4780e63d6989d22ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Wave Room.unity
     guid: 42c34fc35bf41c54287261164e4631ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DoubleRoom.unity
     guid: 10ad7fd76f58b8d49bb44df89f6cd68c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ball Room.unity
     guid: 342eab511f89ad641ae8e5722946c263
   m_configObjects: {}

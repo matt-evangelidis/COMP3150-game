@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62dc7196934b02c458f74786458d9fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e, type: 3}
   pathfinding: {fileID: 8065788717406000028}
   chase: {fileID: -4571802171341208860}
   switchDistance: 1.5

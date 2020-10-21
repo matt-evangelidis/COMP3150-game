@@ -30,6 +30,10 @@ public class PauseMenu : MonoBehaviour
         {
             SetPaused(true);
         }
+        else if (paused == true && Input.GetButtonDown("Pause"))
+        {
+            SetPaused(false);
+        }
     }
 
     private void SetPaused(bool p)

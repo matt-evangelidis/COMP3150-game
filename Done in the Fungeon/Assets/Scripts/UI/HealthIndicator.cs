@@ -15,6 +15,7 @@ public class HealthIndicator : Singleton<HealthIndicator>
     public Sprite fullHeart;
     public Sprite halfHeart;
     public Sprite emptyHeart;
+    public GameObject gameOverPanel;
 
     protected HealthIndicator() { }
 
@@ -53,6 +54,9 @@ public class HealthIndicator : Singleton<HealthIndicator>
         {
             //Debug.Log("Game Over");
             Time.timeScale = 0f;
+            gameOverPanel.SetActive(true);
+            gameOverPanel.GetComponentInChildren<Text>().text = "Game Over";
+            gameOverPanel.transform.Find("Resume Game").gameObject.SetActive(false);
         }
     }
 }

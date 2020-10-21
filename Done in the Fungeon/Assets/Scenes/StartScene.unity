@@ -159,6 +159,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1944678845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &632316182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559255080787528038, guid: 8bb1d8b42c861164e8055257b3beca84,
+    type: 3}
+  m_PrefabInstance: {fileID: 1499455731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &797906180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,6 +282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 3559255079959982136, guid: c1ed99e504c87dc468222a8271a09bb2,
+        type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 632316182}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1ed99e504c87dc468222a8271a09bb2, type: 3}
 --- !u!1 &797906181 stripped

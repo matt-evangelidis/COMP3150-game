@@ -1574,6 +1574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 1455450201}
   quitButton: {fileID: 55566445}
+  healthIndicator: {fileID: 3559255079959982135, guid: c1ed99e504c87dc468222a8271a09bb2,
+    type: 3}
 --- !u!82 &602081404
 AudioSource:
   m_ObjectHideFlags: 0

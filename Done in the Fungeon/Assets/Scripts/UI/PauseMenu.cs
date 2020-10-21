@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseButton;
     [Tooltip("Game Objects to be destroyed when returning to the main menu")]
     public List<GameObject> toDestroy;
+    public List<GameObject> toHidden;
     private bool paused = false;
 
     // Start is called before the first frame update
@@ -56,6 +57,11 @@ public class PauseMenu : MonoBehaviour
         {
             Destroy(go);
         }
+        foreach (GameObject go in toHidden)
+        {
+            go.SetActive(false);
+        }
+
         SceneManager.LoadScene("Main Menu");
     }
 

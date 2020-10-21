@@ -7,59 +7,77 @@
 /// </summary>
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // Check to see if we're about to be destroyed.
-    private static bool m_ShuttingDown = false;
-    private static object m_Lock = new object();
-    private static T m_Instance;
+    private static T _instance;
+    private static object _lock = new object();
 
-    /// <summary>
-    /// Access singleton instance through this propriety.
-    /// </summary>
     public static T Instance
     {
         get
         {
-            if (m_ShuttingDown)
+            if (applicationIsQuitting)
             {
                 Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
-                    "' already destroyed. Returning null.");
-                return null;
+                    "' already destroyed on application quit." +
+                    " Won't create again - returning null.");
+                //return null; // suppressed this
             }
 
-            lock (m_Lock)
+            lock (_lock)
             {
-                if (m_Instance == null)
+                if (_instance == null)
                 {
-                    // Search for existing instance.
-                    m_Instance = (T)FindObjectOfType(typeof(T));
-
-                    // Create new instance if one doesn't already exist.
-                    if (m_Instance == null)
+                    var instances = FindObjectsOfType<T>();
+                    if (instances.Length > 1)
                     {
-                        // Need to create a new GameObject to attach the singleton to.
-                        var singletonObject = new GameObject();
-                        m_Instance = singletonObject.AddComponent<T>();
-                        singletonObject.name = typeof(T).ToString() + " (Singleton)";
+                        Debug.LogError("[Singleton] Something went really wrong " +
+                            ", there are too many Singletons; deleting them: ");
+                        for (int i = 1; i < instances.Length; i++)
+                        {
+                            Debug.LogError("Deleting " + instances[i].gameObject.name);
+                            Destroy(instances[i].gameObject);
+                        }
+                        _instance = FindObjectOfType<T>();
+                        return _instance;
+                    }
 
-                        // Make instance persistent.
-                        DontDestroyOnLoad(singletonObject);
+                    if (instances.Length > 0)
+                        _instance = instances[0];
+
+                    if (_instance == null)
+                    {
+                        GameObject singleton = new GameObject();
+                        _instance = singleton.AddComponent<T>();
+                        singleton.name = "[Singleton] " + typeof(T).ToString();
+
+                        DontDestroyOnLoad(singleton);
+
+                        Debug.Log("[Singleton] An instance of " + typeof(T) +
+                            " is needed in the scene, so '" + singleton +
+                            "' was created with DontDestroyOnLoad.");
                     }
                 }
 
-                return m_Instance;
+                return _instance;
             }
         }
     }
 
-
-    private void OnApplicationQuit()
+    private void Awake()
     {
-        m_ShuttingDown = true;
+        DontDestroyOnLoad(gameObject);
     }
 
-
-    private void OnDestroy()
+    /// <summary>
+    /// When Unity quits, it destroys objects in a random order.
+    /// In principle, a Singleton is only destroyed when application quits.
+    /// If any script calls Instance after it have been destroyed, 
+    ///   it will create a buggy ghost object that will stay on the Editor scene
+    ///   even after stopping playing the Application. Really bad!
+    /// So, this was made to be sure we're not creating that buggy ghost object.
+    /// </summary>
+    private static bool applicationIsQuitting = false;
+    public void OnDestroy()
     {
-        m_ShuttingDown = true;
+        applicationIsQuitting = true;
     }
 }

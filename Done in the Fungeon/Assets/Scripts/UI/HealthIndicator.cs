@@ -51,7 +51,7 @@ public class HealthIndicator : Singleton<HealthIndicator>
         }
         if (health <= 0)
         {
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
             Time.timeScale = 0f;
         }
     }

@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class EventTracking : MonoBehaviour
 {
+	public Text playtestInfo;
+	public GameObject playtestPanel;
+	private string displayString;
+	
 	public struct DamageEvent
 	{
 		public DamageEvent(string s, string d, float t)
@@ -21,18 +26,22 @@ public class EventTracking : MonoBehaviour
 		public override string ToString()
 		{
 			string temp = "";
-			temp += "stage: " + stage;
-			temp += ", source: " + damagerName;
-			temp += ", time: " + time;
+			temp += "|" + stage + "," + damagerName + "," + time + "|";
+			//temp += "stage: " + stage;
+			//temp += ", source: " + damagerName;
+			//temp += ", time: " + time;
 			return temp;
 		}
 	}
 	
 	List<DamageEvent> damageEvents = new List<DamageEvent>();
 	
-	void addDamageEvent(string s, string d, float t)
+	public static int enemiesSpawned;
+	public static float time;
+	
+	public void addDamageEvent(string s, string d)
 	{
-		DamageEvent temp = new DamageEvent(s, d, t);
+		DamageEvent temp = new DamageEvent(s, d, time);
 		damageEvents.Add(temp);
 	}
 	
@@ -41,21 +50,31 @@ public class EventTracking : MonoBehaviour
     {
         
     }
-
-	private float timer;
+	
     // Update is called once per frame
     void Update()
     {
-		timer += Time.deltaTime;
-		if(Input.GetKeyDown("h"))
+		time += Time.deltaTime;
+		
+		string de = "";
+		foreach(DamageEvent x in damageEvents)
 		{
-			addDamageEvent("stage1", "Patrolling Enemy", timer);
+			de += x;
 		}
-		if(Input.GetKeyDown("j"))
+		
+		displayString = "e: " + enemiesSpawned + ", t: " + Math.Round(time,2) + ", \n" + de;
+		
+		playtestInfo.text = displayString;
+		
+		if(Input.GetKeyDown("g"))
 		{
-			foreach(DamageEvent d in damageEvents)
+			if(playtestPanel.activeInHierarchy)
 			{
-				Debug.Log(d);
+				playtestPanel.SetActive(false);
+			}
+			else
+			{
+				playtestPanel.SetActive(true);
 			}
 		}
     }

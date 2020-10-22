@@ -87,6 +87,9 @@ public class Player : MonoBehaviour
 	
 	public CameraShake camShake;
 	
+	// temporarily here for playtesting
+	public EventTracking eventTracking;
+	
 	/*
 	Notes:
 	- The charge time should be approximately as long as a combo
@@ -137,9 +140,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = HealthIndicator.Instance.numOfHearts;
+        //maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        HealthIndicator.Instance.health = currentHP;
+        //HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -181,8 +184,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
@@ -213,8 +216,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -245,8 +248,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -277,8 +280,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -311,8 +314,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -353,8 +356,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -465,8 +468,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -550,8 +553,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -593,8 +596,8 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					currentHP -= 1;
-                    HealthIndicator.Instance.health -= 1;
+					//currentHP -= 1;
+                    //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -857,18 +860,15 @@ public class Player : MonoBehaviour
 				{
 					if(immune && (c.gameObject.GetComponent<Damager>().damageType == 1)) // not invulnerable, but immune. Still take damage if the damager is a projectile.
 					{
-						camShake.Shake();
 						takeDamage(c);
 					}
 					else if(!immune) // not invulnerable and not immune
 					{
-						camShake.Shake();
 						takeDamage(c);
 					}
 				}
 				else if(c.gameObject.GetComponent<Damager>().damageType == 2) // if the damager is unavoidable
 				{
-					camShake.Shake();
 					takeDamage(c);
 				}
 			}
@@ -877,6 +877,7 @@ public class Player : MonoBehaviour
 	
 	void takeDamage(Collider2D c)
 	{
+		camShake.Shake();
 		damageDelayTimer = damageIFrames;
 		damageStayTimer = damageIFrames;
 		hurtInvincibilityTimer = damageIFrames;
@@ -886,6 +887,42 @@ public class Player : MonoBehaviour
 		knockbackVector = transform.position - c.gameObject.GetComponent<Damager>().source;
 		knockbackVector = knockbackVector.normalized;
 		knockbackSpeed = c.gameObject.GetComponent<Damager>().knockbackPower;
+		
+		// for playtesting
+		string stage = "";
+		string damager = "";
+		
+		if(SceneManager.GetActiveScene().name == "Playtesting Build 1-1")
+		{
+			stage = "1";
+		}
+		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-2")
+		{
+			stage = "2";
+		}
+		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-3")
+		{
+			stage = "3";
+		}
+		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-4")
+		{
+			stage = "4";
+		}
+		
+		if(c.gameObject.name == "Pathfinding Enemy Damage Zone")
+		{
+			damager = "1";
+		}
+		else if(c.gameObject.name == "Laser")
+		{
+			damager = "2";
+		}
+		else if(c.gameObject.name == "Patrolling Enemy Damage Zone")
+		{
+			damager = "3";
+		}
+		
+		eventTracking.addDamageEvent(stage, damager);
 	}
 	
 	public void findCamera()

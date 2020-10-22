@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 8275616450073777589}
   - component: {fileID: 1689359045211314561}
   m_Layer: 12
-  m_Name: Damage Zone
+  m_Name: Pathfinding Enemy Damage Zone
   m_TagString: damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

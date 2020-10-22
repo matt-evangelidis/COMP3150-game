@@ -7,6 +7,8 @@
 /// </summary>
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+	// Don't create strong dependencies that break other parts of the code. I can't prototype or test things properly with this spitting null pointers nonstop.
+	/*
     private static T _instance;
     private static object _lock = new object();
 
@@ -80,4 +82,5 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         applicationIsQuitting = true;
     }
+	*/
 }

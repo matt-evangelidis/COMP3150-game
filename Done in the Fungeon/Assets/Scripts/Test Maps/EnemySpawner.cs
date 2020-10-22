@@ -40,6 +40,8 @@ public class EnemySpawner : MonoBehaviour
 	
 	public void CreateEnemy()
 	{
+		EventTracking.enemiesSpawned++;
+		
 		EnemyAI_MoveTowards enemy = Instantiate(enemyPrefab);
 		enemy.gameObject.transform.position = transform.position;
 		enemy.nav = nav;

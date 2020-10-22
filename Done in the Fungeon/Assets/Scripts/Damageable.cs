@@ -13,6 +13,7 @@ public class Damageable : MonoBehaviour
 	public float damageTime;
 	private float damageTimer;
 	private Rigidbody2D rb2d;
+	public float knockbackResistance = 0;
 	
 	private Vector3 knockbackVector;
 	private float knockbackSpeed;
@@ -65,7 +66,9 @@ public class Damageable : MonoBehaviour
 			
 				knockbackSpeed = damager.knockbackPower;
 				
-				rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed, ForceMode2D.Impulse);
+				float resistance = 1 - knockbackResistance;
+				
+				rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed * resistance, ForceMode2D.Impulse);
 			}
 		}
 	}

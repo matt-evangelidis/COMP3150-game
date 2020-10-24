@@ -9,6 +9,7 @@ public class EventTracking : MonoBehaviour
 	public Text playtestInfo;
 	public GameObject playtestPanel;
 	private string displayString;
+	public bool end = false;
 	
 	public struct DamageEvent
 	{
@@ -54,7 +55,10 @@ public class EventTracking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		time += Time.deltaTime;
+		if(!end)
+		{
+			time += Time.deltaTime;
+		}
 		
 		string de = "";
 		foreach(DamageEvent x in damageEvents)

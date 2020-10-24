@@ -140,9 +140,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //maxHP = HealthIndicator.Instance.numOfHearts;
+        maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        //HealthIndicator.Instance.health = currentHP;
+        HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -908,6 +908,26 @@ public class Player : MonoBehaviour
 		{
 			stage = "4";
 		}
+		else if(SceneManager.GetActiveScene().name == "Maze Room")
+		{
+			stage = "5";
+		}
+		else if(SceneManager.GetActiveScene().name == "Wave Room")
+		{
+			stage = "6";
+		}
+		else if(SceneManager.GetActiveScene().name == "DoubleRoom")
+		{
+			stage = "7";
+		}
+		else if(SceneManager.GetActiveScene().name == "Ball Golf Room")
+		{
+			stage = "8";
+		}
+		else if(SceneManager.GetActiveScene().name == "Dodging Room")
+		{
+			stage = "9";
+		}
 		
 		if(c.gameObject.name == "Pathfinding Enemy Damage Zone")
 		{
@@ -920,6 +940,22 @@ public class Player : MonoBehaviour
 		else if(c.gameObject.name == "Patrolling Enemy Damage Zone")
 		{
 			damager = "3";
+		}
+		else if(c.gameObject.name == "Spinning Hazard Damage Zone")
+		{
+			damager = "4";
+		}
+		else if(c.gameObject.name == "Obstacles")
+		{
+			damager = "5";
+		}
+		else if(c.gameObject.name == "Bar")
+		{
+			damager = "6";
+		}
+		else if(c.gameObject.name == "Logger")
+		{
+			damager = "L";
 		}
 		
 		eventTracking.addDamageEvent(stage, damager);

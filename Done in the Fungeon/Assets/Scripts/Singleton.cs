@@ -9,7 +9,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
 	// Do not create strong dependencies. It's a pain to prototype things when every scene without this singleton throws nonstop null pointers.
 	
-    private static T _instance;
+    /*private static T _instance;
     private static object _lock = new object();
 
     public static T Instance
@@ -82,4 +82,5 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         applicationIsQuitting = true;
     }
+	*/
 }

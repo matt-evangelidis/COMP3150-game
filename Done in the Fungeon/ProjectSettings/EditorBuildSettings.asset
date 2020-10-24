@@ -39,13 +39,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Playtesting Build 1-4.unity
     guid: bf1d0e3afeb2ee149a939cf8e9cdfed6
   - enabled: 1
-    path: Assets/Scenes/Maze Room.unity
+    path: Assets/Scenes/Maze Rooms/Maze Room.unity
     guid: 2520c9da6d3641f488556e1700dac70f
   - enabled: 1
-    path: Assets/Scenes/Ball Golf Room.unity
+    path: Assets/Scenes/Golf Rooms/Ball Golf Room.unity
     guid: 11be4b198166a574b8db9174bbc49de0
   - enabled: 1
-    path: Assets/Scenes/DoubleRoom.unity
+    path: Assets/Scenes/Double Rooms/DoubleRoom.unity
     guid: 10ad7fd76f58b8d49bb44df89f6cd68c
   - enabled: 1
     path: Assets/Scenes/Wave Room.unity

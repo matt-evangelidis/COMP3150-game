@@ -140,9 +140,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = HealthIndicator.Instance.numOfHearts;
+        //maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        HealthIndicator.Instance.health = currentHP;
+        //HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;

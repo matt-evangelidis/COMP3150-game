@@ -703,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241913481898419402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: -5.45, z: 0}
+  m_LocalPosition: {x: 0.53, y: -5.45, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1241913480666259406}
@@ -752,6 +752,8 @@ MonoBehaviour:
   chargedColour: {r: 1, g: 0.5615011, b: 0, a: 1}
   defaultColour: {r: 1, g: 1, b: 1, a: 1}
   damageColour: {r: 1, g: 0, b: 0, a: 1}
+  camShake: {fileID: 0}
+  eventTracking: {fileID: 0}
 --- !u!50 &1241913481898419407
 Rigidbody2D:
   serializedVersion: 4
@@ -1386,7 +1388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241913482358482719}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: -1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 12.4, y: 12.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1241913481600238153}

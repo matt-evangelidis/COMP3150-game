@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallReset : MonoBehaviour
 {
@@ -8,23 +9,59 @@ public class BallReset : MonoBehaviour
 	public Transform startPosition;
 	private float knockback;
 	public Damageable damageable;
+	public int hitsRemaining;
+	private int currentHitsRemaining;
+	public bool infiniteHits;
+	
+	public Text number;
 
 	void Start()
 	{
 		knockback = damageable.knockbackResistance;
+		currentHitsRemaining = hitsRemaining;
 	}
 	
     // Update is called once per frame
     void Update()
     {
-        if(rb2d.velocity == Vector2.zero)
+		if(infiniteHits)
 		{
-			transform.position = startPosition.position;
-			damageable.knockbackResistance = knockback;
+			number.text = "∞";
 		}
 		else
 		{
-			damageable.knockbackResistance = 1;
+			number.text = currentHitsRemaining.ToString();
+		}
+		
+        if(rb2d.velocity == Vector2.zero)
+		{
+			Reset();
+		}
+		else
+		{
+			if(currentHitsRemaining > 0)
+			{
+				damageable.knockbackResistance = knockback;
+			}
+			else
+			{
+				damageable.knockbackResistance = 1;
+			}
 		}
     }
+	
+	void OnTriggerEnter2D(Collider2D c)
+	{
+		if(c.gameObject.tag == "PlayerAttack" && currentHitsRemaining > 0 && !infiniteHits)
+		{
+			currentHitsRemaining--;
+		}
+	}
+	
+	public void Reset()
+	{
+		currentHitsRemaining = hitsRemaining;
+		transform.position = startPosition.position;
+		damageable.knockbackResistance = knockback;
+	}
 }

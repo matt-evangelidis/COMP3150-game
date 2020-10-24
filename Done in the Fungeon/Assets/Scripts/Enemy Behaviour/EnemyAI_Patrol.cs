@@ -17,7 +17,7 @@ public class EnemyAI_Patrol : EnemyPathfinding
     {
 		if(currentlyOn != target)
 		{
-			movement();
+			movement(false);
 		}
 		else
 		{
@@ -32,6 +32,8 @@ public class EnemyAI_Patrol : EnemyPathfinding
 		startNode = currentlyOn;
 		target = patrolZones[patrolCounter];
 		nodeTarget = startNode; //Enemy movement is a little janky with this, dequeuing the first thing makes enemies cut corners, but they move smoother
+		//Debug.Log(nodeTarget.gameObject.name);
 		path = generatePath(startNode, target);
+		
 	}
 }

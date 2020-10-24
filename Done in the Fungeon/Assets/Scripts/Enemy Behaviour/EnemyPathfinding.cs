@@ -46,7 +46,7 @@ public abstract class EnemyPathfinding : MonoBehaviour
 		if(newPathTimer > 0)
 		{
 			newPathTimer -= Time.deltaTime;
-			movement();
+			movement(true);
 		}
 		else
 		{
@@ -124,7 +124,7 @@ public abstract class EnemyPathfinding : MonoBehaviour
 		}
 	}
 	
-	protected void movement()
+	protected void movement(bool rigidbodyMove)
 	{
 		// these are necessary because these distance things take the z coordinate into account and there are some
 		// weird discrepencies there
@@ -136,7 +136,14 @@ public abstract class EnemyPathfinding : MonoBehaviour
 			movementVector = nodeTarget2d - transform2d;
 			movementVector = movementVector.normalized;
 			
-			rb2d.AddForce(movementVector * Time.deltaTime * movementSpeed);
+			if(rigidbodyMove)
+			{
+				rb2d.AddForce(movementVector * Time.deltaTime * movementSpeed);
+			}
+			else
+			{
+				transform.Translate(movementVector * Time.deltaTime * movementSpeed);
+			}
 		}
 		else
 		{

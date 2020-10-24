@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetNav : MonoBehaviour
 {
-	private float disableTime = 1;
+	private float disableTime = 0.1f;
 	public GenerateNav nav;
 	
     // Start is called before the first frame update
@@ -16,6 +16,7 @@ public class SetNav : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// This is done just so it will calculate after runtime. Pathfinding is based on collision.
         if(disableTime > 0)
 		{
 			disableTime -= Time.deltaTime;

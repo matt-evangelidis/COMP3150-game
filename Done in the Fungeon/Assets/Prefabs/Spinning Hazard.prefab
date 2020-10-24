@@ -233,7 +233,7 @@ MonoBehaviour:
   nav: {fileID: 0}
   startNode: {fileID: 0}
   newPathTime: 1
-  movementSpeed: 6000
+  movementSpeed: 6
   patrolZones:
   - {fileID: 0}
   - {fileID: 0}

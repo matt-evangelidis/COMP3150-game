@@ -8,7 +8,7 @@ public class Booster : MonoBehaviour
 	public float power;
 	
 	void OnTriggerEnter2D(Collider2D c)
-	{	
+	{
 		switch(direction)
 		{
 			case 0:

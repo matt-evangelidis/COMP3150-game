@@ -877,7 +877,7 @@ public class Player : MonoBehaviour
 	
 	void takeDamage(Collider2D c)
 	{
-		camShake.Shake();
+		//camShake.Shake();
 		damageDelayTimer = damageIFrames;
 		damageStayTimer = damageIFrames;
 		hurtInvincibilityTimer = damageIFrames;

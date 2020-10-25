@@ -33,7 +33,7 @@ public class BallReset : MonoBehaviour
 			number.text = currentHitsRemaining.ToString();
 		}
 		
-        if(rb2d.velocity == Vector2.zero)
+        if(rb2d.velocity == Vector2.zero && currentHitsRemaining <= 0)
 		{
 			Reset();
 		}
@@ -62,6 +62,7 @@ public class BallReset : MonoBehaviour
 	{
 		currentHitsRemaining = hitsRemaining;
 		transform.position = startPosition.position;
+		rb2d.velocity = Vector3.zero;
 		damageable.knockbackResistance = knockback;
 	}
 }

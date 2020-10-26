@@ -80,9 +80,11 @@ public class Player : MonoBehaviour
 	public GameObject chargedAttackDamageZone;
 	public GameObject chargedDashDamageZone;
 	
-	public Color chargingColour;
+	public Color chargingColour1;
+	public Color chargingColour2;
 	public Color chargedColour;
 	public Color defaultColour;
+	public Color invincibleColour;
 	public Color damageColour;
 	
 	public CameraShake camShake;
@@ -389,6 +391,7 @@ public class Player : MonoBehaviour
 			case State.Dash:
 				dashTimer -= Time.deltaTime;
 				invulnerable = true;
+				sprite.color = invincibleColour;
 				
 				Charge();
 				
@@ -449,6 +452,7 @@ public class Player : MonoBehaviour
 				if(dashTimer < 0) {
 					Turning();
 					state = State.Default;
+					sprite.color = defaultColour;
 					dashCooldownTimer = dashCooldown;
 					invulnerable = false;
 				}
@@ -458,6 +462,7 @@ public class Player : MonoBehaviour
 					comboTimer = comboTime;
 					attackDurationTimer = attackDuration;
 					attackEndLagTimer = attackEndLag;
+					sprite.color = defaultColour;
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
@@ -781,10 +786,15 @@ public class Player : MonoBehaviour
 	
 	// Add this to any state that can be interrupted by a charged attack
 	void Charge() {
-		if(Input.GetButton("Charge") && chargeTimer > 0)
+		if(Input.GetButton("Charge") && chargeTimer >= chargeTime/2)
 		{
 			chargeTimer -= Time.deltaTime;
-			sprite.color = chargingColour;
+			sprite.color = chargingColour1;
+		}
+		if(Input.GetButton("Charge") && chargeTimer < chargeTime/2 && chargeTimer > 0)
+		{
+			chargeTimer -= Time.deltaTime;
+			sprite.color = chargingColour2;
 		}
 		else if(Input.GetButton("Charge") && chargeTimer <= 0)
 		{

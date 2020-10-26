@@ -6,6 +6,7 @@ public class Damageable : MonoBehaviour
 {
 	public float health = 5;
 	public bool invincible;
+	private bool damageIframes;
 	
 	private SpriteRenderer sprite;
 	public Color damageColour;
@@ -14,6 +15,12 @@ public class Damageable : MonoBehaviour
 	private float damageTimer;
 	private Rigidbody2D rb2d;
 	public float knockbackResistance = 0;
+	
+	public bool immuneToPlayerAttacks;
+	public bool iframesAfterDamage;
+	
+	public float iframeTime;
+	private float iframeTimer;
 	
 	private Vector3 knockbackVector;
 	private float knockbackSpeed;
@@ -44,6 +51,24 @@ public class Damageable : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		
+		if(iframeTimer > 0)
+		{
+			iframeTimer -= Time.deltaTime;
+			damageIframes = true;
+			if((int)(iframeTimer*8)%2 == 0)
+			{
+				sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+			}
+			else
+			{
+				sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0);
+			}
+		}
+		else
+		{
+			damageIframes = false;
+		}
     }
 	
 	void OnTriggerEnter2D(Collider2D c)
@@ -52,12 +77,18 @@ public class Damageable : MonoBehaviour
 		if(damager != null)
 		{
 			camShake.Shake();
-			if(!invincible)
+			if(c.gameObject.tag == "PlayerAttack" && !immuneToPlayerAttacks && !invincible && !damageIframes)
 			{
 				health -= damager.damage;
+				iframeTimer = iframeTime;
+			}
+			else if(c.gameObject.tag != "PlayerAttack" && !invincible && !damageIframes)
+			{
+				health -= damager.damage;
+				iframeTimer = iframeTime;
 			}
 			
-			if(damageTimer < 0)
+			if(damageTimer < 0  && !damageIframes)
 			{
 				damageTimer = damageTime;
 				

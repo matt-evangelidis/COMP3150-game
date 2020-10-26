@@ -103,8 +103,10 @@ MonoBehaviour:
   health: 3
   invincible: 0
   damageColour: {r: 1, g: 0, b: 0, a: 1}
-  defaultColour: {r: 1, g: 1, b: 1, a: 1}
+  defaultColour: {r: 1, g: 0.49411765, b: 0, a: 1}
   damageTime: 0.2
+  knockbackResistance: 0
+  immuneToPlayerAttacks: 0
 --- !u!50 &1058921270340060598
 Rigidbody2D:
   serializedVersion: 4

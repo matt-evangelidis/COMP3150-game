@@ -739,6 +739,7 @@ MonoBehaviour:
   chargedAttackTime: 0.3
   hurtTime: 0.2
   damageIFrames: 2
+  slowModifier: 0.3
   animator: {fileID: 1241913482358482716}
   sprite: {fileID: 1241913482101770555}
   damageZone1: {fileID: 1241913481973801372}

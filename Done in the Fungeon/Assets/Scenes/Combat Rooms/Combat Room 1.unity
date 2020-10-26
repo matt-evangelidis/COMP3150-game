@@ -146,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: damageColour.g
-      value: 0.49411765
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}

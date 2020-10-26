@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
 	public float hurtTime;
 	[Tooltip("How long the player is invincible for after taking damage")]
 	public float damageIFrames;
+	[Tooltip("The amount the player will be slowed when in contact with slowers")]
+	public float slowModifier;
+	private float currentSlow = 1;
 	
 	public Animator animator;
 	private int comboCount;
@@ -420,32 +423,32 @@ public class Player : MonoBehaviour
 				switch(direction)
 				{
 					case Direction.Left:
-						rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.left * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Right:
-						rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.right * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Up:
-						rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.up * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Down:
-						rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.down * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpLeft:
 						dashDir = new Vector2(-1,1);
-						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpRight:
 						dashDir = new Vector2(1,1);
-						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownLeft:
 						dashDir = new Vector2(-1,-1);
-						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownRight:
 						dashDir = new Vector2(1,-1);
-						rb2d.AddForce(dashDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(dashDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 				}
 				
@@ -515,32 +518,32 @@ public class Player : MonoBehaviour
 				switch(direction)
 				{
 					case Direction.Left:
-						rb2d.AddForce(Vector2.left * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.left * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Right:
-						rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.right * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Up:
-						rb2d.AddForce(Vector2.up * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.up * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Down:
-						rb2d.AddForce(Vector2.down * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(Vector2.down * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpLeft:
 						chargeDir = new Vector2(-1,1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpRight:
 						chargeDir = new Vector2(1,1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownLeft:
 						chargeDir = new Vector2(-1,-1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownRight:
 						chargeDir = new Vector2(1,-1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
 						break;
 				}
 				
@@ -659,7 +662,7 @@ public class Player : MonoBehaviour
 	
 	// Add this to any state where you can move
 	void Move(float moveModifier) {
-		float velocity = moveSpeed * moveModifier * Time.deltaTime;
+		float velocity = moveSpeed * moveModifier * currentSlow * Time.deltaTime;
 		float verticalMove = Input.GetAxis("Vertical") * velocity;
 		float horizontalMove = Input.GetAxis("Horizontal") * velocity;
 		//transform.Translate(horizontalMove, verticalMove, 0, Space.World);
@@ -856,6 +859,11 @@ public class Player : MonoBehaviour
 			{
 				takeDamage(c);
 			}
+			
+			if(c.gameObject.tag == "slower" && !invulnerable)
+			{
+				currentSlow = slowModifier;
+			}
 	}
 	
 	void OnTriggerEnter2D(Collider2D c)
@@ -883,7 +891,22 @@ public class Player : MonoBehaviour
 				}
 			}
 		}
+		
+		if(c.gameObject.tag == "slower" && !invulnerable)
+		{
+			currentSlow = slowModifier;
+		}
 	}
+	
+	void OnTriggerExit2D(Collider2D c)
+	{
+		if(c.gameObject.tag == "slower")
+		{
+			currentSlow = 1;
+		}
+	}
+	
+	
 	
 	void takeDamage(Collider2D c)
 	{

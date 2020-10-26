@@ -56,4 +56,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Double Rooms/Double Room 1.unity
     guid: 6a184ddd36c924a459f1fd518bc155f4
+  - enabled: 1
+    path: Assets/Scenes/Combat Rooms/Combat Room 2.unity
+    guid: 171b7b537e86c5e4ca22f05648271cd1
+  - enabled: 1
+    path: Assets/Scenes/Combat Rooms/Combat Room 3.unity
+    guid: bf9b90c8f45f8e04da8a0a1e14a9c410
   m_configObjects: {}

@@ -41,7 +41,6 @@ public class Damageable : MonoBehaviour
     {
         if(damageTimer >= 0)
 		{
-			sprite.color = damageColour;
 			damageTimer -= Time.deltaTime;
 		} else {
 			sprite.color = defaultColour;
@@ -79,11 +78,13 @@ public class Damageable : MonoBehaviour
 			camShake.Shake();
 			if(c.gameObject.tag == "PlayerAttack" && !immuneToPlayerAttacks && !invincible && !damageIframes)
 			{
+				sprite.color = damageColour;
 				health -= damager.damage;
 				iframeTimer = iframeTime;
 			}
 			else if(c.gameObject.tag != "PlayerAttack" && !invincible && !damageIframes)
 			{
+				sprite.color = damageColour;
 				health -= damager.damage;
 				iframeTimer = iframeTime;
 			}

@@ -10,4 +10,9 @@ public class CameraShake : MonoBehaviour
 	{
 		animator.SetTrigger("shake");
 	}
+	
+	public void StrongShake()
+	{
+		animator.SetTrigger("strongshake");
+	}
 }

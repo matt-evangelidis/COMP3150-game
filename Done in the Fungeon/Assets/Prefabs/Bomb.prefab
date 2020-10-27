@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 7819124756594167330}
   - component: {fileID: 7819124756594167341}
   m_Layer: 12
-  m_Name: Bomb Damage Zone Player
+  m_Name: Explosion
   m_TagString: damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

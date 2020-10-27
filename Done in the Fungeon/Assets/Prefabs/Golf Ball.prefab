@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7326578771501105948}
   - component: {fileID: 905002799146608729}
   - component: {fileID: 4125253205364153267}
-  - component: {fileID: 4125253205364153266}
   - component: {fileID: 3970980894054208201}
   - component: {fileID: 4125253205364153278}
+  - component: {fileID: -3272580718134925331}
   m_Layer: 19
   m_Name: Golf Ball
   m_TagString: Untagged
@@ -107,24 +107,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &4125253205364153266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4125253205364153271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b04a24514a44b459920de9e4aa4382, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  invincible: 1
-  damageColour: {r: 1, g: 1, b: 1, a: 1}
-  defaultColour: {r: 1, g: 1, b: 1, a: 1}
-  damageTime: 0.2
-  knockbackResistance: 0.5
 --- !u!58 &3970980894054208201
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,10 +137,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 4125253205364153267}
   startPosition: {fileID: 0}
-  damageable: {fileID: 4125253205364153266}
+  damageable: {fileID: -3272580718134925331}
   hitsRemaining: 1
   infiniteHits: 0
   number: {fileID: 1520457954985299634}
+--- !u!114 &-3272580718134925331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125253205364153271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0b84fa1c288ea42b9311bb73312326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTime: 0.2
+  knockbackResistance: 0.5
+  numHits: 0
 --- !u!1 &5864527836279694925
 GameObject:
   m_ObjectHideFlags: 0

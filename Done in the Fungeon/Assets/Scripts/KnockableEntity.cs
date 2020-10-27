@@ -14,6 +14,8 @@ public class KnockableEntity : MonoBehaviour
 	private Rigidbody2D rb2d;
 	
 	private CameraShake camShake;
+	
+	public int numHits;
 
 	void Start()
 	{
@@ -46,6 +48,11 @@ public class KnockableEntity : MonoBehaviour
 				knockbackSpeed = damager.knockbackPower;
 				
 				float resistance = 1 - knockbackResistance;
+				
+				if(resistance != 0)
+				{
+					numHits++;
+				}
 				
 				rb2d.AddForce(knockbackVector * Time.deltaTime * knockbackSpeed * resistance, ForceMode2D.Impulse);
 			}

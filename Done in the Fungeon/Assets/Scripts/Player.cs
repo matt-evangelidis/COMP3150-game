@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 	public float dashTime;
 	[Tooltip("The speed you move during your dash.")]
 	public float dashSpeed; // dash speed for translate movement was good at 50
+	[Tooltip("The speed you move during your charged attack.")]
+	public float chargedDashSpeed;
 	[Tooltip("The time before you can next dash after a dash.")]
 	public float dashCooldown;
 	[Tooltip("The amount of time a charged attack takes to charge.")]
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
 	public GameObject damageZone5;
 	public GameObject chargedAttackDamageZone;
 	public GameObject chargedDashDamageZone;
+	public GameObject chargeHitBox;
 	
 	public Color chargingColour1;
 	public Color chargingColour2;
@@ -145,9 +148,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //maxHP = HealthIndicator.Instance.numOfHearts;
+        maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        //HealthIndicator.Instance.health = currentHP;
+        HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -492,6 +495,7 @@ public class Player : MonoBehaviour
 				chargedDashTimer -= Time.deltaTime;
 				
 				chargedDashDamageZone.gameObject.SetActive(true);
+				chargeHitBox.gameObject.SetActive(true);
 				
 				/*if(direction == Direction.Up)
 				{
@@ -518,32 +522,32 @@ public class Player : MonoBehaviour
 				switch(direction)
 				{
 					case Direction.Left:
-						rb2d.AddForce(Vector2.left * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(Vector2.left * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Right:
-						rb2d.AddForce(Vector2.right * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(Vector2.right * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Up:
-						rb2d.AddForce(Vector2.up * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(Vector2.up * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.Down:
-						rb2d.AddForce(Vector2.down * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(Vector2.down * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpLeft:
 						chargeDir = new Vector2(-1,1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.UpRight:
 						chargeDir = new Vector2(1,1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownLeft:
 						chargeDir = new Vector2(-1,-1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 					case Direction.DownRight:
 						chargeDir = new Vector2(1,-1);
-						rb2d.AddForce(chargeDir.normalized * dashSpeed * currentSlow * Time.deltaTime);
+						rb2d.AddForce(chargeDir.normalized * chargedDashSpeed * currentSlow * Time.deltaTime);
 						break;
 				}
 				
@@ -577,10 +581,12 @@ public class Player : MonoBehaviour
 				chargedAttackTimer -= Time.deltaTime;
 				
 				chargedAttackDamageZone.gameObject.SetActive(true);
+				chargeHitBox.gameObject.SetActive(true);
 				
 				if(chargedAttackTimer < 0)
 				{
 					chargedAttackDamageZone.gameObject.SetActive(false);
+					chargeHitBox.gameObject.SetActive(false);
 					animator.SetBool("Charged Attacking", false);
 					state = State.Default;
 					immune = false;
@@ -842,6 +848,7 @@ public class Player : MonoBehaviour
 		damageZone5.gameObject.SetActive(false);
 		chargedAttackDamageZone.gameObject.SetActive(false);
 		chargedDashDamageZone.gameObject.SetActive(false);
+		chargeHitBox.gameObject.SetActive(false);
 		
 		immune = false;
 		invulnerable = false;
@@ -922,76 +929,7 @@ public class Player : MonoBehaviour
 		knockbackSpeed = c.gameObject.GetComponent<Damager>().knockbackPower;
 		
 		// for playtesting
-		string stage = "";
-		string damager = "";
-		
-		if(SceneManager.GetActiveScene().name == "Playtesting Build 1-1")
-		{
-			stage = "1";
-		}
-		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-2")
-		{
-			stage = "2";
-		}
-		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-3")
-		{
-			stage = "3";
-		}
-		else if(SceneManager.GetActiveScene().name == "Playtesting Build 1-4")
-		{
-			stage = "4";
-		}
-		else if(SceneManager.GetActiveScene().name == "Maze Room")
-		{
-			stage = "5";
-		}
-		else if(SceneManager.GetActiveScene().name == "Wave Room")
-		{
-			stage = "6";
-		}
-		else if(SceneManager.GetActiveScene().name == "DoubleRoom")
-		{
-			stage = "7";
-		}
-		else if(SceneManager.GetActiveScene().name == "Ball Golf Room")
-		{
-			stage = "8";
-		}
-		else if(SceneManager.GetActiveScene().name == "Dodging Room")
-		{
-			stage = "9";
-		}
-		
-		if(c.gameObject.name == "Pathfinding Enemy Damage Zone")
-		{
-			damager = "1";
-		}
-		else if(c.gameObject.name == "Laser")
-		{
-			damager = "2";
-		}
-		else if(c.gameObject.name == "Patrolling Enemy Damage Zone")
-		{
-			damager = "3";
-		}
-		else if(c.gameObject.name == "Spinning Hazard Damage Zone")
-		{
-			damager = "4";
-		}
-		else if(c.gameObject.name == "Obstacles")
-		{
-			damager = "5";
-		}
-		else if(c.gameObject.name == "Bar")
-		{
-			damager = "6";
-		}
-		else if(c.gameObject.name == "Logger")
-		{
-			damager = "L";
-		}
-		
-		eventTracking.addDamageEvent(stage, damager);
+		eventTracking.addDamageEvent(c.gameObject.name);
 	}
 	
 	public void findCamera()

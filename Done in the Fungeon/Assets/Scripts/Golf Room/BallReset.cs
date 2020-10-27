@@ -8,7 +8,7 @@ public class BallReset : MonoBehaviour
 	public Rigidbody2D rb2d;
 	public Transform startPosition;
 	private float knockback;
-	public Damageable damageable;
+	public KnockableEntity damageable;
 	public int hitsRemaining;
 	private int currentHitsRemaining;
 	public bool infiniteHits;

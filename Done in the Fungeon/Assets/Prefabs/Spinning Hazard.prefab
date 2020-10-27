@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 7982527013866803919}
   - component: {fileID: 823745658775314171}
   m_Layer: 12
-  m_Name: Damage Zone
+  m_Name: Spinning Hazard Damage Zone
   m_TagString: damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

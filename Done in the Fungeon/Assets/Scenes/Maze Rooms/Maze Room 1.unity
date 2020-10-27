@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 978118640653214058, guid: 623aeabade8f1474ca80e26ff62bad4c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 978118640653214058, guid: 623aeabade8f1474ca80e26ff62bad4c,
         type: 3}
@@ -196,6 +196,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 623aeabade8f1474ca80e26ff62bad4c, type: 3}
+--- !u!1 &267153313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267153316}
+  - component: {fileID: 267153315}
+  - component: {fileID: 267153314}
+  m_Layer: 10
+  m_Name: DoorCloser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &267153314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267153313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844c056f75937534dadaa03799938e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingToActivate: {fileID: 1311541406}
+--- !u!61 &267153315
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267153313}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4}
+  m_EdgeRadius: 0
+--- !u!4 &267153316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267153313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &294063174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6391642010569398028, guid: bb623abe77d5f3348ae143c11bea8b2a,
@@ -208,6 +279,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1311541405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &406597085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 38620778269350210, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: to
+      value: Maze Room 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: side
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68f56f35fadbdb94784b6dff9b7aa6cf, type: 3}
 --- !u!1001 &473136138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 269388166959227149, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 269388166959227149, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
@@ -273,7 +423,7 @@ PrefabInstance:
     - target: {fileID: 4666826114588681894, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
       propertyPath: m_Name
-      value: Big Spinning Hazard
+      value: Big Spinning Hazard 0
       objectReference: {fileID: 0}
     - target: {fileID: 4666826114588681895, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
@@ -295,6 +445,11 @@ PrefabInstance:
       propertyPath: patrolZones.Array.data[1]
       value: 
       objectReference: {fileID: 294063174}
+    - target: {fileID: 5428526667572539196, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 1 Big Spinning Hazard 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ecbd1e486f31c044b2a17ab54e9e80f, type: 3}
 --- !u!4 &503038197 stripped
@@ -310,6 +465,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2611915174188205480, guid: 34dda2065b2529c4daa62c57995c02dc,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 1 Spinning Hazard 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3434705675262266418, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
       propertyPath: m_Name
@@ -388,7 +548,7 @@ PrefabInstance:
     - target: {fileID: 7842011742176136089, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7842011742176136089, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
@@ -441,7 +601,7 @@ PrefabInstance:
     - target: {fileID: 1951821613877933348, guid: bb623abe77d5f3348ae143c11bea8b2a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2044385444491096127, guid: bb623abe77d5f3348ae143c11bea8b2a,
         type: 3}
@@ -5922,6 +6082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697115329069326920, guid: bb623abe77d5f3348ae143c11bea8b2a,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6796897524897995570, guid: bb623abe77d5f3348ae143c11bea8b2a,
         type: 3}
@@ -13699,8 +13864,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7601271308233569868, guid: bb623abe77d5f3348ae143c11bea8b2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb623abe77d5f3348ae143c11bea8b2a, type: 3}
+--- !u!1 &1311541406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7601271308233569868, guid: bb623abe77d5f3348ae143c11bea8b2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1311541405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1505417278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13746,7 +13922,7 @@ PrefabInstance:
     - target: {fileID: 2302608673050532322, guid: c7682480515cc9240808409e3683aac1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2302608673050532322, guid: c7682480515cc9240808409e3683aac1,
         type: 3}
@@ -13800,10 +13976,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2611915174188205480, guid: 34dda2065b2529c4daa62c57995c02dc,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 1 Spinning Hazard 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3434705675262266418, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
       propertyPath: m_Name
-      value: Spinning Hazard (1)
+      value: Spinning Hazard 1
       objectReference: {fileID: 0}
     - target: {fileID: 3434705675262266419, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
@@ -13878,7 +14059,7 @@ PrefabInstance:
     - target: {fileID: 7842011742176136089, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7842011742176136089, guid: 34dda2065b2529c4daa62c57995c02dc,
         type: 3}
@@ -13978,90 +14159,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1960883073
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815937832210046327, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: chargeTime
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229976, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658628946775229979, guid: 325c16ac5e774314a8a5e259eae3e96e,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 325c16ac5e774314a8a5e259eae3e96e, type: 3}
 --- !u!4 &2107361952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8329284264186029694, guid: bb623abe77d5f3348ae143c11bea8b2a,
@@ -14113,7 +14210,7 @@ PrefabInstance:
     - target: {fileID: 269388166959227149, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 269388166959227149, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
@@ -14133,7 +14230,7 @@ PrefabInstance:
     - target: {fileID: 4666826114588681894, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
       propertyPath: m_Name
-      value: Big Spinning Hazard
+      value: Big Spinning Hazard 1
       objectReference: {fileID: 0}
     - target: {fileID: 4666826114588681895, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
         type: 3}
@@ -14155,5 +14252,10 @@ PrefabInstance:
       propertyPath: patrolZones.Array.data[1]
       value: 
       objectReference: {fileID: 327609577}
+    - target: {fileID: 5428526667572539196, guid: 1ecbd1e486f31c044b2a17ab54e9e80f,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 1 Big Spinning Hazard 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ecbd1e486f31c044b2a17ab54e9e80f, type: 3}

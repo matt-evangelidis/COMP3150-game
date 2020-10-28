@@ -189,6 +189,10 @@ public class EventTracking : MonoBehaviour
 		{
 			return "SUMO";
 		}
+		else if(n == "Combat Room 1 Lava")
+		{
+			return "CR1L";
+		}
 		else if(n == "Bomb Enemy")
 		{
 			return "BOMB";

@@ -11,16 +11,14 @@ public class OptionMenu : MonoBehaviour
     public Dropdown qualityDropdown;
     public Dropdown resolutionDropdown;
     public Toggle fullScreenToggle;
-    public Slider volumeSlider;
-    public Slider musicVolumeSlider;
+    //public Slider volumeSlider;
+    //public Slider musicVolumeSlider;
 
-    AudioSource source;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();
 
         // options panel is initially hidden
         optionsPanel.SetActive(false);
@@ -44,41 +42,15 @@ public class OptionMenu : MonoBehaviour
         }
         resolutionDropdown.AddOptions(resolutions);
 
-        // music volume bypass main volume
-        source.ignoreListenerVolume = true;
 
-        // restore the saved audio volume
-        if (PlayerPrefs.HasKey("AudioVolume"))
-        {
-            AudioListener.volume = PlayerPrefs.GetFloat("AudioVolume");
-        }
-        else
-        {
-            // first time the game is run, use the default value
-            AudioListener.volume = 1f;
-        }
 
-        // restore the saved background audio volume
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            source.volume = PlayerPrefs.GetFloat("MusicVolume");
-        }
-        else
-        {
-            source.volume = 1f;
-        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Updates: users are able to preview volume changes in UI settings.
-        AudioListener.volume = volumeSlider.value;
-        PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
 
-        source.volume = musicVolumeSlider.value;
-        PlayerPrefs.SetFloat("MusicVolume", source.volume);
     }
 
     public void OnPressedOptions()
@@ -103,11 +75,6 @@ public class OptionMenu : MonoBehaviour
         // set the fullscreen toggle
         fullScreenToggle.isOn = Screen.fullScreen;
 
-        // set the volume slider
-        volumeSlider.value = AudioListener.volume;
-
-        // set the background audio volume slider
-        musicVolumeSlider.value = source.volume;
     }
 
     public void OnPressedCancel()

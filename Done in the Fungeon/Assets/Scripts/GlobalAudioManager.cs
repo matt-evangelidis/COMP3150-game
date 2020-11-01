@@ -1,6 +1,8 @@
 ﻿using Unity.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 // code adapted from https://blog.csdn.net/linjf520/article/details/104329047
 /// <summary>
@@ -10,6 +12,9 @@ using UnityEngine.Audio;
 /// </summary>
 public class GlobalAudioManager : MonoBehaviour
 {
+    public Slider bgm_slider;
+    public Slider sfx_slider;
+
     private static GlobalAudioManager instance;
     public static GlobalAudioManager Instance() => instance;
     [Header("Mixer of BGM and SFX")]
@@ -22,6 +27,11 @@ public class GlobalAudioManager : MonoBehaviour
     [SerializeField] [Range(-80f, 20f)] private float bgm_volume = -10;
     [SerializeField] [Range(-80f, 20f)] private float sfx_volume = -10;
 
+
+
+    AudioSource source;
+
+
     private void Awake()
     {
         if (instance != null) Debug.LogError($"{GetType().Name} instance already exist.");
@@ -31,6 +41,33 @@ public class GlobalAudioManager : MonoBehaviour
 
     private void Start()
     {
+        source = GetComponent<AudioSource>();
+
+        // restore the saved audio volume
+        if (PlayerPrefs.HasKey("SFX_Volume"))
+        {
+            Mixer.SetFloat("SFX_Volume", PlayerPrefs.GetFloat("SFX_Volume"));
+            sfx_slider.value = PlayerPrefs.GetFloat("SFX_Volume");
+        }
+        else
+        {
+            // first time the game is run, use the default value
+            Mixer.SetFloat("SFX_Volume", 0f);
+            sfx_slider.value = 0f;
+        }
+
+        // restore the saved background audio volume
+        if (PlayerPrefs.HasKey("BGM_Volume"))
+        {
+            Mixer.SetFloat("BGM_Volume", PlayerPrefs.GetFloat("BGM_Volume"));
+            bgm_slider.value = PlayerPrefs.GetFloat("BGM_Volume");
+        }
+        else
+        {
+            Mixer.SetFloat("BGM_Volume", 0f);
+            bgm_slider.value = 0f;
+        }
+
         PlayBGM(GetComponent<AudioSource>()); // for testing
     }
     // Translate: For testing purposes. 
@@ -38,11 +75,9 @@ public class GlobalAudioManager : MonoBehaviour
     // Officially you can set the volume on UI panel volume slider.
     private void Update()
     {
-        SetMASTER_Volume(master_volume);
-        SetBGM_Volume(bgm_volume);
-        SetSFX_Volume(sfx_volume);
+
     }
-    
+
     public void RestartBGM()
     {
         if (playing_BGM != null)
@@ -71,9 +106,11 @@ public class GlobalAudioManager : MonoBehaviour
         return value;
     }
 
-    public void SetMASTER_Volume(float value)
+    public void SetMASTER_Volume(Slider volume)
     {
-        Mixer.SetFloat("MASTER_Volume", Mathf.Clamp(value, -80, 20));
+        Mixer.SetFloat("MASTER_Volume", volume.value);
+        PlayerPrefs.SetFloat("MASTER_Volume", volume.value);
+        PlayerPrefs.Save();
     }
 
     public float GetBGM_Volume()
@@ -82,9 +119,11 @@ public class GlobalAudioManager : MonoBehaviour
         return value;
     }
 
-    public void SetBGM_Volume(float value)
+    public void SetBGM_Volume(Slider volume)
     {
-        Mixer.SetFloat("BGM_Volume", Mathf.Clamp(value, -80, 20));
+        Mixer.SetFloat("BGM_Volume", volume.value);
+        PlayerPrefs.SetFloat("BGM_Volume", volume.value);
+        PlayerPrefs.Save();
     }
 
     public float GetSFX_Volume()
@@ -93,8 +132,10 @@ public class GlobalAudioManager : MonoBehaviour
         return value;
     }
 
-    public void SetSFX_Volume(float value)
+    public void SetSFX_Volume(Slider volume)
     {
-        Mixer.SetFloat("SFX_Volume", Mathf.Clamp(value, -80, 20));
+        Mixer.SetFloat("SFX_Volume", volume.value);
+        PlayerPrefs.SetFloat("SFX_Volume", volume.value);
+        PlayerPrefs.Save();
     }
 }

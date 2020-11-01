@@ -73,7 +73,12 @@ public class OptionMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Updates: users are able to preview volume changes in UI settings.
+        AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
 
+        source.volume = musicVolumeSlider.value;
+        PlayerPrefs.SetFloat("MusicVolume", source.volume);
     }
 
     public void OnPressedOptions()
@@ -125,12 +130,6 @@ public class OptionMenu : MonoBehaviour
 
         Screen.SetResolution(res.width, res.height, fullScreenToggle.isOn);
 
-        AudioListener.volume = volumeSlider.value;
-
-        PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
-
-        source.volume = musicVolumeSlider.value;
-        PlayerPrefs.SetFloat("MusicVolume", source.volume);
     }
 
 }

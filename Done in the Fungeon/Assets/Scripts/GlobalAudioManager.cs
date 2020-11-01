@@ -36,7 +36,7 @@ public class GlobalAudioManager : MonoBehaviour
     {
         if (instance != null) Debug.LogError($"{GetType().Name} instance already exist.");
         instance = this;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     private void Start()

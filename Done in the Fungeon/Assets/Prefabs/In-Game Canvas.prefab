@@ -1544,8 +1544,6 @@ MonoBehaviour:
   qualityDropdown: {fileID: 3559255079319139182}
   resolutionDropdown: {fileID: 3559255079768826124}
   fullScreenToggle: {fileID: 3559255079531374597}
-  volumeSlider: {fileID: 3559255080656786372}
-  musicVolumeSlider: {fileID: 3559255080475795904}
 --- !u!82 &3559255079796891410
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2952,8 +2950,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 3559255080556573309}
   m_HandleRect: {fileID: 3559255080679354400}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -3917,8 +3915,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 3559255080996931840}
   m_HandleRect: {fileID: 3559255080388237004}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:

@@ -147,7 +147,11 @@ public abstract class EnemyPathfinding : MonoBehaviour
 		}
 		else
 		{
-			if(path.Count != 0)
+			if(path == null)
+			{
+				
+			}
+			else if(path.Count != 0)
 			{
 				nodeTarget = path.Dequeue();
 			}

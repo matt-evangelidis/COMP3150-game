@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
 	public Color damageColour;
 	
 	public CameraShake camShake;
+	private SoundEffects sound;
+	private bool soundPlayed;
 	
 	// temporarily here for playtesting
 	public EventTracking eventTracking;
@@ -148,15 +150,16 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHP = HealthIndicator.Instance.numOfHearts;
+        //maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        HealthIndicator.Instance.health = currentHP;
+        //HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
 		comboCount = 0;
 		attackPressed = false;
 		damageDelayTimer = damageIFrames;
+		sound = gameObject.GetComponent<SoundEffects>();
 		
 		invulnerable = false;
 		immune = false;
@@ -212,11 +215,13 @@ public class Player : MonoBehaviour
 				{
 					comboCount = 2;
 					state = State.ComboTransition;
+					soundPlayed = false;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
 					Dash();
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -230,6 +235,7 @@ public class Player : MonoBehaviour
                     state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -244,11 +250,13 @@ public class Player : MonoBehaviour
 				{
 					comboCount = 3;
 					state = State.ComboTransition;
+					soundPlayed = false;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
 					Dash();
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -262,6 +270,7 @@ public class Player : MonoBehaviour
                     state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -276,11 +285,13 @@ public class Player : MonoBehaviour
 				{
 					comboCount = 4;
 					state = State.ComboTransition;
+					soundPlayed = false;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
 					Dash();
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -294,6 +305,7 @@ public class Player : MonoBehaviour
                     state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -310,11 +322,13 @@ public class Player : MonoBehaviour
 					// because the combo window is too long to work as end lag.
 					comboCount = 5;
 					state = State.ComboTransition;
+					soundPlayed = false;
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
 					Dash();
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -328,6 +342,7 @@ public class Player : MonoBehaviour
                     state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -335,6 +350,12 @@ public class Player : MonoBehaviour
 			case State.Combo5:
 				// Cannot use the same code as the previous ones because this one uses end lag instead of combo time
 				comboEndLagTimer -= Time.deltaTime;
+				
+				if(!soundPlayed)
+				{
+					sound.PlaySound("Basic Attack 2");
+					soundPlayed = true;
+				}
 				
 				// Attack Duration
 				if(attackDurationTimer >= 0)
@@ -350,6 +371,7 @@ public class Player : MonoBehaviour
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
 				{
 					Dash();
+					soundPlayed = false;
 				}
 				
 				if(comboEndLagTimer < 0)
@@ -357,6 +379,7 @@ public class Player : MonoBehaviour
 					state = State.Default;
 					comboCount = 0;
 					animator.SetInteger("Attack", comboCount);
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -370,6 +393,7 @@ public class Player : MonoBehaviour
                     state = State.Hurt;
 					disableDamageZones();
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				Move(attackingMoveSpeed);
@@ -391,6 +415,7 @@ public class Player : MonoBehaviour
 				attackEndLagTimer = attackEndLag;
 				state = (State)comboCount;
 				animator.SetInteger("Attack", comboCount);
+				soundPlayed = false;
 				
 				break;
 			
@@ -421,6 +446,12 @@ public class Player : MonoBehaviour
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
 					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
 				}*/
+				
+				if(!soundPlayed)
+				{
+					sound.PlaySound("Dash");
+					soundPlayed = true;
+				}
 				
 				Vector2 dashDir;
 				switch(direction)
@@ -461,6 +492,7 @@ public class Player : MonoBehaviour
 					sprite.color = defaultColour;
 					dashCooldownTimer = dashCooldown;
 					invulnerable = false;
+					soundPlayed = false;
 				}
 				
 				if(Input.GetButtonDown("Attack"))
@@ -472,6 +504,7 @@ public class Player : MonoBehaviour
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -486,6 +519,7 @@ public class Player : MonoBehaviour
 					disableDamageZones();
 					invulnerable = false;
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -517,6 +551,12 @@ public class Player : MonoBehaviour
 					//transform.Translate(dashSpeed * Time.deltaTime, 0, 0, Space.World);
 					rb2d.AddForce(Vector2.right * dashSpeed * Time.deltaTime);
 				}*/
+				
+				if(!soundPlayed)
+				{
+					sound.PlaySound("Basic Attack 2");
+					soundPlayed = true;
+				}
 				
 				Vector2 chargeDir;
 				switch(direction)
@@ -558,6 +598,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged Attacking", true);
 					state = State.ChargedAttack;
 					chargedAttackTimer = chargedAttackTime;
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -572,6 +613,7 @@ public class Player : MonoBehaviour
 					disableDamageZones();
 					immune = false;
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -590,6 +632,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged Attacking", false);
 					state = State.Default;
 					immune = false;
+					soundPlayed = false;
 				}
 				
 				// You can interrupt your charged attack your basic attack string if you wish to start straight away
@@ -603,6 +646,7 @@ public class Player : MonoBehaviour
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
 					immune = false;
+					soundPlayed = false;
 				}
 				
 				if(hurt)
@@ -617,11 +661,13 @@ public class Player : MonoBehaviour
 					disableDamageZones();
 					immune = false;
 					attackPressed = false;
+					soundPlayed = false;
 				}
 				
 				break;
 			case State.Hurt:
 				//invulnerable = true;
+				
 				if(hurtTimer > 0)
 				{
 					hurtTimer -= Time.deltaTime;
@@ -635,6 +681,7 @@ public class Player : MonoBehaviour
 					sprite.color = defaultColour;
 					hurt = false;
 					//invulnerable = false;
+					soundPlayed = false;
 				}
 				
 				break;
@@ -763,6 +810,12 @@ public class Player : MonoBehaviour
 	void Attack(GameObject damageZone) {
 		comboTimer -= Time.deltaTime;
 		
+		if(!soundPlayed)
+		{
+			sound.PlaySound("Basic Attack 1");
+			soundPlayed = true;
+		}
+		
 		if(attackEndLagTimer > 0)
 		{
 			attackEndLagTimer -= Time.deltaTime;
@@ -797,6 +850,12 @@ public class Player : MonoBehaviour
 	void Charge() {
 		if(Input.GetButton("Charge") && chargeTimer >= chargeTime/2)
 		{
+			if(!soundPlayed)
+			{
+				sound.PlaySound("Charge");
+				soundPlayed = true;
+			}
+			
 			chargeTimer -= Time.deltaTime;
 			sprite.color = chargingColour1;
 		}
@@ -814,6 +873,8 @@ public class Player : MonoBehaviour
 		{
 			chargeTimer = chargeTime;
 			sprite.color = defaultColour;
+			soundPlayed = false;
+			sound.StopSound();
 		}
 		else if(Input.GetButtonUp("Charge") && chargeTimer <= 0)
 		{
@@ -827,6 +888,7 @@ public class Player : MonoBehaviour
 			comboCount = 0; // Reset the combo counter for the animator
 			animator.SetInteger("Attack", comboCount);
 			disableDamageZones();
+			soundPlayed = false;
 		}
 	}
 	
@@ -852,6 +914,7 @@ public class Player : MonoBehaviour
 		
 		immune = false;
 		invulnerable = false;
+		soundPlayed = false;
 	}
 	
 	void OnTriggerStay2D(Collider2D c)
@@ -921,6 +984,7 @@ public class Player : MonoBehaviour
 		damageDelayTimer = damageIFrames;
 		damageStayTimer = damageIFrames;
 		hurtInvincibilityTimer = damageIFrames;
+		sound.PlaySound("Hurt");
 		hurt = true;
 		comboCount = 0;
 		

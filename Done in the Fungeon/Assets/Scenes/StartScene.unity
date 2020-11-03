@@ -1763,6 +1763,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4443d1319cacb4fa3f57728b7ae17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1840349357 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 600556707821894134, guid: 56c3dc520fd4d004185e5666c5d11a7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 600556707340499292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1944678845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1840,6 +1846,11 @@ PrefabInstance:
       propertyPath: eventTracking
       value: 
       objectReference: {fileID: 551408329}
+    - target: {fileID: 8932872795466116084, guid: 325c16ac5e774314a8a5e259eae3e96e,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1840349357}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325c16ac5e774314a8a5e259eae3e96e, type: 3}
 --- !u!1001 &600556707340499292
@@ -1908,6 +1919,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 600556707821894134, guid: 56c3dc520fd4d004185e5666c5d11a7d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 600556707821894134, guid: 56c3dc520fd4d004185e5666c5d11a7d,
+        type: 3}
+      propertyPath: Loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 600556707821894135, guid: 56c3dc520fd4d004185e5666c5d11a7d,
         type: 3}

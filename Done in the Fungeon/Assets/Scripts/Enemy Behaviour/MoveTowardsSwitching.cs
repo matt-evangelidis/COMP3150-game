@@ -6,8 +6,8 @@ using UnityEngine;
 public class MoveTowardsSwitching : MonoBehaviour
 {
 	public Transform player;
-	public EnemyAI_MoveTowards pathfinding;
-	public EnemyAI_TargetPlayer chase;
+	public MonoBehaviour farBehaviour;
+	public MonoBehaviour closeBehaviour;
 	public float switchDistance;
 
     // Update is called once per frame
@@ -15,13 +15,13 @@ public class MoveTowardsSwitching : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.transform.position) < switchDistance)
 		{
-			chase.enabled = true;
-			pathfinding.enabled = false;
+			closeBehaviour.enabled = true;
+			farBehaviour.enabled = false;
 		}
 		else
 		{
-			chase.enabled = false;
-			pathfinding.enabled = true;
+			closeBehaviour.enabled = false;
+			farBehaviour.enabled = true;
 		}
     }
 }

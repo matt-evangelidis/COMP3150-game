@@ -13,11 +13,13 @@ public class Laser : MonoBehaviour
 	public float speed;
 	private Vector3 knockbackPos;
 	
-	private float lifeTime = 10f;
+	public float lifeTime = 10f;
+	private float lifeTimer;
 	
 	void Start()
 	{
 		damager.disableSource = true;
+		lifeTimer = lifeTime;
 	}
 
     void Update()
@@ -67,8 +69,8 @@ public class Laser : MonoBehaviour
 				break;
 		}
 		
-		lifeTime -= Time.deltaTime;
-		if(lifeTime < 0)
+		lifeTimer -= Time.deltaTime;
+		if(lifeTimer < 0)
 		{
 			Destroy(gameObject);
 		}

@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Interactible
   - slower
+  - HealthPickup
+  - LaserStarter
   layers:
   - Default
   - TransparentFX

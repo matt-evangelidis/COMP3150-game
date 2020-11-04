@@ -962,6 +962,13 @@ public class Player : MonoBehaviour
 			}
 		}
 		
+		// Health pickups
+		if(c.gameObject.tag == "HealthPickup")
+		{
+			currentHP += 1;
+			Destroy(c.gameObject);
+		}
+		
 		if(c.gameObject.tag == "slower" && !invulnerable)
 		{
 			currentSlow = slowModifier;

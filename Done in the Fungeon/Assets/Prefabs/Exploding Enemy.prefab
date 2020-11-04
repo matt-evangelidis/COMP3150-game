@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ee93e71dd9f604cb50aba0bfadc993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuse: 1
+  fuse: 0.5
   flashingSprite: {fileID: 4791381256361674970}
   damageZoneTime: 0.1
   explosion: {fileID: 2464953208543260538, guid: 03139a838c383734da15445ed112c602,

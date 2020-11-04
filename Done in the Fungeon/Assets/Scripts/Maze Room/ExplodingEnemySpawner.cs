@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class ExplodingEnemySpawner : MonoBehaviour
 {
-	public EnemyAI_MoveTowards enemyPrefab;
+	public GameObject enemyPrefab;
 	public GenerateNav nav;
 	public Transform startNode;
 	private PlayerGridPos playerPos;
@@ -35,12 +35,11 @@ public class EnemySpawner : MonoBehaviour
 	
 	public void CreateEnemy()
 	{
-		EnemyAI_MoveTowards enemy = Instantiate(enemyPrefab);
+		GameObject enemy = Instantiate(enemyPrefab);
 		enemy.gameObject.transform.position = transform.position;
-		enemy.nav = nav;
-		enemy.startNode = startNode;
-		enemy.playerPos = playerPos;
-		enemy.gameObject.GetComponent<EnemyAI_TargetPlayer>().target = player.transform;
+		enemy.GetComponent<EnemyAI_MoveTowards>().nav = nav;
+		enemy.GetComponent<EnemyAI_MoveTowards>().startNode = startNode;
+		enemy.GetComponent<EnemyAI_MoveTowards>().playerPos = playerPos;
 		enemy.gameObject.GetComponent<MoveTowardsSwitching>().player = player.transform;
 	}
 }

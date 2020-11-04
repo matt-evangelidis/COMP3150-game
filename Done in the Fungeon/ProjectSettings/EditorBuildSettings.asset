@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Maze Rooms/Original Maze Room.unity
     guid: 2520c9da6d3641f488556e1700dac70f
   - enabled: 0
-    path: Assets/Scenes/Wave Room.unity
+    path: Assets/Scenes/Wave Room/Wave Room.unity
     guid: 42c34fc35bf41c54287261164e4631ab
   - enabled: 0
     path: Assets/Scenes/Dodging Room.unity

@@ -5,27 +5,27 @@ using UnityEngine;
 public class PeriodicallySpawn : MonoBehaviour
 {
 	public float spawnPeriod;
-	private float spawnTimer;
+	private float spawnTimer = 0.0f;
 	
-	public EnemySpawner spawnScript;
+	public ExplodingEnemySpawner spawnScript;
 	
     // Start is called before the first frame update
     void Start()
     {
-        
+		
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(spawnTimer < 0)
+        if(spawnTimer > 0)
 		{
-			spawnScript.CreateEnemy();
-			spawnTimer = spawnPeriod;
+			spawnTimer -= Time.deltaTime;
 		}
 		else
 		{
-			spawnTimer -= Time.deltaTime;
+			spawnScript.CreateEnemy();
+			spawnTimer = spawnPeriod;
 		}
     }
 }

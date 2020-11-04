@@ -7,7 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject startButton;
     public GameObject quitButton;
+    public GameObject creditButton;
     public GameObject healthIndicator;
+    public GameObject creditPanel;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +28,16 @@ public class MainMenu : MonoBehaviour
     {
         healthIndicator.SetActive(true);
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void ShowCredits()
+    {
+        creditPanel.SetActive(true);
+    }
+
+    public void HideCredits()
+    {
+        creditPanel.SetActive(false);
     }
 
     public void QuitGame()

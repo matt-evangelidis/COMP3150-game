@@ -64,8 +64,8 @@ public class GlobalAudioManager : MonoBehaviour
         }
         else
         {
-            Mixer.SetFloat("BGM_Volume", 0f);
-            bgm_slider.value = 0f;
+            Mixer.SetFloat("BGM_Volume", -15f);
+            bgm_slider.value = -15f;
         }
 
         PlayBGM(GetComponent<AudioSource>()); // for testing

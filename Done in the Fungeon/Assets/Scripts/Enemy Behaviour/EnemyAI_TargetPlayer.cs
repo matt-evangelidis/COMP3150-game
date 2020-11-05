@@ -9,6 +9,12 @@ public class EnemyAI_TargetPlayer : MonoBehaviour
 	private Rigidbody2D rb2d;
 	public float movementSpeed;
 	
+	void Awake()
+	{
+		GameObject player = GameObject.Find("/Player");
+		target = player.transform;
+	}
+	
     // Start is called before the first frame update
     void Start()
     {

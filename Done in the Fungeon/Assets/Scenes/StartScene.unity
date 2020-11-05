@@ -500,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: to
-      value: Playtest 2 First Scene
+      value: First Scene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f56f35fadbdb94784b6dff9b7aa6cf, type: 3}
@@ -1846,6 +1846,16 @@ PrefabInstance:
       propertyPath: eventTracking
       value: 
       objectReference: {fileID: 551408329}
+    - target: {fileID: 7465424832690440395, guid: 325c16ac5e774314a8a5e259eae3e96e,
+        type: 3}
+      propertyPath: levelsCompleted.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465424832690440395, guid: 325c16ac5e774314a8a5e259eae3e96e,
+        type: 3}
+      propertyPath: levelsCompleted.Array.data[0]
+      value: Wave Room 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8932872795466116084, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}
       propertyPath: audioSource

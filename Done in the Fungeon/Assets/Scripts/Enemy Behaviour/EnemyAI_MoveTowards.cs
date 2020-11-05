@@ -9,6 +9,12 @@ public class EnemyAI_MoveTowards : EnemyPathfinding
 	
 	public PlayerGridPos playerPos;
 	
+	public void Awake()
+	{
+		GameObject player = GameObject.Find("/Player");
+		playerPos = player.GetComponent<PlayerGridPos>();
+	}
+	
     public override void Start()
     {
 		base.Start();

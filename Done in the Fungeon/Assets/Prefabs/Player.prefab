@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: -7329887817177699578}
   - component: {fileID: 8932872795466116084}
   - component: {fileID: -7396049483295875310}
+  - component: {fileID: 7465424832690440395}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -761,7 +762,6 @@ MonoBehaviour:
   invincibleColour: {r: 0, g: 1, b: 0, a: 1}
   damageColour: {r: 1, g: 0, b: 0, a: 1}
   camShake: {fileID: 0}
-  eventTracking: {fileID: 0}
 --- !u!50 &1241913481898419407
 Rigidbody2D:
   serializedVersion: 4
@@ -967,6 +967,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7465424832690440395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241913481898419402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628db265c8fb90144aa501fb4e64a062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsCompleted: []
 --- !u!1 &1241913481900460340
 GameObject:
   m_ObjectHideFlags: 0

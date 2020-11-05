@@ -17,7 +17,7 @@ public class DoubleRoomSpawner : MonoBehaviour
 	public DoubleButton button1;
 	public DoubleButton button2;
 	
-	public Player player;
+	public Player clonePlayer;
 	public GameObject middleWall;
 	
 	private Color currentColour;
@@ -27,7 +27,8 @@ public class DoubleRoomSpawner : MonoBehaviour
 	
 	public bool started = false;
 	
-	public GameObject exitDoor;
+	public GameObject exitDoor1;
+	public GameObject exitDoor2;
 	
     // Start is called before the first frame update
     void Start()
@@ -92,9 +93,13 @@ public class DoubleRoomSpawner : MonoBehaviour
 		else if(rounds <= 0)
 		{
 			currentColour = Color.white;
-			player.gameObject.SetActive(false);
+			clonePlayer.gameObject.SetActive(false);
 			middleWall.SetActive(false);
-			exitDoor.SetActive(false);
+			exitDoor1.SetActive(false);
+			exitDoor2.SetActive(false);
+			
+			GameObject player = GameObject.Find("/Player");
+			player.GetComponent<LevelsComplete>().RoomComplete();
 		}
     }
 }

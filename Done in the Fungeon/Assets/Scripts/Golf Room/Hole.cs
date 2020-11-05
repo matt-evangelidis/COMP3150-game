@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-	public GameObject exitDoor;
+	public GameObject[] exitDoors;
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
 		c.gameObject.SetActive(false);
-		exitDoor.SetActive(false);
+		foreach(GameObject i in exitDoors)
+		{
+			i.SetActive(false);
+		}
 	}
 }

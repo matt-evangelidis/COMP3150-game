@@ -8,7 +8,10 @@ public class LaserSpawner : MonoBehaviour
 	public float[] speeds;
 	public int[] moveDirections;
 	public Transform playerPos;
+	public GameObject player;
 	public Laser laserPrefab;
+	
+	public GameObject[] stuffToDisable;
 	
 	public Transform topSpawnLocation;
 	public Transform bottomSpawnLocation;
@@ -24,6 +27,12 @@ public class LaserSpawner : MonoBehaviour
 		public int moveDirection;
 	};
 	private Queue<LaserData> laserQueue;
+	
+	void Awake()
+	{
+		player = GameObject.Find("/Player");
+		playerPos = player.transform;
+	}
 	
     // Start is called before the first frame update
     void Start()
@@ -88,6 +97,14 @@ public class LaserSpawner : MonoBehaviour
 				}
 				currentLaser.speed = currentData.speed;
 				timer = currentData.time;
+			}
+			else
+			{
+				player.GetComponent<LevelsComplete>().RoomComplete();
+				foreach(GameObject i in stuffToDisable)
+				{
+					i.SetActive(false);
+				}
 			}
 		}
     }

@@ -10,6 +10,12 @@ public class MoveTowardsSwitching : MonoBehaviour
 	public MonoBehaviour closeBehaviour;
 	public float switchDistance;
 
+	void Awake()
+	{
+		GameObject player1 = GameObject.Find("/Player");
+		player = player1.transform;
+	}
+	
     // Update is called once per frame
     void Update()
     {

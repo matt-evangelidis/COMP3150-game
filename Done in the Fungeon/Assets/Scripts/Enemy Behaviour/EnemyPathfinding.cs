@@ -16,6 +16,13 @@ public abstract class EnemyPathfinding : MonoBehaviour
 	public Transform startNode;
 	protected Transform nodeTarget; //used in pathing 
 	protected Transform currentlyOn;
+	public Transform CurrentlyOn
+	{
+		get
+		{
+			return currentlyOn;
+		}
+	}
 	public float newPathTime; // Time between path updates
 	protected float newPathTimer;
 	protected Queue<Transform> path = new Queue<Transform>();

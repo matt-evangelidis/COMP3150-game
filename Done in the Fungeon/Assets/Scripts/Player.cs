@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 	private bool soundPlayed;
 	
 	// temporarily here for playtesting
-	public EventTracking eventTracking;
+	//public EventTracking eventTracking;
 	
 	/*
 	Notes:
@@ -1000,7 +1000,7 @@ public class Player : MonoBehaviour
 		knockbackSpeed = c.gameObject.GetComponent<Damager>().knockbackPower;
 		
 		// for playtesting
-		eventTracking.addDamageEvent(c.gameObject.name);
+		//eventTracking.addDamageEvent(c.gameObject.name);
 	}
 	
 	public void findCamera()

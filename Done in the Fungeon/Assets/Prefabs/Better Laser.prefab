@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 11193372430972945}
   - component: {fileID: 11193372430972958}
   m_Layer: 12
-  m_Name: Orange Laser
+  m_Name: Better Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   playerPos: {fileID: 0}
   damager: {fileID: 11193372430972945}
   speed: 3
-  lifeTime: 10
+  lifeTime: 20
 --- !u!1 &2690770162049344302
 GameObject:
   m_ObjectHideFlags: 0

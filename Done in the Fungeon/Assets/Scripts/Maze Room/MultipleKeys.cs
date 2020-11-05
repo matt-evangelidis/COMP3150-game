@@ -32,6 +32,9 @@ public class MultipleKeys : MonoBehaviour
 				i.SetActive(false);
 			}
 			this.enabled = false;
+			
+			GameObject player = GameObject.Find("/Player");
+			player.GetComponent<LevelsComplete>().RoomComplete();
 		}
     }
 }

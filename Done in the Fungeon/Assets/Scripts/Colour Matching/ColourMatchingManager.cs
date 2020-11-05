@@ -20,7 +20,7 @@ public class ColourMatchingManager : MonoBehaviour
 	public SpriteRenderer display3Border;
 	public SpriteRenderer display3;
 	
-	public GameObject exitDoor;
+	public GameObject[] exitDoors;
 	
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,10 @@ public class ColourMatchingManager : MonoBehaviour
     {
         if(button0.colour == coloursNeeded[0] && button1.colour == coloursNeeded[1] && button2.colour == coloursNeeded[2] && button3.colour == coloursNeeded[3])
 		{
-			exitDoor.SetActive(false);
+			foreach(GameObject i in exitDoors)
+			{
+				i.SetActive(false);
+			}
 			display0Border.gameObject.SetActive(false);
 			display1Border.gameObject.SetActive(false);
 			display2Border.gameObject.SetActive(false);
@@ -64,6 +67,9 @@ public class ColourMatchingManager : MonoBehaviour
 			display1.gameObject.SetActive(false);
 			display2.gameObject.SetActive(false);
 			display3.gameObject.SetActive(false);
+			
+			GameObject player = GameObject.Find("/Player");
+			player.GetComponent<LevelsComplete>().RoomComplete();
 		}
 		
 		display0.color = button0.sr.color;

@@ -13,5 +13,8 @@ public class Hole : MonoBehaviour
 		{
 			i.SetActive(false);
 		}
+		
+		GameObject player = GameObject.Find("/Player");
+		player.GetComponent<LevelsComplete>().RoomComplete();
 	}
 }

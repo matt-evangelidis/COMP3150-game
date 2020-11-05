@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 851123138}
   - component: {fileID: 851123137}
   - component: {fileID: 851123139}
+  - component: {fileID: 851123140}
   m_Layer: 10
   m_Name: End Trigger
   m_TagString: Untagged
@@ -281,6 +282,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thingToDeactivate: {fileID: 2094022853}
+--- !u!114 &851123140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851123135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5cc1b797ea6f741a2b5a74e55054b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &868222397
 PrefabInstance:
   m_ObjectHideFlags: 0

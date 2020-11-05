@@ -1854,7 +1854,7 @@ PrefabInstance:
     - target: {fileID: 7465424832690440395, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}
       propertyPath: levelsCompleted.Array.data[0]
-      value: Wave Room 1
+      value: Maze Room 4
       objectReference: {fileID: 0}
     - target: {fileID: 8932872795466116084, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}

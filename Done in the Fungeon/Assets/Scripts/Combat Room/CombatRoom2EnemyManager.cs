@@ -23,6 +23,8 @@ public class CombatRoom2EnemyManager : MonoBehaviour
 			{
 				i.SetActive(false);
 			}
+			GameObject player = GameObject.Find("/Player");
+			player.GetComponent<LevelsComplete>().RoomComplete();
 		}
     }
 }

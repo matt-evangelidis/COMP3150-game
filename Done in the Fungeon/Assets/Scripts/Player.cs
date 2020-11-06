@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
 					state = State.Hurt;
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -299,7 +299,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -336,7 +336,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -387,7 +387,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -512,7 +512,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -606,7 +606,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -654,7 +654,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Hurt", true);
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
-					//currentHP -= 1;
+					currentHP -= 1;
                     //HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
@@ -965,6 +965,28 @@ public class Player : MonoBehaviour
 		// Health pickups
 		if(c.gameObject.tag == "HealthPickup")
 		{
+			currentHP = Mathf.Clamp(currentHP + maxHP/2, 0, maxHP);
+			Destroy(c.gameObject);
+		}
+		
+		// Attack pickups
+		if(c.gameObject.tag == "AttackUp")
+		{
+			damageZone1.GetComponent<EnemyDamager>().damage++;
+			damageZone2.GetComponent<EnemyDamager>().damage++;
+			damageZone3.GetComponent<EnemyDamager>().damage++;
+			damageZone4.GetComponent<EnemyDamager>().damage++;
+			damageZone5.GetComponent<EnemyDamager>().damage++;
+			chargedAttackDamageZone.GetComponent<EnemyDamager>().damage++;
+			chargedDashDamageZone.GetComponent<EnemyDamager>().damage++;
+			chargeHitBox.GetComponent<EnemyDamager>().damage++;
+			Destroy(c.gameObject);
+		}
+		
+		// HP Up pickups
+		if(c.gameObject.tag == "HealthUp")
+		{
+			maxHP += 1;
 			currentHP += 1;
 			Destroy(c.gameObject);
 		}

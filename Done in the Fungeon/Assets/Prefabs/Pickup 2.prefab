@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3624005588242401594}
   - component: {fileID: 3624005588242401575}
   - component: {fileID: 3624005588242401574}
-  m_Layer: 12
-  m_Name: Pickup 1
+  m_Layer: 23
+  m_Name: Pickup 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16f5c256b5a94eb479609abf2ede76ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7690875c6590d374281cc4b71d102d51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.1, y: 0.05}
+    oldSize: {x: 0.07, y: 0.03}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -13,6 +13,8 @@ TagManager:
   - slower
   - HealthPickup
   - LaserStarter
+  - AttackUp
+  - HealthUp
   layers:
   - Default
   - TransparentFX
@@ -37,7 +39,7 @@ TagManager:
   - Hole
   - PlayerAttackOnly
   - CollidingEnemy
-  - 
+  - Pickup
   - 
   - 
   - 

@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &240989129
 PrefabInstance:
@@ -363,7 +363,7 @@ PrefabInstance:
     - target: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1241913481849257570, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}
@@ -715,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 38620778269350210, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: m_Name
-      value: Scene Transition
+      value: HP Room 4
       objectReference: {fileID: 0}
     - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
@@ -755,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
@@ -775,7 +775,7 @@ PrefabInstance:
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: to
-      value: Lava Maze 1
+      value: HP Room 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2673717116759249607, guid: 68f56f35fadbdb94784b6dff9b7aa6cf, type: 3}
@@ -1089,7 +1089,7 @@ PrefabInstance:
     - target: {fileID: 1951821613877933348, guid: 1d4e94df5ff650944bdc49dcb1bdc364,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1951821613877933348, guid: 1d4e94df5ff650944bdc49dcb1bdc364,
         type: 3}

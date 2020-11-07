@@ -1119,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: to
-      value: Maze Room 2
+      value: Dash Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
@@ -1346,7 +1346,7 @@ PrefabInstance:
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: to
-      value: Lava Maze 3
+      value: Stage 1 Stairs
       objectReference: {fileID: 0}
     - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}

@@ -8,13 +8,19 @@ public class Laser : MonoBehaviour
 	public int orientation; // 0 = vertical, 1 = horizontal
 	public int moveDirection; // 0 = up, 1 = down, 2 = left, 3 = right
 	
-	public Transform playerPos;
+	private Transform playerPos;
 	public Damager damager;
 	public float speed;
 	private Vector3 knockbackPos;
 	
 	public float lifeTime = 10f;
 	private float lifeTimer;
+	
+	void Awake()
+	{
+		GameObject player = GameObject.Find("/Player");
+		playerPos = player.transform;
+	}
 	
 	void Start()
 	{

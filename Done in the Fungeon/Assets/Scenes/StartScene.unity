@@ -1849,7 +1849,7 @@ PrefabInstance:
     - target: {fileID: 7465424832690440395, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}
       propertyPath: levelsCompleted.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7465424832690440395, guid: 325c16ac5e774314a8a5e259eae3e96e,
         type: 3}

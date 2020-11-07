@@ -10,14 +10,7 @@ public class DoubleRoom2Manager : MonoBehaviour
 	public GameObject walls;
 	public GameObject lava;
 	public GameObject otherPlayer;
-	public GameObject red;
 	public GameObject exitDoor;
-	
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -27,7 +20,6 @@ public class DoubleRoom2Manager : MonoBehaviour
 			walls.SetActive(false);
 			lava.SetActive(false);
 			otherPlayer.SetActive(false);
-			red.SetActive(false);
 			exitDoor.SetActive(false);
 		}
     }

@@ -80,4 +80,73 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage 3/Wave Room 2.unity
     guid: 6c7edbdf8ed416d4eb455a0d3882b4e1
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Dash Tutorial.unity
+    guid: f4f4f9ca15610eb4d9c76c5a04209a1d
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Colour Lock Tutorial.unity
+    guid: 6a232302a5ace564498d099508da0ece
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Charge Tutorial.unity
+    guid: 7c1347854e60db9489dfe8caecfba800
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/HP Tutorial.unity
+    guid: 147242a6bc3ec8449ba2ca3603c8e90f
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Combat Filler 1.unity
+    guid: b319a8bc7922c3d4da1cbb5aa5a483e8
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/HP Room 1.unity
+    guid: db71905f421a32143ae9ab856fb7c71a
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Stage 2 First Scene.unity
+    guid: d8628a60b9755a04987ed7090dda744a
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/HP Room 2.unity
+    guid: 52a274cd552936e4ba82faf42bbdf475
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Atk Room 1.unity
+    guid: 55ea8b861e7c7a748b683e96785df6a8
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Stage 1 Stairs.unity
+    guid: d14ac10a17c1c614c893a1f92bf80262
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Stage 1 Transition 1.unity
+    guid: 5df219532c29ed14d94988104cb0b171
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Stage 1 Transition 2.unity
+    guid: 3737e7fdb30a8f04bb3321490559fa00
+  - enabled: 1
+    path: Assets/Scenes/Stage 1/Stage 1 Transition 3.unity
+    guid: 16f14776c5a13b5468e3eac544f2918a
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Combat Filler 2.unity
+    guid: a1597eb4d742c5f47ac167f75af2bc25
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Combat Filler 3.unity
+    guid: d629d48d6ce73fe46976caa2e4226ca0
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Combat Filler 4.unity
+    guid: 79a9cea34b2e4e147861d00fbf82b654
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/HP Room 3.unity
+    guid: 07e1a1190e0f20f44929cbcc516610ea
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Stage 2 Stairs 1.unity
+    guid: 7ad25d569033a9d409403f224091bf06
+  - enabled: 1
+    path: Assets/Scenes/Stage 3/Stage 3 First Scene.unity
+    guid: d1d0f90d86308204299e9b3d5ea6f2ef
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Stage 2 Transition 1.unity
+    guid: 3edbae71797d707488e13daa7d35ec7b
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Stage 2 Transition 2.unity
+    guid: 238cf9dd02a3ef048ae9241087201c0f
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/Stage 2 Transition 3.unity
+    guid: 45bedb8aa6c47b0458cbb341c90ee2d5
+  - enabled: 1
+    path: Assets/Scenes/Stage 2/HP Up Room 1.unity
+    guid: 0615a749a26802049b119196a1b0b233
   m_configObjects: {}

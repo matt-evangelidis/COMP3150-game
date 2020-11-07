@@ -7,7 +7,7 @@ public class LaserSpawner : MonoBehaviour
 	public float[] times;
 	public float[] speeds;
 	public int[] moveDirections;
-	public Transform playerPos;
+	//public Transform playerPos;
 	public GameObject player;
 	public Laser laserPrefab;
 	
@@ -31,7 +31,7 @@ public class LaserSpawner : MonoBehaviour
 	void Awake()
 	{
 		player = GameObject.Find("/Player");
-		playerPos = player.transform;
+		//playerPos = player.transform;
 	}
 	
     // Start is called before the first frame update
@@ -62,7 +62,7 @@ public class LaserSpawner : MonoBehaviour
 			{
 				LaserData currentData = laserQueue.Dequeue();
 				Laser currentLaser = Instantiate(laserPrefab);
-				currentLaser.playerPos = playerPos;
+				//currentLaser.playerPos = playerPos;
 				currentLaser.moveDirection = currentData.moveDirection;
 				if(currentLaser.moveDirection == 0 || currentLaser.moveDirection == 1)
 				{

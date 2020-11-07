@@ -157,6 +157,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2076028116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &61671558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 38620778269350210, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze Room 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: to
+      value: Maze Room 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: side
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68f56f35fadbdb94784b6dff9b7aa6cf, type: 3}
 --- !u!4 &69537487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3200270579350688784, guid: bb623abe77d5f3348ae143c11bea8b2a,
@@ -211,6 +290,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2076028116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &257844822
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 38620778269350210, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_Name
+      value: Stage 1 Stairs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066858057116908839, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
+        type: 3}
+      propertyPath: to
+      value: Stage 1 Stairs
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68f56f35fadbdb94784b6dff9b7aa6cf, type: 3}
 --- !u!4 &270365730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8145640055436266081, guid: bb623abe77d5f3348ae143c11bea8b2a,

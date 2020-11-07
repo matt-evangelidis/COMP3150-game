@@ -13,6 +13,9 @@ public class BallReset : MonoBehaviour
 	private int currentHitsRemaining;
 	public bool infiniteHits;
 	
+	private float resetTimer;
+	private float maxTime = 10.0f;
+	
 	public Text number;
 
 	void Start()
@@ -46,6 +49,17 @@ public class BallReset : MonoBehaviour
 			else
 			{
 				damageable.knockbackResistance = 1;
+			}
+		}
+		
+		// Reset the ball if it gets stuck for more than 10 seconds.
+		if(currentHitsRemaining <= 0)
+		{
+			resetTimer += Time.deltaTime;
+			if(resetTimer > maxTime)
+			{
+				Reset();
+				resetTimer = 0;
 			}
 		}
     }

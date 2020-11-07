@@ -13487,7 +13487,7 @@ PrefabInstance:
     - target: {fileID: 38620778269350210, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}
       propertyPath: m_Name
-      value: Stage 1 Transition 2
+      value: Stage 1 Transition 3
       objectReference: {fileID: 0}
     - target: {fileID: 3162285979664376654, guid: 68f56f35fadbdb94784b6dff9b7aa6cf,
         type: 3}

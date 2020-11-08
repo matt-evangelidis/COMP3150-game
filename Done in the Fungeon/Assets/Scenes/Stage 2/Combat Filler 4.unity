@@ -10233,6 +10233,11 @@ PrefabInstance:
       propertyPath: nav
       value: 
       objectReference: {fileID: 4945068}
+    - target: {fileID: 8065788717406000028, guid: e9cbfc3cef61f8247aa124c287983ce6,
+        type: 3}
+      propertyPath: startNode
+      value: 
+      objectReference: {fileID: 4945073}
     - target: {fileID: 8127637744024456419, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: m_LocalPosition.x

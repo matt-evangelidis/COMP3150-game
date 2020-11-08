@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 2811475095001068618}
   - component: {fileID: 6380256114274992235}
   - component: {fileID: 5083495739625885646}
+  - component: {fileID: 606759872928485124}
   m_Layer: 10
   m_Name: Right Door
   m_TagString: Untagged
@@ -785,6 +786,19 @@ CompositeCollider2D:
       - {x: 7.0000296, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &606759872928485124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400561509970823319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c9fcd1f4b4a541a9409445d72db20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: c6231e1b1b5ef7c40b2d771f3f0cf9a5, type: 3}
 --- !u!1 &409264419253159899
 GameObject:
   m_ObjectHideFlags: 0
@@ -17665,6 +17679,7 @@ GameObject:
   - component: {fileID: 7247065506751624773}
   - component: {fileID: 7524092189634665392}
   - component: {fileID: 2119425622046241577}
+  - component: {fileID: 4224741634706809779}
   m_Layer: 10
   m_Name: Bottom Door
   m_TagString: Untagged
@@ -18086,6 +18101,19 @@ CompositeCollider2D:
       - {x: -1.9999708, y: -9}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &4224741634706809779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797469857730651711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c9fcd1f4b4a541a9409445d72db20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: c6231e1b1b5ef7c40b2d771f3f0cf9a5, type: 3}
 --- !u!1 &6839330083267931763
 GameObject:
   m_ObjectHideFlags: 0
@@ -19308,6 +19336,7 @@ GameObject:
   - component: {fileID: 2658532696414026198}
   - component: {fileID: 5131375715911139100}
   - component: {fileID: 5697115329069326920}
+  - component: {fileID: 8440261104641701666}
   m_Layer: 10
   m_Name: Left Door
   m_TagString: Untagged
@@ -19726,6 +19755,19 @@ CompositeCollider2D:
       - {x: -8.99997, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &8440261104641701666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601271308233569868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c9fcd1f4b4a541a9409445d72db20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: c6231e1b1b5ef7c40b2d771f3f0cf9a5, type: 3}
 --- !u!1 &7631708222299827602
 GameObject:
   m_ObjectHideFlags: 0
@@ -34044,6 +34086,7 @@ GameObject:
   - component: {fileID: 2120196338223310989}
   - component: {fileID: 1591187621107816410}
   - component: {fileID: 2730590377446160090}
+  - component: {fileID: 7741499175355956655}
   m_Layer: 10
   m_Name: Top Door
   m_TagString: Untagged
@@ -34464,6 +34507,19 @@ CompositeCollider2D:
       - {x: -1.9999708, y: 7}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &7741499175355956655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9059184186385201582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725c9fcd1f4b4a541a9409445d72db20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: c6231e1b1b5ef7c40b2d771f3f0cf9a5, type: 3}
 --- !u!1 &9108913142023439182
 GameObject:
   m_ObjectHideFlags: 0

@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb777f1e93c8a24ca084ea9183263e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   knockbackPower: 3000
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913481228187702
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb777f1e93c8a24ca084ea9183263e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   knockbackPower: 5000
   source: {fileID: 1241913481849257570}
 --- !u!1 &1241913482358482719

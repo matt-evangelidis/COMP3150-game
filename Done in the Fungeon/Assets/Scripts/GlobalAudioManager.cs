@@ -30,13 +30,25 @@ public class GlobalAudioManager : MonoBehaviour
 
 
     AudioSource source;
+	
+	public AudioSource sounds;
+	public AudioSource music;
 
 
     private void Awake()
     {
-        if (instance != null) Debug.LogError($"{GetType().Name} instance already exist.");
-        instance = this;
-        //DontDestroyOnLoad(this);
+        if (instance != null)
+		{
+			//Debug.LogError($"{GetType().Name} instance already exist.");
+			Destroy(gameObject);
+			instance = this;
+		}
+		else if(instance != this)
+		{
+			DontDestroyOnLoad(this);
+			DontDestroyOnLoad(sounds);
+			DontDestroyOnLoad(music);
+		}
     }
 
     private void Start()

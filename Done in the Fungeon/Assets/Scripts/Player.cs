@@ -150,9 +150,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //maxHP = HealthIndicator.Instance.numOfHearts;
+		maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-        //HealthIndicator.Instance.health = currentHP;
+		HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
 					state = State.Hurt;
 					disableDamageZones();
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -265,7 +265,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -300,7 +300,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -337,7 +337,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -388,7 +388,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -513,7 +513,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -607,7 +607,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -655,7 +655,7 @@ public class Player : MonoBehaviour
 					animator.SetBool("Charged", false);
 					animator.SetBool("Charged Attacking", false);
 					currentHP -= 1;
-                    //HealthIndicator.Instance.health -= 1;
+						HealthIndicator.Instance.health -= 1;
 					hurtTimer = hurtTime;
                     state = State.Hurt;
 					disableDamageZones();
@@ -965,7 +965,7 @@ public class Player : MonoBehaviour
 		// Health pickups
 		if(c.gameObject.tag == "HealthPickup")
 		{
-			currentHP = Mathf.Clamp(currentHP + maxHP/2, 0, maxHP);
+			HealthIndicator.Instance.health = Mathf.Clamp(HealthIndicator.Instance.health + HealthIndicator.Instance.numOfHearts/2, 0, HealthIndicator.Instance.numOfHearts);
 			Destroy(c.gameObject);
 		}
 		
@@ -986,8 +986,8 @@ public class Player : MonoBehaviour
 		// HP Up pickups
 		if(c.gameObject.tag == "HealthUp")
 		{
-			maxHP += 1;
-			currentHP += 1;
+			HealthIndicator.Instance.numOfHearts += 1;
+			HealthIndicator.Instance.health += 1;
 			Destroy(c.gameObject);
 		}
 		

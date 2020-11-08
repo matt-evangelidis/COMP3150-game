@@ -45,7 +45,7 @@ public class GlobalAudioManager : MonoBehaviour
 		}
 		else if(instance != this)
 		{
-			DontDestroyOnLoad(this);
+			//DontDestroyOnLoad(this);
 			DontDestroyOnLoad(sounds);
 			DontDestroyOnLoad(music);
 		}

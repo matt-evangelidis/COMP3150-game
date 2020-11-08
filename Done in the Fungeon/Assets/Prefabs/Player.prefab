@@ -745,6 +745,7 @@ MonoBehaviour:
   damageIFrames: 1.5
   slowModifier: 0.3
   animator: {fileID: 1241913482358482716}
+  character: {fileID: 7155359344076861687}
   sprite: {fileID: 1241913482101770555}
   damageZone1: {fileID: 1241913481973801372}
   damageZone2: {fileID: 1241913481900460340}
@@ -1186,6 +1187,7 @@ GameObject:
   - component: {fileID: 1241913480666259406}
   - component: {fileID: 1241913482101770555}
   - component: {fileID: 7155359344076861687}
+  - component: {fileID: 340154275338851222}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -1276,6 +1278,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &340154275338851222
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241913482101770532}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1241913482288002268
 GameObject:
   m_ObjectHideFlags: 0

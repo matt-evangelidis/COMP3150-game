@@ -42,8 +42,9 @@ public class Player : MonoBehaviour
 	public float slowModifier;
 	private float currentSlow = 1;
 	
-	public Animator animator;
+	public Animator animator; // for attacks
 	private int comboCount;
+	public Animator character;
 	
 	private int currentHP;
 
@@ -150,9 +151,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		maxHP = HealthIndicator.Instance.numOfHearts;
+		//maxHP = HealthIndicator.Instance.numOfHearts;
 		currentHP = maxHP;
-		HealthIndicator.Instance.health = currentHP;
+		//HealthIndicator.Instance.health = currentHP;
 		rb2d = gameObject.GetComponent<Rigidbody2D>();
 		position = new Vector2(transform.position.x, transform.position.y);
 		chargeTimer = chargeTime;
@@ -183,6 +184,7 @@ public class Player : MonoBehaviour
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
+					attackAnimation(direction);
 				}
 				
 				if(Input.GetButtonDown("Dash") && dashCooldownTimer < 0)
@@ -504,6 +506,7 @@ public class Player : MonoBehaviour
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
+					attackAnimation(direction);
 					soundPlayed = false;
 				}
 				
@@ -645,6 +648,7 @@ public class Player : MonoBehaviour
 					state = State.Combo1;
 					comboCount = 1;
 					animator.SetInteger("Attack", comboCount);
+					attackAnimation(direction);
 					immune = false;
 					soundPlayed = false;
 				}
@@ -711,6 +715,8 @@ public class Player : MonoBehaviour
 		{
 			invincible = false;
 		}
+		
+		sprite.gameObject.transform.rotation = Quaternion.identity;
 	}
 	
 	// Add this to any state where you can move
@@ -768,39 +774,93 @@ public class Player : MonoBehaviour
 			if(Input.GetButton("Left") && Input.GetButton("Up"))
 			{
 				direction = Direction.UpLeft;
+				
+				character.SetBool("WalkingBack", true);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if(Input.GetButton("Left") && Input.GetButton("Down"))
 			{
 				direction = Direction.DownLeft;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", true);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if(Input.GetButton("Right") && Input.GetButton("Up"))
 			{
 				direction = Direction.UpRight;
+				
+				character.SetBool("WalkingBack", true);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if(Input.GetButton("Right") && Input.GetButton("Down"))
 			{
 				direction = Direction.DownRight;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", true);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if (Input.GetButton("Left"))
 			{
 				direction = Direction.Left;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", true);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if (Input.GetButton("Right"))
 			{
 				direction = Direction.Right;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", true);
+				character.SetBool("Idle", false);
 			}
 			else if (Input.GetButton("Up"))
 			{
 				direction = Direction.Up;
+				
+				character.SetBool("WalkingBack", true);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else if (Input.GetButton("Down"))
 			{
 				direction = Direction.Down;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", true);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", false);
 			}
 			else
 			{
 				// make sure the player stops instantly when none of the movement keys are pressed
 				rb2d.velocity = Vector3.zero;
+				
+				character.SetBool("WalkingBack", false);
+				character.SetBool("WalkingForward", false);
+				character.SetBool("WalkingLeft", false);
+				character.SetBool("WalkingRight", false);
+				character.SetBool("Idle", true);
 			}
 			
 			transform.localRotation = Quaternion.Euler(0, 0, rotation);
@@ -824,6 +884,7 @@ public class Player : MonoBehaviour
 		if(Input.GetButtonDown("Attack"))
 		{
 			attackPressed = true;
+			attackAnimation(direction);
 		}
 		
 		// Attack Duration
@@ -1028,5 +1089,42 @@ public class Player : MonoBehaviour
 	public void findCamera()
 	{
 		camShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+	}
+	
+	void attackAnimation(Direction dir)
+	{
+		character.SetBool("WalkingBack", false);
+		character.SetBool("WalkingForward", false);
+		character.SetBool("WalkingLeft", false);
+		character.SetBool("WalkingRight", false);
+		character.SetBool("Idle", false);
+		
+		switch(direction)
+		{
+			case Direction.Left:
+				character.SetTrigger("LeftAttack");
+				break;
+			case Direction.Right:
+				character.SetTrigger("RightAttack");
+				break;
+			case Direction.Up:
+				character.SetTrigger("BackAttack");
+				break;
+			case Direction.Down:
+				character.SetTrigger("ForwardAttack");
+				break;
+			case Direction.UpLeft:
+				character.SetTrigger("BackAttack");
+				break;
+			case Direction.UpRight:
+				character.SetTrigger("BackAttack");
+				break;
+			case Direction.DownLeft:
+				character.SetTrigger("ForwardAttack");
+				break;
+			case Direction.DownRight:
+				character.SetTrigger("ForwardAttack");
+				break;
+		}
 	}
 }

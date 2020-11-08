@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
@@ -884,7 +884,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
@@ -1434,7 +1434,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
@@ -1855,7 +1855,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64e618f8cdbbc4448cc79016a4d5997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -100
+  rotationSpeed: -60
 --- !u!1 &1577105990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,7 +2887,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
@@ -3234,7 +3234,7 @@ PrefabInstance:
     - target: {fileID: 3694625129478207205, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}
       propertyPath: health
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3726097344500714312, guid: e9cbfc3cef61f8247aa124c287983ce6,
         type: 3}

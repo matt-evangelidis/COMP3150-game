@@ -8,8 +8,8 @@ public class HealthIndicator : Singleton<HealthIndicator>
     // Ref: https://www.youtube.com/watch?v=3uyolYVsiWc
     // Get child in prefab ref: https://answers.unity.com/questions/894211/set-objects-child-to-activeinactive.html
 
-    public int health; // aka. currentHP of player
-    public int numOfHearts; // aka. maxHP of player
+    public int health = 5; // aka. currentHP of player
+    public int numOfHearts = 5; // aka. maxHP of player
 
     public GameObject[] hearts;
     public Sprite fullHeart;

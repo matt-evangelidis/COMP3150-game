@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7200846340447607266}
   - component: {fileID: 7200846340447607265}
   - component: {fileID: 7200846340447607264}
+  - component: {fileID: 3826042890066622764}
   m_Layer: 23
   m_Name: HealthUp
   m_TagString: HealthUp
@@ -108,3 +109,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.09}
   m_EdgeRadius: 0
+--- !u!114 &3826042890066622764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200846340447607295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1c11f90f5114c42b943fbdebba1df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 2692bb2ae6e6ab5428683ec48d5f5518, type: 3}

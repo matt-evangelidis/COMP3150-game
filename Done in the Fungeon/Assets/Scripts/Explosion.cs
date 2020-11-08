@@ -6,6 +6,14 @@ public class Explosion : MonoBehaviour
 {
 	private float explosionTime = 0.1f;
 	
+	private AudioSource sounds;
+	public AudioClip clip;
+	
+	void Awake()
+	{
+		sounds = GameObject.Find("/Sound Effects").GetComponent<AudioSource>();
+	}
+	
     void Update()
     {
         if(explosionTime > 0)
@@ -14,6 +22,8 @@ public class Explosion : MonoBehaviour
 		}
 		else
 		{
+			sounds.clip = clip;
+			sounds.Play();
 			Destroy(gameObject);
 		}
     }

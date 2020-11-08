@@ -5,18 +5,20 @@ using UnityEngine;
 public class DoubleButton : MonoBehaviour
 {
 	public bool pressed = false;
-	public SpriteRenderer sprite;
-	public Color currentColour;
+	public GameObject unpressedSprite;
+	public GameObject pressedSprite;
 	
 	void Update()
 	{
 		if(pressed)
 		{
-			sprite.color = Color.green;
+			pressedSprite.SetActive(true);
+			unpressedSprite.SetActive(false);
 		}
 		else
 		{
-			sprite.color = currentColour;
+			pressedSprite.SetActive(false);
+			unpressedSprite.SetActive(true);
 		}
 	}
 	

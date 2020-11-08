@@ -15,16 +15,16 @@ public class ColourButton : MonoBehaviour
         switch(colour)
 		{
 			case 0:
-				sr.color = Color.red;
+				sr.color = new Color(0.9725490196078431f, 0.2196078431372549f, 0, 1); // red
 				break;
 			case 1:
-				sr.color = Color.yellow;
+				sr.color = new Color(0.9725490196078431f, 0.7215686274509804f, 0, 1); // yellow 
 				break;
 			case 2:
-				sr.color = Color.green;
+				sr.color = new Color(0, 0.7215686274509804f, 0, 1); // green
 				break;
 			case 3:
-				sr.color = Color.blue;
+				sr.color = new Color(0, 0.4705882352941176f, 0.9725490196078431f, 1); // blue
 				break;
 		}
     }
@@ -41,19 +41,19 @@ public class ColourButton : MonoBehaviour
 		{
 			case 0:
 				colour = 1;
-				sr.color = Color.yellow;
+				sr.color = new Color(0.9725490196078431f, 0.7215686274509804f, 0, 1);
 				break;
 			case 1:
 				colour = 2;
-				sr.color = Color.green;
+				sr.color = new Color(0, 0.7215686274509804f, 0, 1);
 				break;
 			case 2:
 				colour = 3;
-				sr.color = Color.blue;
+				sr.color = new Color(0, 0.4705882352941176f, 0.9725490196078431f, 1);
 				break;
 			case 3:
 				colour = 0;
-				sr.color = Color.red;
+				sr.color = new Color(0.9725490196078431f, 0.2196078431372549f, 0, 1);
 				break;
 		}
 	}

@@ -21,6 +21,14 @@ public class PeriodicallyExplode : MonoBehaviour
 	
 	private CameraShake camShake;
 	
+	private AudioSource sounds;
+	public AudioClip clip;
+	
+	void Awake()
+	{
+		sounds = GameObject.Find("/Sound Effects").GetComponent<AudioSource>();
+	}
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +59,8 @@ public class PeriodicallyExplode : MonoBehaviour
 			camShake.StrongShake();
 			explosionTimer = explosion;
 			explosionPeriodTimer = explosionPeriod;
+			sounds.clip = clip;
+			sounds.Play();
 		}
 		
 		if(explosionTimer > 0)

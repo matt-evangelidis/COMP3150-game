@@ -35,16 +35,16 @@ public class ColourMatchingManager : MonoBehaviour
 			switch(coloursNeeded[i])
 			{
 				case 0:
-					displayBorders[i].color = Color.red;
+					displayBorders[i].color = new Color(0.9725490196078431f, 0.2196078431372549f, 0, 1); // red
 					break;
 				case 1:
-					displayBorders[i].color = Color.yellow;
+					displayBorders[i].color = new Color(0.9725490196078431f, 0.7215686274509804f, 0, 1); //yellow
 					break;
 				case 2:
-					displayBorders[i].color = Color.green;
+					displayBorders[i].color = new Color(0, 0.7215686274509804f, 0, 1); // green
 					break;
 				case 3:
-					displayBorders[i].color = Color.blue;
+					displayBorders[i].color = new Color(0, 0.4705882352941176f, 0.9725490196078431f, 1); // blue
 					break;
 			}
 		}

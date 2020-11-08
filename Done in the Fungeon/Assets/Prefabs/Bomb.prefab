@@ -237,7 +237,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 028de40fa99b1d34c9934fb4518467ba, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.972549, g: 0.21960784, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 7819124756548875126}
   - component: {fileID: 7819124756548875121}
   - component: {fileID: 7819124756548875124}
+  - component: {fileID: -2736651117388120799}
   m_Layer: 14
   m_Name: Bomb
   m_TagString: Untagged
@@ -420,9 +421,10 @@ MonoBehaviour:
   explosionPeriod: 5
   sprite: {fileID: 6736159562710895237}
   defaultColour: {r: 1, g: 1, b: 1, a: 1}
-  flashingColor: {r: 1, g: 0, b: 0, a: 1}
+  flashingColor: {r: 0.972549, g: 0.21960784, b: 0, a: 1}
   damageZone1: {fileID: 7819124756594167340}
   damageZone2: {fileID: 7819124755764610046}
+  clip: {fileID: 8300000, guid: 596465a28edb0324096754beaef54b39, type: 3}
 --- !u!114 &7819124756548875121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +458,19 @@ MonoBehaviour:
   damageTime: 0.2
   knockbackResistance: 0
   numHits: 0
+--- !u!114 &-2736651117388120799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819124756548875120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5234be04472cac40ac60da143ac36df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5fadb34e829fe2c4fb05c9d43f5a6215, type: 3}
 --- !u!1 &7819124756594167340
 GameObject:
   m_ObjectHideFlags: 0

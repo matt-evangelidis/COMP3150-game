@@ -20,8 +20,6 @@ public class DoubleRoomSpawner : MonoBehaviour
 	public Player clonePlayer;
 	public GameObject middleWall;
 	
-	private Color currentColour;
-	
 	public float tempDisableTime;
 	private float tempDisableTimer;
 	
@@ -45,9 +43,6 @@ public class DoubleRoomSpawner : MonoBehaviour
 			if(timerToMatch > 0)
 			{
 				timerToMatch -= Time.deltaTime;
-				currentColour = new Color(1.0f, timerToMatch/timeToMatch, timerToMatch/timeToMatch, 1.0f);
-				button1.currentColour = currentColour;
-				button2.currentColour = currentColour;
 			}
 			else
 			{
@@ -92,7 +87,6 @@ public class DoubleRoomSpawner : MonoBehaviour
 		}
 		else if(rounds <= 0)
 		{
-			currentColour = Color.white;
 			clonePlayer.gameObject.SetActive(false);
 			middleWall.SetActive(false);
 			exitDoor1.SetActive(false);

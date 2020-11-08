@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2745928305269581256}
   - component: {fileID: 8065788717406000028}
   - component: {fileID: -4571802171341208860}
+  - component: {fileID: 8632419620157796257}
   m_Layer: 11
   m_Name: Pathfinding Enemy
   m_TagString: Untagged
@@ -102,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   invincible: 0
-  damageColour: {r: 1, g: 0, b: 0, a: 1}
-  defaultColour: {r: 1, g: 0.49411765, b: 0, a: 1}
+  damageColour: {r: 0.972549, g: 0.21960784, b: 0, a: 1}
+  defaultColour: {r: 0.89411765, g: 0.36078432, b: 0.0627451, a: 1}
   damageTime: 0.2
   knockbackResistance: 0
   immuneToPlayerAttacks: 0
@@ -193,6 +194,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   movementSpeed: 3000
+--- !u!114 &8632419620157796257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726097344500714312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574508f07aca86940975b51cf60f163f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5fadb34e829fe2c4fb05c9d43f5a6215, type: 3}
 --- !u!1 &4044272412996109010
 GameObject:
   m_ObjectHideFlags: 0

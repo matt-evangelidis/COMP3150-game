@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 3970980894054208201}
   - component: {fileID: 4125253205364153278}
   - component: {fileID: -3272580718134925331}
+  - component: {fileID: 912656990753935242}
   m_Layer: 19
   m_Name: Golf Ball
   m_TagString: Untagged
@@ -313,6 +314,19 @@ MonoBehaviour:
   damageTime: 0.2
   knockbackResistance: 0.5
   numHits: 0
+--- !u!114 &912656990753935242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125253205364153271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5234be04472cac40ac60da143ac36df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 5fadb34e829fe2c4fb05c9d43f5a6215, type: 3}
 --- !u!1 &5864527836279694925
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6270944105275450869}
   - component: {fileID: 6270944105275450868}
   - component: {fileID: 6270944105275450870}
+  - component: {fileID: -5026384768519910338}
   m_Layer: 23
   m_Name: AttackUp
   m_TagString: AttackUp
@@ -108,3 +109,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.08}
   m_EdgeRadius: 0
+--- !u!114 &-5026384768519910338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6270944105275450875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1c11f90f5114c42b943fbdebba1df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 2692bb2ae6e6ab5428683ec48d5f5518, type: 3}

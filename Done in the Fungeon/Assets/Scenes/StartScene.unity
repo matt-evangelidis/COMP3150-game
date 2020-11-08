@@ -295,6 +295,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 3559255079959982135, guid: c1ed99e504c87dc468222a8271a09bb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3559255079959982136, guid: c1ed99e504c87dc468222a8271a09bb2,
         type: 3}
       propertyPath: gameOverPanel

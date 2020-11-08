@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlaySoundOnHit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D c)
+    private AudioSource sounds;
+	public AudioClip clip;
+	
+	void Awake()
 	{
-		
+		sounds = GameObject.Find("/Sound Effects").GetComponent<AudioSource>();
+	}
+
+    void OnCollisionEnter2D(Collision2D c)
+	{
+		sounds.clip = clip;
+		sounds.Play();
 	}
 }
